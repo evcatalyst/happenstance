@@ -22,6 +22,9 @@
     applyBranding();
     bind();
     render();
+  // Expose simple readiness signal for tests
+  try { window._hsState = state; } catch(e) {}
+  document.body.setAttribute('data-hs-ready','1');
   }
 
   function applyBranding(){
@@ -53,7 +56,8 @@
   }
 
   function table(headers, rows){
-    const table = document.createElement('table');
+  const table = document.createElement('table');
+  table.setAttribute('data-testid','data-table');
     const thead = document.createElement('thead');
     const trh = document.createElement('tr');
     headers.forEach(h => { const th = document.createElement('th'); th.textContent = h.label; th.addEventListener('click', ()=>{ sortBy(h.key, rows); render(); }); trh.appendChild(th); });
@@ -147,7 +151,7 @@
       let data = filterItems([...state.restaurants], ['name','cuisine','description','address']);
       data = applySort(data);
       if(state.layout==='cards'){
-        const grid=document.createElement('div'); grid.className='grid cards-restaurants';
+  const grid=document.createElement('div'); grid.className='grid cards-restaurants'; grid.setAttribute('data-testid','restaurants-grid');
         data.forEach(r=> grid.appendChild(createRestaurantCard(r)));
         container.appendChild(grid);
       } else {
@@ -166,7 +170,7 @@
       let data = filterItems([...state.events], ['name','date','venue','category','description']);
       data = applySort(data);
       if(state.layout==='cards'){
-        const grid=document.createElement('div'); grid.className='grid cards-events';
+  const grid=document.createElement('div'); grid.className='grid cards-events'; grid.setAttribute('data-testid','events-grid');
         data.forEach(ev=> grid.appendChild(createEventCard(ev)));
         container.appendChild(grid);
       } else {

@@ -1,6 +1,27 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.8.0] - 2025-08-14
+### Added
+- Commit gating via `COMMIT_DATA` env (suppresses automated commits unless explicitly enabled).
+- GitHub Pages deploy workflow (`publish-pages.yml`) using Pages artifact (serves `docs/*.json` without commits).
+- Deterministic item hashing (stable sort + transient field stripping) to reduce false-positive change detection.
+- Gap analysis prompts (cuisine / category coverage bullets) feeding multi-pass improvement.
+- Month distribution scoring & guidance for event spread.
+- Link validation (optional) with `LINK_HTTP_VALIDATE` and `LINK_DROP_INVALID`.
+- Cost estimation hooks (env overrides `COST_PER_1K_PROMPT`, `COST_PER_1K_COMPLETION`).
+
+### Changed
+- Outputs moved / standardized in `docs/` directory (replacing older `static/` references in workflows). 
+- Aggregation workflows now always upload artifacts (debug + JSON) regardless of commit outcome.
+
+### Fixed
+- Eliminated daily branch divergence caused by timestamp-only JSON churn.
+- Resolved earlier indentation / duplication regressions by reverting and applying minimal stable hashing patch.
+
+### Deprecated
+- Implicit always-commit behavior replaced by explicit opt-in via environment variable.
+
 
 Format: YYYY-MM-DD. Reverse chronological. Follows a loose "Keep a Changelog" style. Version numbers are provisional (0.x while iterating quickly) and group coherent feature sets captured during this build-out.
 

@@ -17,19 +17,35 @@ except ImportError:  # pragma: no cover
     OPENAI_AVAILABLE = False
 
 # Structured outputs & live search via xai-sdk
-try:
+try:  # pydantic (allow tests without dependency)
     from pydantic import BaseModel, Field
+except ImportError:  # pragma: no cover
+    class BaseModel:  # type: ignore
+        def __init_subclass__(cls, **kwargs):
+            return super().__init_subclass__(**kwargs)
+    def Field(*args, **kwargs):  # type: ignore
+        return None
+
+try:  # xai-sdk (structured outputs + live search)
     from xai_sdk import Client as XAIClient
     from xai_sdk.chat import system as xai_system, user as xai_user
     from xai_sdk.search import SearchParameters, web_source, news_source, x_source, rss_source
     XAI_AVAILABLE = True
-except ImportError:
-    # Fallback flag – will revert to OpenAI style JSON mode if xai-sdk not installed
+except ImportError:  # pragma: no cover
     XAI_AVAILABLE = False
+    # Provide lightweight stubs so type hints remain valid
+    class SearchParameters:  # type: ignore
+        def __init__(self, *args, **kwargs):
+            pass
+    def web_source(*args, **kwargs): return None  # type: ignore
+    def news_source(*args, **kwargs): return None  # type: ignore
+    def x_source(*args, **kwargs): return None  # type: ignore
+    def rss_source(*args, **kwargs): return None  # type: ignore
 
 CONFIG_PATH = Path('config/config_logic.json')
 STATIC_DIR = Path('docs')
 DEBUG_DIR = Path('debug')
+DRY_RUN = os.environ.get('DRY_RUN','0') == '1'  # When set, build prompts & exit before external API calls
 EVENTS_JSON = STATIC_DIR / 'events.json'
 RESTAURANTS_JSON = STATIC_DIR / 'restaurants.json'
 CONFIG_OUT_JSON = STATIC_DIR / 'config.json'
@@ -574,7 +590,11 @@ def write_if_changed(path: Path, data: Any) -> bool:
     return False
 
 def canonical_items_hash(items: List[Dict[str, Any]]) -> str:
-    """Stable hash of items content (excluding meta sentinel)."""
+    """Stable hash of items content (excluding meta sentinel).
+
+    Exported utility (lightweight) for tests. Removes transient keys and
+    sorts deterministically to avoid false positives.
+    """
     try:
         # Deterministically sort items to prevent ordering noise between runs.
         def sort_key(d: Dict[str, Any]):
@@ -586,18 +606,43 @@ def canonical_items_hash(items: List[Dict[str, Any]]) -> str:
                 d.get('venue','').lower()
             )
         norm = []
+        allowed = {'name','address','cuisine','description','link','is_new','badge','date','venue','category'}
         for it in items:
             if isinstance(it, dict):
-                c = dict(it)
-                # Drop transient validation flags if ever present
-                for k in ['link_ok','status']:
-                    c.pop(k, None)
+                c = {}
+                for k, v in it.items():
+                    if k in allowed:
+                        c[k] = v
                 norm.append(c)
         norm_sorted = sorted(norm, key=sort_key)
         dumped = json.dumps(norm_sorted, sort_keys=True, ensure_ascii=False, separators=(',',':'))
         return hashlib.sha256(dumped.encode('utf-8')).hexdigest()
     except Exception:
         return ''
+
+def compute_gap_bullets(kind: str, items: List[Dict[str, Any]]) -> List[str]:
+    """Return up to three guidance bullets highlighting missing coverage.
+
+    Top-level for test import; relies on global target sets if they exist,
+    else uses reasonable defaults.
+    """
+    if not items:
+        return []
+    # Fallback target sets (overridden inside main when defined)
+    cuisine_targets = {c.lower() for c in ['tacos','thai','ethiopian','vegan','seafood','pizza','coffee','brunch','farm-to-table','bbq','sushi','indian','mediterranean']}
+    event_targets = {c.lower() for c in ['live music','festival','food','theater','comedy','art','market','family']}
+    bullets: List[str] = []
+    if kind == 'restaurants':
+        have = {(it.get('cuisine') or '').lower().strip() for it in items if it.get('cuisine')}
+        missing = sorted(cuisine_targets - {h for h in have if h})
+        if missing:
+            bullets.append(f"Add authentic examples for missing cuisines: {', '.join(missing[:6])}")
+    else:
+        have = {(it.get('category') or '').lower().strip() for it in items if it.get('category')}
+        missing = sorted(event_targets - {h for h in have if h})
+        if missing:
+            bullets.append(f"Surface real upcoming events in categories: {', '.join(missing[:6])}")
+    return bullets[:3]
 
 
 def save_debug(name: str, payload: Any):
@@ -775,22 +820,6 @@ def main():
         target_cuisine_set = {c.lower() for c in ['tacos','thai','ethiopian','vegan','seafood','pizza','coffee','brunch','farm-to-table','bbq','sushi','indian','mediterranean']}
         target_event_categories = {c.lower() for c in ['live music','festival','food','theater','comedy','art','market','family']}
 
-        def compute_gap_bullets(kind: str, items: List[Dict[str, Any]]) -> List[str]:
-            if not items:
-                return []
-            bullets: List[str] = []
-            if kind == 'restaurants':
-                have = { (it.get('cuisine') or '').lower() for it in items if it.get('cuisine') }
-                missing = sorted(target_cuisine_set - have)
-                if missing:
-                    bullets.append(f"Add authentic examples for missing cuisines: {', '.join(missing[:6])}")
-            else:
-                have = { (it.get('category') or '').lower() for it in items if it.get('category') }
-                missing = sorted(target_event_categories - have)
-                if missing:
-                    bullets.append(f"Surface real upcoming events in categories: {', '.join(missing[:6])}")
-            return bullets[:3]
-
         def month_spread_instruction(events: List[Dict[str, Any]]) -> str:
             months = []
             for e in events:
@@ -827,7 +856,6 @@ def main():
         pass_index = 0
         while pass_index < rest_passes and len(collected_rest) < target_rest and total_passes < max_total_passes:
             focus = '' if pass_index == 0 else rest_seeds[(pass_index-1) % len(rest_seeds)]
-            # select url group rotation
             group_name = url_group_names[pass_index % len(url_group_names)] if url_group_names else ''
             group_urls = url_groups.get(group_name) if group_name else None
             if group_name:
@@ -835,7 +863,10 @@ def main():
             guidance = ''
             if gap_bullets_rest:
                 guidance = '\n'.join(f"\u2022 {b}" for b in gap_bullets_rest)
-            new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
+            if DRY_RUN:
+                new_items = []  # skip external calls
+            else:
+                new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
             if new_items:
                 cuisines = {(it.get('cuisine') or '').lower() for it in new_items if it.get('cuisine')}
                 wanted = {'tacos','thai','ethiopian','vegan','seafood'} - cuisines
@@ -849,7 +880,6 @@ def main():
                 seen_rest.add(key)
                 collected_rest.append(it)
                 new_count_this_pass += 1
-            # Augment last snapshot with novelty metrics
             try:
                 metrics_path = DEBUG_DIR / 'pass_metrics.json'
                 metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
@@ -863,7 +893,6 @@ def main():
                     metrics_path.write_text(json.dumps(metrics, indent=2))
             except Exception:
                 pass
-            # Update gap bullets after each pass based on accumulated items
             gap_bullets_rest = compute_gap_bullets('restaurants', collected_rest)
             pass_index += 1
 
@@ -879,16 +908,17 @@ def main():
             if group_name:
                 url_groups_used.add(group_name)
             month_spread_note = month_spread_instruction(collected_events)
-            guidance = ''
             gap_bullets_events = compute_gap_bullets('events', collected_events)
             guidance_parts = []
             if gap_bullets_events:
                 guidance_parts.extend(f"\u2022 {b}" for b in gap_bullets_events)
             if month_spread_note:
                 guidance_parts.append(f"\u2022 {month_spread_note}")
-            if guidance_parts:
-                guidance = '\n'.join(guidance_parts)
-            new_items = run_pass('events', focus, feedback_notes_events, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
+            guidance = '\n'.join(guidance_parts) if guidance_parts else ''
+            if DRY_RUN:
+                new_items = []
+            else:
+                new_items = run_pass('events', focus, feedback_notes_events, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
             if isinstance(new_items, list):
                 categories = {(it.get('category') or '').lower() for it in new_items if it.get('category')}
                 desired = {'live music','festival','food','theater','comedy'}
@@ -940,7 +970,6 @@ def main():
                             continue
                         seen_rest.add(key)
                         collected_rest.append(it)
-                    # annotate last snapshot for restaurants openai augmentation
                     try:
                         metrics_path = DEBUG_DIR / 'pass_metrics.json'
                         metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
@@ -975,7 +1004,7 @@ def main():
                 if total_passes >= max_total_passes:
                     break
 
-        # Trim to preliminary targets
+        # Trim to targets (pre-validation)
         collected_rest = collected_rest[:target_rest]
         collected_events = collected_events[:target_events]
 
@@ -1045,6 +1074,7 @@ def main():
         # Prepare meta sentinel entries with timestamps & hashes
         run_end_ts = time.time()
         gen_time_iso = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + 'Z'
+
         def build_meta(items: List[Dict[str, Any]], existing_items: List[Dict[str, Any]], kind: str) -> Dict[str, Any]:
             new_hash = canonical_items_hash(items)
             prev_hash = canonical_items_hash(existing_items)
@@ -1071,7 +1101,6 @@ def main():
         rest_with_meta = list(rest_valid) + [meta_rest]
         events_with_meta = list(event_valid) + [meta_events]
 
-        # Always write (timestamps differ each run) but report whether items changed
         write_if_changed(RESTAURANTS_JSON, rest_with_meta)
         write_if_changed(EVENTS_JSON, events_with_meta)
         changed_rest = meta_rest['_meta']['items_changed']
@@ -1086,7 +1115,6 @@ def main():
         }
         write_if_changed(CONFIG_OUT_JSON, front_cfg)
 
-        # Consolidated meta file (summary)
         try:
             meta_summary = {
                 'version': 'v2.1-wave0',
@@ -1100,17 +1128,12 @@ def main():
         except Exception:
             pass
 
-        # Usage metrics consolidation (cost fields deprecated)
         try:
             metrics_path = DEBUG_DIR / 'pass_metrics.json'
-            if metrics_path.exists():
-                metrics = json.loads(metrics_path.read_text())
-            else:
-                metrics = []
+            metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
             total_prompt = sum(m.get('prompt_tokens', 0) for m in metrics)
             total_completion = sum(m.get('completion_tokens', 0) for m in metrics)
             providers = sorted({m.get('provider','xai') for m in metrics})
-            # Aggregate per provider/model
             aggregates: Dict[str, Any] = {}
             for m in metrics:
                 prov = m.get('provider','unknown')
@@ -1132,7 +1155,6 @@ def main():
             novelty_final_rest = round(sum(1 for r in rest_valid if r.get('is_new')) / max(len(rest_valid),1),4)
             novelty_final_events = round(sum(1 for e in event_valid if e.get('is_new')) / max(len(event_valid),1),4)
             live_search_domains = sorted({d for m in metrics for d in (m.get('citation_domains') or [])})
-            # Final month spread score
             months_events = []
             for e in event_valid:
                 try:
@@ -1157,19 +1179,18 @@ def main():
                 'novelty_final': {'restaurants': novelty_final_rest, 'events': novelty_final_events},
                 'augmentation': {'xai_passes': xai_passes, 'openai_passes': openai_passes},
                 'live_search': {'distinct_citation_domains': len(live_search_domains), 'citation_domains': live_search_domains},
-                    'phase2': {
-                        'url_groups_used': sorted(url_groups_used),
-                        'gap_bullets_restaurant_examples': gap_bullets_rest,
-                        'gap_bullets_event_examples': gap_bullets_events,
-                        'month_spread_score': month_spread_score
-                    },
+                'phase2': {
+                    'url_groups_used': sorted(url_groups_used),
+                    'gap_bullets_restaurant_examples': gap_bullets_rest,
+                    'gap_bullets_event_examples': gap_bullets_events,
+                    'month_spread_score': month_spread_score
+                },
                 'first_pass_ts': first_pass_ts,
                 'last_pass_ts': last_pass_ts,
                 'deprecated_cost_summary': True
             }
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
             (DEBUG_DIR / 'usage_summary.json').write_text(json.dumps(usage_summary, indent=2))
-            # keep deprecated file for backward compatibility
             (DEBUG_DIR / 'cost_summary.json').write_text(json.dumps({'deprecated': True, 'see': 'usage_summary.json'}, indent=2))
             history_path = DEBUG_DIR / 'usage_history.json'
             history = []
@@ -1183,7 +1204,7 @@ def main():
             print(f"Run {run_id}: providers={providers} tokens(prompt={total_prompt}, completion={total_completion}) final(rest={len(rest_valid)}, events={len(event_valid)}) openai_passes={openai_passes}")
         except Exception as cost_err:
             print(f'Cost summary error: {cost_err}', file=sys.stderr)
-        # Final high-level change summary
+
         print(f'Restaurants items_changed={changed_rest}, Events items_changed={changed_events}')
     except Exception as e:
         print(f'ERROR: {e}', file=sys.stderr)

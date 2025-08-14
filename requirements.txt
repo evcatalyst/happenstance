@@ -1,4 +1,10 @@
-requests
-openai>=1.0.0
+# Core runtime
+requests>=2.31,<3
+openai>=1.0.0,<2
 xai-sdk>=0.2.0
-pydantic>=2.7.0
+pydantic>=2.7.0,<3
+
+# Testing
+pytest>=7.4,<9
+selenium>=4.20,<5
+webdriver-manager>=4.0,<5

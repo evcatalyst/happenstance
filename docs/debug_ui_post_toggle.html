@@ -1,0 +1,57 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital Region Happenstance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark" data-hs-ready="1">
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="logo-title">
+        <img id="logo" alt="Logo" src="https://via.placeholder.com/120x60?text=Logo" style="display: block;">
+        <h1 id="site-title">Capital Region Happenstance</h1>
+      </div>
+      <nav class="primary-controls">
+        <label class="control">
+          <span>View</span>
+          <select id="view-select">
+            <option value="restaurants">Restaurants</option>
+            <option value="events">Events</option>
+            <option value="paired">Paired</option>
+          </select>
+        </label>
+        <label class="control">
+          <span>Theme</span>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark" selected="">Dark</option>
+          </select>
+        </label>
+        <label class="control" id="sort-wrapper">
+          <span>Sort</span>
+          <select id="sort-select"><option value="">(none)</option><option value="event_name:asc">Event</option><option value="rest_name:asc">Restaurant</option><option value="date:asc">Date</option></select>
+        </label>
+        <label class="control">
+          <span>Layout</span>
+          <select id="layout-select">
+            <option value="cards">Cards</option>
+            <option value="table">Table</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <input id="filter" placeholder="Filter… (name / cuisine / category)">
+        </div>
+      </nav>
+    </header>
+    <main id="content" class="content"><table data-testid="data-table"><thead><tr><th>Event</th><th>Date</th><th>Restaurant</th><th>Cuisine</th><th>Match Reason</th></tr></thead><tbody><tr><td>Summer Fest</td><td>2025-08-20</td><td></td><td></td><td>category match</td></tr><tr><td>Jazz Night</td><td>2025-08-18</td><td></td><td></td><td>category match</td></tr><tr><td></td><td></td><td>Alpha Bistro</td><td>French</td><td>category match</td></tr><tr><td></td><td></td><td>Beta Tacos</td><td>Tacos</td><td>category match</td></tr><tr><td></td><td></td><td></td><td></td><td>category match</td></tr></tbody></table></main>
+    <footer class="site-footer">
+      <span id="counts">Pairs • 5</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+
+
+</body></html>
