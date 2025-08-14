@@ -34,6 +34,7 @@ EVENTS_JSON = STATIC_DIR / 'events.json'
 RESTAURANTS_JSON = STATIC_DIR / 'restaurants.json'
 CONFIG_OUT_JSON = STATIC_DIR / 'config.json'
 GROUND_TRUTH_PATH = Path('config/ground_truth.json')
+META_JSON = STATIC_DIR / 'meta.json'
 
 API_URL = 'https://api.x.ai/v1/chat/completions'
 # Allow overriding model via GROK_MODEL env; default to more capable 'grok-3'
@@ -398,10 +399,14 @@ def call_grok(prompt: str, kind: str, system_instructions: str = 'You are a help
 
 
 def load_existing(path: Path) -> List[Dict[str, Any]]:
+    """Load existing dataset list, stripping trailing meta sentinel if present."""
     if path.exists():
         try:
             with open(path) as f:
-                return json.load(f)
+                data = json.load(f)
+            if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                return data[:-1]
+            return data if isinstance(data, list) else []
         except Exception:
             return []
     return []
@@ -561,6 +566,15 @@ def write_if_changed(path: Path, data: Any) -> bool:
         return True
     return False
 
+def canonical_items_hash(items: List[Dict[str, Any]]) -> str:
+    """Stable hash of items content (excluding meta sentinel)."""
+    try:
+        # remove volatile fields if any later
+        dumped = json.dumps(items, sort_keys=True, ensure_ascii=False, separators=(',',':'))
+        return hashlib.sha256(dumped.encode('utf-8')).hexdigest()
+    except Exception:
+        return ''
+
 
 def save_debug(name: str, payload: Any):
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
@@ -586,6 +600,7 @@ def _valid_event_window(date_str: str) -> bool:
 
 def main():
     try:
+        run_start_ts = time.time()
         run_id = uuid.uuid4().hex[:12]
         # Load configuration and profile
         config = load_config()
@@ -670,8 +685,12 @@ def main():
                 data['_citation_domains'] = []
             return data
 
+        first_api_ts: Optional[float] = None
+        last_api_ts: Optional[float] = None
+
         def run_pass(kind: str, extra_focus: str, feedback: str, provider: str, pass_index: int):
             nonlocal total_passes
+            nonlocal first_api_ts, last_api_ts
             if total_passes >= max_total_passes:
                 return []
             prompt = build_prompt(profile, kind, extra_focus=extra_focus)
@@ -681,7 +700,12 @@ def main():
                 prompt += ("\nAugmentation pass: Prefer high-confidence real items (new OR established) even if some appeared earlier; "
                            "you may repeat a small subset (<=25%) if wording can enhance description richness. Avoid fabrications.")
             save_text(f'prompt_{provider}_{kind}_{extra_focus or "base"}.txt', prompt)
+            raw_call_start = time.time()
             raw = call_grok(prompt, kind, pass_index=pass_index, profile=profile) if provider == 'xai' else call_openai(prompt, kind)
+            raw_call_end = time.time()
+            if first_api_ts is None:
+                first_api_ts = raw_call_start
+            last_api_ts = raw_call_end
             items = raw.get(kind) if isinstance(raw, dict) else raw
             if isinstance(items, dict):
                 items = items.get(kind, [])
@@ -865,14 +889,63 @@ def main():
         save_debug('last_run_validated_restaurants.json', rest_valid)
         save_debug('last_run_validated_events.json', event_valid)
 
-        changed_rest = write_if_changed(RESTAURANTS_JSON, rest_valid)
-        changed_events = write_if_changed(EVENTS_JSON, event_valid)
+        # Prepare meta sentinel entries with timestamps & hashes
+        run_end_ts = time.time()
+        gen_time_iso = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + 'Z'
+        def build_meta(items: List[Dict[str, Any]], existing_items: List[Dict[str, Any]], kind: str) -> Dict[str, Any]:
+            new_hash = canonical_items_hash(items)
+            prev_hash = canonical_items_hash(existing_items)
+            changed = new_hash != prev_hash
+            return {
+                '_meta': {
+                    'run_id': run_id,
+                    'kind': kind,
+                    'generated_at': gen_time_iso,
+                    'run_start': datetime.datetime.utcfromtimestamp(run_start_ts).isoformat() + 'Z',
+                    'run_end': datetime.datetime.utcfromtimestamp(run_end_ts).isoformat() + 'Z',
+                    'first_api_response': datetime.datetime.utcfromtimestamp(first_api_ts).isoformat() + 'Z' if first_api_ts else None,
+                    'last_api_response': datetime.datetime.utcfromtimestamp(last_api_ts).isoformat() + 'Z' if last_api_ts else None,
+                    'item_count': len(items),
+                    'items_hash_sha256': new_hash,
+                    'previous_items_hash_sha256': prev_hash,
+                    'items_changed': changed
+                }
+            }
+
+        meta_rest = build_meta(rest_valid, existing_rest, 'restaurants')
+        meta_events = build_meta(event_valid, existing_events, 'events')
+
+        rest_with_meta = list(rest_valid) + [meta_rest]
+        events_with_meta = list(event_valid) + [meta_events]
+
+        # Always write (timestamps differ each run) but report whether items changed
+        write_if_changed(RESTAURANTS_JSON, rest_with_meta)
+        write_if_changed(EVENTS_JSON, events_with_meta)
+        changed_rest = meta_rest['_meta']['items_changed']
+        changed_events = meta_events['_meta']['items_changed']
 
         front_cfg = {
             'branding': branding,
-            'pairing_rules': profile.get('pairing_rules', [])
+            'pairing_rules': profile.get('pairing_rules', []),
+            'version': 'v2.1-wave0',
+            'last_generated_at': gen_time_iso,
+            'run_id': run_id
         }
         write_if_changed(CONFIG_OUT_JSON, front_cfg)
+
+        # Consolidated meta file (summary)
+        try:
+            meta_summary = {
+                'version': 'v2.1-wave0',
+                'profile': profile_name,
+                'run_id': run_id,
+                'generated_at': gen_time_iso,
+                'restaurants': meta_rest['_meta'],
+                'events': meta_events['_meta']
+            }
+            META_JSON.write_text(json.dumps(meta_summary, indent=2))
+        except Exception:
+            pass
 
         # Cost / metrics consolidation
         try:
@@ -913,7 +986,8 @@ def main():
             print(f"Run {run_id}: providers={providers} tokens(prompt={total_prompt}, completion={total_completion}) est_cost=${round(total_cost,4)} final(rest={len(rest_valid)}, events={len(event_valid)})")
         except Exception as cost_err:
             print(f'Cost summary error: {cost_err}', file=sys.stderr)
-        print(f'Restaurants changed: {changed_rest}, Events changed: {changed_events}')
+        # Final high-level change summary
+        print(f'Restaurants items_changed={changed_rest}, Events items_changed={changed_events}')
     except Exception as e:
         print(f'ERROR: {e}', file=sys.stderr)
         sys.exit(0)
