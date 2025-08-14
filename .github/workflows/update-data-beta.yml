@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROFILE: capital_region
+      # Set COMMIT_DATA=1 to permit committing docs/*.json back to beta.
+      COMMIT_DATA: ${{ vars.COMMIT_DATA || '0' }}
       GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
       XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -92,13 +94,28 @@ jobs:
           PY
 
       - name: Commit and push updated data
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.changes.outputs.changed == 'true' && env.COMMIT_DATA == '1'
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@users.noreply.github.com'
           git add docs/events.json docs/restaurants.json docs/meta.json docs/config.json || true
           git commit -m "chore(beta): update aggregated data (items changed)" || echo 'No commit'
           git push || echo 'Push skipped'
+
+      - name: Skip commit (informational)
+        if: steps.changes.outputs.changed == 'true' && env.COMMIT_DATA != '1'
+        run: echo "Detected item changes but COMMIT_DATA!=1 so not committing (beta)."
+
+      - name: Upload generated docs JSON (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-json-beta
+          path: |
+            docs/events.json
+            docs/restaurants.json
+            docs/meta.json
+            docs/config.json
 
       - name: Upload debug artifacts
         if: always()

@@ -1,0 +1,125 @@
+name: Publish Docs to GitHub Pages
+
+on:
+  schedule:
+    - cron: '30 5 * * *'  # 05:30 UTC daily (after main update workflow at 05:00)
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Set to true to force a Pages deploy even if no item changes detected.'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-publish
+  cancel-in-progress: false
+
+env:
+  PROFILE: capital_region
+  COMMIT_DATA: '0'
+  MAX_RUN_PASSES: 5
+  GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+  XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  AUGMENT_WITH_OPENAI: ${{ secrets.AUGMENT_WITH_OPENAI }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run aggregation
+        run: |
+          python scripts/aggregate.py || echo 'Aggregation script soft-failed.'
+
+      - name: Validate JSON outputs
+        run: |
+          python - <<'PY'
+          import json, os
+          for f in ['docs/events.json','docs/restaurants.json','docs/meta.json']:
+            if not os.path.exists(f):
+              print('MISSING', f)
+              continue
+            try:
+              data = json.load(open(f))
+              print('VALID', f, type(data).__name__)
+              if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                m = data[-1]['_meta']
+                print('  META items_changed', m.get('items_changed'), 'item_count', m.get('item_count'))
+            except Exception as e:
+              print('INVALID', f, e)
+          PY
+
+      - name: Detect dataset changes
+        id: detect
+        run: |
+          python - <<'PY'
+          import json, os
+          changed_files = []
+          for f in ['docs/restaurants.json','docs/events.json']:
+            if not os.path.exists(f):
+              continue
+            try:
+              data = json.load(open(f))
+              if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                if data[-1]['_meta'].get('items_changed', True):
+                  changed_files.append(f)
+            except Exception as e:
+              print('PARSE_FAIL', f, e)
+          changed = bool(changed_files)
+          print('Changed datasets:' if changed else 'No dataset item changes.', ' '.join(changed_files))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+            out.write(f'changed={str(changed).lower()}\n')
+            if changed:
+              out.write('files=' + ' '.join(changed_files) + '\n')
+          PY
+
+      - name: Upload Pages artifact (always)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-artifacts-pages
+          path: debug/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    if: needs.build.outputs.changed == 'true' || github.event_name == 'workflow_dispatch' && inputs.force_deploy == 'true'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  skip-notice:
+    needs: build
+    runs-on: ubuntu-latest
+    if: needs.build.outputs.changed != 'true' && !(github.event_name == 'workflow_dispatch' && inputs.force_deploy == 'true')
+    steps:
+      - run: echo "No item changes detected and force_deploy not set – reusing existing Pages content."
