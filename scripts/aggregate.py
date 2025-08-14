@@ -622,47 +622,82 @@ def main():
         rest_seeds = [s.strip() for s in os.environ.get('PASS_SEEDS_RESTAURANTS','tacos,breweries,coffee,brunch,farm-to-table,vegan,pizza,seafood,steakhouses,global fusion').split(',') if s.strip()] or ['varied']
         event_seeds = [s.strip() for s in os.environ.get('PASS_SEEDS_EVENTS','live music,food festivals,art exhibitions,farmer markets,theater,community events,seasonal festivals,craft beer events,cultural celebrations').split(',') if s.strip()] or ['varied']
 
-    schema = profile.get('json_schema', {})
+        schema = profile.get('json_schema', {})
 
-    # Overall pass cap (across both kinds and providers)
-    max_total_passes = int(os.environ.get('MAX_RUN_PASSES', '5'))
-    total_passes = 0  # counts every invocation of run_pass that actually executes
+        # Overall pass cap (across both kinds and providers)
+        max_total_passes = int(os.environ.get('MAX_RUN_PASSES', '5'))
+        total_passes = 0  # counts every invocation of run_pass that actually executes
 
-    def run_pass(kind: str, extra_focus: str, feedback: str, provider: str = 'xai'):
+        def call_openai(prompt: str, kind: str):
+            if not OPENAI_AVAILABLE:
+                return {kind: []}
+            api_key = os.environ.get('OPENAI_API_KEY') or os.environ.get('OPENAI_KEY') or os.environ.get('OPENAI_TOKEN')
+            if not api_key:
+                return {kind: []}
+            model = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
+            try:
+                client = OpenAI(api_key=api_key)
+            except Exception:
+                return {kind: []}
+            try:
+                resp = client.chat.completions.create(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": "You are a precise data extraction assistant. Output valid JSON only."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=float(os.environ.get('OPENAI_TEMPERATURE','0.2')),
+                    response_format={"type": "json_object"}
+                )
+            except Exception as e:
+                save_text(f'openai_error_{kind}.txt', str(e))
+                return {kind: []}
+            usage_obj = getattr(resp, 'usage', None)
+            parsed_usage = _parse_usage_obj(usage_obj, 'openai', model) if usage_obj else {}
+            try:
+                content = resp.choices[0].message.content  # type: ignore[attr-defined]
+            except Exception:
+                return {kind: []}
+            try:
+                data = json.loads(content)
+            except Exception:
+                save_text(f'openai_parse_failed_{kind}.txt', content[:5000])
+                return {kind: []}
+            if isinstance(data, list):
+                data = {kind: data}
+            if isinstance(data, dict):
+                data['_usage'] = parsed_usage
+                data['_citation_domains'] = []
+            return data
+
+        def run_pass(kind: str, extra_focus: str, feedback: str, provider: str, pass_index: int):
             nonlocal total_passes
             if total_passes >= max_total_passes:
                 return []
-            # provider: 'xai' (default) or 'openai'
             prompt = build_prompt(profile, kind, extra_focus=extra_focus)
             if feedback:
                 prompt += f"\nFeedback from prior passes (use this ONLY to enhance completeness, do NOT repeat earlier items): {feedback}\n"
-            # For augmentation provider (openai), ask strictly for NEW items only
             if provider != 'xai':
-                # Looser augmentation: allow overlap if it enriches quality; prefer novel but may include high-confidence established staples.
                 prompt += ("\nAugmentation pass: Prefer high-confidence real items (new OR established) even if some appeared earlier; "
                            "you may repeat a small subset (<=25%) if wording can enhance description richness. Avoid fabrications.")
             save_text(f'prompt_{provider}_{kind}_{extra_focus or "base"}.txt', prompt)
-            if provider == 'xai':
-                raw = call_grok(prompt, kind, pass_index=pass_count, profile=profile)
-            else:
-                raw = call_openai(prompt, kind)
+            raw = call_grok(prompt, kind, pass_index=pass_index, profile=profile) if provider == 'xai' else call_openai(prompt, kind)
             items = raw.get(kind) if isinstance(raw, dict) else raw
             if isinstance(items, dict):
                 items = items.get(kind, [])
             if not isinstance(items, list):
                 items = []
             save_debug(f'last_run_raw_{provider}_{kind}_{extra_focus or "base"}.json', items)
-            # Append metrics snapshot
             metrics_path = DEBUG_DIR / 'pass_metrics.json'
             snapshot = {
                 'ts': time.time(),
-                'pass': pass_count,
+                'pass': pass_index,
                 'kind': kind,
                 'focus': extra_focus,
                 'raw_count': len(items),
                 'citation_domains': raw.get('_citation_domains', []) if isinstance(raw, dict) else [],
                 'provider': provider,
-                'overall_pass': total_passes + 1,  # about to increment
+                'overall_pass': total_passes + 1,
             }
             if isinstance(raw, dict) and raw.get('_usage'):
                 usage_meta = raw['_usage']
@@ -681,62 +716,16 @@ def main():
             total_passes += 1
             return items
 
-    def call_openai(prompt: str, kind: str):
-            if not OPENAI_AVAILABLE:
-                return {kind: []}
-            api_key = os.environ.get('OPENAI_API_KEY') or os.environ.get('OPENAI_KEY') or os.environ.get('OPENAI_TOKEN')
-            if not api_key:
-                return {kind: []}
-            model = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
-            try:
-                client = OpenAI(api_key=api_key)
-            except Exception:
-                return {kind: []}
-            # Use simple json_object response format; rely on parsing below
-            try:
-                resp = client.chat.completions.create(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": "You are a precise data extraction assistant. Output valid JSON only."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=float(os.environ.get('OPENAI_TEMPERATURE','0.2')),
-                    response_format={"type": "json_object"}
-                )
-            except Exception as e:
-                save_text(f'openai_error_{kind}.txt', str(e))
-                return {kind: []}
-            usage_obj = getattr(resp, 'usage', None)
-            parsed_usage = _parse_usage_obj(usage_obj, 'openai', model) if usage_obj else {}
-            content = ''
-            try:
-                content = resp.choices[0].message.content  # type: ignore[attr-defined]
-            except Exception:
-                return {kind: []}
-            try:
-                data = json.loads(content)
-            except Exception:
-                # attempt to salvage list
-                save_text(f'openai_parse_failed_{kind}.txt', content[:5000])
-                return {kind: []}
-            if isinstance(data, list):
-                data = {kind: data}
-            if isinstance(data, dict):
-                data['_usage'] = parsed_usage
-                data['_citation_domains'] = []  # OpenAI path no citations
-            return data
-
         # Collect restaurants multi-pass
         collected_rest: List[Dict[str, Any]] = []
         seen_rest = set()
-        pass_count = 0
         feedback_notes_rest = ''
-    while pass_count < rest_passes and len(collected_rest) < target_rest and total_passes < max_total_passes:
-            focus = '' if pass_count == 0 else rest_seeds[(pass_count-1) % len(rest_seeds)]
-            new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai')
-            # build feedback summary (missing cuisines) for next pass
+        pass_index = 0
+        while pass_index < rest_passes and len(collected_rest) < target_rest and total_passes < max_total_passes:
+            focus = '' if pass_index == 0 else rest_seeds[(pass_index-1) % len(rest_seeds)]
+            new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai', pass_index=pass_index)
             if new_items:
-                cuisines = { (it.get('cuisine') or '').lower() for it in new_items if it.get('cuisine') }
+                cuisines = {(it.get('cuisine') or '').lower() for it in new_items if it.get('cuisine')}
                 wanted = {'tacos','thai','ethiopian','vegan','seafood'} - cuisines
                 if wanted:
                     feedback_notes_rest = f"Prior results lacked cuisines: {', '.join(sorted(wanted))}. Prioritize these if real."
@@ -746,18 +735,18 @@ def main():
                     continue
                 seen_rest.add(key)
                 collected_rest.append(it)
-            pass_count += 1
+            pass_index += 1
 
         # Collect events multi-pass
         collected_events: List[Dict[str, Any]] = []
         seen_events = set()
-        pass_count = 0
         feedback_notes_events = ''
-    while pass_count < event_passes and len(collected_events) < target_events and total_passes < max_total_passes:
-            focus = '' if pass_count == 0 else event_seeds[(pass_count-1) % len(event_seeds)]
-            new_items = run_pass('events', focus, feedback_notes_events, provider='xai')
+        pass_index = 0
+        while pass_index < event_passes and len(collected_events) < target_events and total_passes < max_total_passes:
+            focus = '' if pass_index == 0 else event_seeds[(pass_index-1) % len(event_seeds)]
+            new_items = run_pass('events', focus, feedback_notes_events, provider='xai', pass_index=pass_index)
             if isinstance(new_items, list):
-                categories = { (it.get('category') or '').lower() for it in new_items if it.get('category') }
+                categories = {(it.get('category') or '').lower() for it in new_items if it.get('category')}
                 desired = {'live music','festival','food','theater','comedy'}
                 missing = desired - categories
                 if missing:
@@ -768,9 +757,9 @@ def main():
                     continue
                 seen_events.add(key)
                 collected_events.append(it)
-            pass_count += 1
+            pass_index += 1
 
-        # Optional OpenAI augmentation if still below targets
+        # Optional OpenAI augmentation
         if (len(collected_rest) < target_rest or len(collected_events) < target_events) and os.environ.get('AUGMENT_WITH_OPENAI','0') == '1' and total_passes < max_total_passes:
             aug_passes = int(os.environ.get('OPENAI_AUG_PASSES','2'))
             aug_focus_cycler_rest = iter(rest_seeds)
@@ -784,7 +773,7 @@ def main():
                     except StopIteration:
                         aug_focus_cycler_rest = iter(rest_seeds)
                         focus = next(aug_focus_cycler_rest)
-                    new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='openai')
+                    new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='openai', pass_index=aug_i)
                     for it in new_items:
                         key = (it.get('name','').lower(), it.get('address','').lower())
                         if key in seen_rest:
@@ -799,7 +788,7 @@ def main():
                     except StopIteration:
                         aug_focus_cycler_events = iter(event_seeds)
                         focus = next(aug_focus_cycler_events)
-                    new_items = run_pass('events', focus, feedback_notes_events, provider='openai')
+                    new_items = run_pass('events', focus, feedback_notes_events, provider='openai', pass_index=aug_i)
                     for it in new_items:
                         key = (it.get('name','').lower(), it.get('venue','').lower(), it.get('date','').lower())
                         if key in seen_events:
