@@ -1,24 +1,24 @@
-name: Update Aggregated Data
+name: Update Data (beta)
 
 on:
   push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 5 * * *'  # 5 AM UTC daily
+    branches: [ beta ]
   workflow_dispatch:
+    inputs:
+      run_reason:
+        description: 'Optional reason for manual beta run'
+        required: false
+        default: 'manual'
 
 permissions:
   contents: write
 
 jobs:
-  aggregate:
-    # Associate run with the protected / scoped GitHub Environment 'beta' to use its secrets & protection rules
+  aggregate-beta:
     environment: beta
     runs-on: ubuntu-latest
     env:
       PROFILE: capital_region
-      # Secrets come from Environment 'beta'
       GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
       XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -38,7 +38,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run aggregation
+      - name: Run aggregation (beta)
         id: aggregate
         run: |
           python scripts/aggregate.py || echo 'Aggregation script exited with non-zero status (soft fail).'
@@ -47,7 +47,6 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, sys
-          ok = True
           for f in ['static/events.json','static/restaurants.json']:
             if not os.path.exists(f):
               print(f'MISSING {f}')
@@ -58,8 +57,6 @@ jobs:
               print(f'VALID {f}')
             except Exception as e:
               print(f'INVALID {f}: {e}')
-              ok = False
-          # Do not fail workflow on validation issues for now (observability first)
           sys.exit(0)
           PY
 
@@ -78,12 +75,12 @@ jobs:
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@users.noreply.github.com'
-          git commit -m 'chore: update aggregated data' -- static/events.json static/restaurants.json
+          git commit -m "chore(beta): update aggregated data" -- static/events.json static/restaurants.json
           git push
 
       - name: Upload debug artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: debug-artifacts
+          name: debug-artifacts-beta
           path: debug/
