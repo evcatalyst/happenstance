@@ -28,7 +28,7 @@ except ImportError:
     XAI_AVAILABLE = False
 
 CONFIG_PATH = Path('config/config_logic.json')
-STATIC_DIR = Path('static')
+STATIC_DIR = Path('docs')
 DEBUG_DIR = Path('debug')
 EVENTS_JSON = STATIC_DIR / 'events.json'
 RESTAURANTS_JSON = STATIC_DIR / 'restaurants.json'

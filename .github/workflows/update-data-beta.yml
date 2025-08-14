@@ -60,22 +60,22 @@ jobs:
           sys.exit(0)
           PY
 
-      - name: Detect changes in data files
+    - name: Detect changes in data files
         id: changes
         run: |
-          git add static/events.json static/restaurants.json || true
-          if git diff --cached --quiet -- static/events.json static/restaurants.json; then
+      git add docs/events.json docs/restaurants.json || true
+      if git diff --cached --quiet -- docs/events.json docs/restaurants.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit and push updated data
+    - name: Commit and push updated data
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@users.noreply.github.com'
-          git commit -m "chore(beta): update aggregated data" -- static/events.json static/restaurants.json
+      git commit -m "chore(beta): update aggregated data" -- docs/events.json docs/restaurants.json
           git push
 
       - name: Upload debug artifacts
