@@ -33,7 +33,11 @@
 
   function bind(){
     document.getElementById('view-select').addEventListener('change', ()=>{ resetSort(); render(); });
-    document.getElementById('theme-select').addEventListener('change', e => document.body.className = e.target.value);
+  const themeSel = document.getElementById('theme-select');
+  // Prefer stored theme; else default already dark in markup
+  const storedTheme = localStorage.getItem('happenstance_theme');
+  if(storedTheme){ document.body.className = storedTheme; themeSel.value = storedTheme; }
+  themeSel.addEventListener('change', e => { document.body.className = e.target.value; localStorage.setItem('happenstance_theme', e.target.value); });
     document.getElementById('filter').addEventListener('input', e => { state.filter = e.target.value.toLowerCase(); render(); });
     const layoutSel = document.getElementById('layout-select');
     if(layoutSel){ layoutSel.addEventListener('change', e=>{ state.layout = e.target.value; render(); }); }
