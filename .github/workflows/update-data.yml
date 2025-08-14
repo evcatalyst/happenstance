@@ -47,37 +47,54 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, sys
-          ok = True
-          for f in ['docs/events.json','docs/restaurants.json']:
+          for f in ['docs/events.json','docs/restaurants.json','docs/meta.json']:
             if not os.path.exists(f):
               print(f'MISSING {f}')
               continue
             try:
-              with open(f) as fh:
-                json.load(fh)
-              print(f'VALID {f}')
+              data = json.load(open(f))
+              print(f'VALID {f} type={type(data).__name__}')
+              if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                print(f"  META items_changed={data[-1]['_meta'].get('items_changed')} count={data[-1]['_meta'].get('item_count')}")
             except Exception as e:
               print(f'INVALID {f}: {e}')
-              ok = False
           sys.exit(0)
           PY
 
-      - name: Detect changes in data files
+      - name: Detect dataset changes (meta-based)
         id: changes
         run: |
-          git add docs/events.json docs/restaurants.json || true
-          if git diff --cached --quiet -- docs/events.json docs/restaurants.json; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
+          python - <<'PY'
+          import json, os
+          changed_files = []
+          for f in ['docs/restaurants.json','docs/events.json']:
+            if not os.path.exists(f):
+              continue
+            try:
+              data = json.load(open(f))
+              if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                if data[-1]['_meta'].get('items_changed', True):
+                  changed_files.append(f)
+            except Exception as e:
+              print('PARSE_FAIL', f, e)
+          if changed_files:
+            print('Changed datasets:', ' '.join(changed_files))
+            with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('changed=true\n')
+              out.write('files='+ ' '.join(changed_files) + '\n')
+          else:
+            print('No dataset item changes (only timestamps).')
+            with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('changed=false\n')
+          PY
 
       - name: Commit and push updated data
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@users.noreply.github.com'
-          git commit -m 'chore: update aggregated data' -- docs/events.json docs/restaurants.json
+          git add docs/events.json docs/restaurants.json docs/meta.json docs/config.json || true
+          git commit -m 'chore: update aggregated data (items changed)' || echo 'No commit'
           git push
 
       - name: Upload debug artifacts
