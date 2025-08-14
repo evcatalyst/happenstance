@@ -130,7 +130,7 @@ def serialize_geo_boundary(boundary: Dict[str, Any]) -> str:
         return ''
 
 
-def build_prompt(profile: Dict[str, Any], kind: str, extra_focus: str = '') -> str:
+def build_prompt(profile: Dict[str, Any], kind: str, extra_focus: str = '', url_group_name: str = '', url_group_urls: Optional[List[str]] = None, extra_guidance: str = '') -> str:
     region = profile.get('region', {})
     branding = profile.get('branding', {})
     pred = profile.get('user_predilections', [])
@@ -159,6 +159,13 @@ def build_prompt(profile: Dict[str, Any], kind: str, extra_focus: str = '') -> s
         f"Aim for up to 25 events within {window_days} days if available"
     )
     focus_line = f"Additional focus: {extra_focus}." if extra_focus else ''
+    group_line = ''
+    if url_group_name and url_group_urls:
+        display_urls = '\n'.join(url_group_urls[:12])  # cap to avoid overly long prompt
+        group_line = (f"\nWhen verifying items this pass, emphasize sources within the '{url_group_name}' group of regional sites: "
+                      f"These reference URLs are provided (do NOT output them directly, use them only to ground factuality):\n{display_urls}\n"
+                      "Prefer items corroborated by at least one of these where possible.")
+    guidance_line = f"\nStrategic guidance: {extra_guidance}" if extra_guidance else ''
     live_search_mode = os.environ.get('LIVE_SEARCH_MODE','').lower()
     search_hint = ''
     if live_search_mode in {'on','auto'}:
@@ -169,7 +176,7 @@ def build_prompt(profile: Dict[str, Any], kind: str, extra_focus: str = '') -> s
         f"Today is {today}. {strict}\n"
         f"Produce high-quality JSON ONLY (object with a single key '{kind}' or an array) for {kind}.\n"
         f"Inspiration (do not fabricate beyond plausible aggregations): {sources}. Predilections: {pred}. {search_hint}\n"
-        f"Timeframe / scope: {timeframe}. {instructions}. {target_counts}. {focus_line}\n"
+        f"Timeframe / scope: {timeframe}. {instructions}. {target_counts}. {focus_line}{group_line}{guidance_line}\n"
         f"Return an array of {kind} objects. Fields: {schema_fields}. Ensure strictly valid JSON with no commentary."
     )
 
@@ -688,13 +695,13 @@ def main():
         first_api_ts: Optional[float] = None
         last_api_ts: Optional[float] = None
 
-        def run_pass(kind: str, extra_focus: str, feedback: str, provider: str, pass_index: int):
+        def run_pass(kind: str, extra_focus: str, feedback: str, provider: str, pass_index: int, url_group_name: str = '', url_group_urls: Optional[List[str]] = None, extra_guidance: str = ''):
             nonlocal total_passes
             nonlocal first_api_ts, last_api_ts
             if total_passes >= max_total_passes:
                 return []
             pass_start = time.time()
-            prompt = build_prompt(profile, kind, extra_focus=extra_focus)
+            prompt = build_prompt(profile, kind, extra_focus=extra_focus, url_group_name=url_group_name, url_group_urls=url_group_urls, extra_guidance=extra_guidance)
             if feedback:
                 prompt += f"\nFeedback from prior passes (use this ONLY to enhance completeness, do NOT repeat earlier items): {feedback}\n"
             if provider != 'xai':
@@ -726,7 +733,9 @@ def main():
                 'overall_pass': total_passes + 1,
                 'pass_duration_ms': int((raw_call_end - pass_start)*1000),
                 'search_sources_count': len(raw.get('_citation_domains', [])) if isinstance(raw, dict) else 0,
-                'search_mode': os.environ.get('LIVE_SEARCH_MODE','off')
+                'search_mode': os.environ.get('LIVE_SEARCH_MODE','off'),
+                'url_group_focus': url_group_name or None,
+                'gap_bullets_count': feedback.count('\u2022') if feedback else 0
             }
             if isinstance(raw, dict) and raw.get('_usage'):
                 usage_meta = raw['_usage']
@@ -745,6 +754,55 @@ def main():
             total_passes += 1
             return items
 
+        # Utilities for Phase 2 gap analysis & month spread
+        target_cuisine_set = {c.lower() for c in ['tacos','thai','ethiopian','vegan','seafood','pizza','coffee','brunch','farm-to-table','bbq','sushi','indian','mediterranean']}
+        target_event_categories = {c.lower() for c in ['live music','festival','food','theater','comedy','art','market','family']}
+
+        def compute_gap_bullets(kind: str, items: List[Dict[str, Any]]) -> List[str]:
+            if not items:
+                return []
+            bullets: List[str] = []
+            if kind == 'restaurants':
+                have = { (it.get('cuisine') or '').lower() for it in items if it.get('cuisine') }
+                missing = sorted(target_cuisine_set - have)
+                if missing:
+                    bullets.append(f"Add authentic examples for missing cuisines: {', '.join(missing[:6])}")
+            else:
+                have = { (it.get('category') or '').lower() for it in items if it.get('category') }
+                missing = sorted(target_event_categories - have)
+                if missing:
+                    bullets.append(f"Surface real upcoming events in categories: {', '.join(missing[:6])}")
+            return bullets[:3]
+
+        def month_spread_instruction(events: List[Dict[str, Any]]) -> str:
+            months = []
+            for e in events:
+                d = e.get('date')
+                try:
+                    m = datetime.date.fromisoformat(d).month
+                    months.append(m)
+                except Exception:
+                    continue
+            if not months:
+                return ''
+            from collections import Counter
+            c = Counter(months)
+            total = sum(c.values())
+            if not total:
+                return ''
+            most_common_month, freq = c.most_common(1)[0]
+            ratio = freq / total
+            if ratio >= 0.6 and len(c) >= 2:
+                return ("Current events cluster heavily in a single month. Add verifiable events in other upcoming months to balance distribution; avoid duplicating existing ones.")
+            return ''
+
+        # Phase 2 state
+        gap_bullets_rest: List[str] = []
+        gap_bullets_events: List[str] = []
+        url_groups = profile.get('live_search', {}).get('url_groups', {}) or {}
+        url_group_names = list(url_groups.keys())
+        url_groups_used = set()
+
         # Collect restaurants multi-pass
         collected_rest: List[Dict[str, Any]] = []
         seen_rest = set()
@@ -752,7 +810,15 @@ def main():
         pass_index = 0
         while pass_index < rest_passes and len(collected_rest) < target_rest and total_passes < max_total_passes:
             focus = '' if pass_index == 0 else rest_seeds[(pass_index-1) % len(rest_seeds)]
-            new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai', pass_index=pass_index)
+            # select url group rotation
+            group_name = url_group_names[pass_index % len(url_group_names)] if url_group_names else ''
+            group_urls = url_groups.get(group_name) if group_name else None
+            if group_name:
+                url_groups_used.add(group_name)
+            guidance = ''
+            if gap_bullets_rest:
+                guidance = '\n'.join(f"\u2022 {b}" for b in gap_bullets_rest)
+            new_items = run_pass('restaurants', focus, feedback_notes_rest, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
             if new_items:
                 cuisines = {(it.get('cuisine') or '').lower() for it in new_items if it.get('cuisine')}
                 wanted = {'tacos','thai','ethiopian','vegan','seafood'} - cuisines
@@ -780,6 +846,8 @@ def main():
                     metrics_path.write_text(json.dumps(metrics, indent=2))
             except Exception:
                 pass
+            # Update gap bullets after each pass based on accumulated items
+            gap_bullets_rest = compute_gap_bullets('restaurants', collected_rest)
             pass_index += 1
 
         # Collect events multi-pass
@@ -789,7 +857,21 @@ def main():
         pass_index = 0
         while pass_index < event_passes and len(collected_events) < target_events and total_passes < max_total_passes:
             focus = '' if pass_index == 0 else event_seeds[(pass_index-1) % len(event_seeds)]
-            new_items = run_pass('events', focus, feedback_notes_events, provider='xai', pass_index=pass_index)
+            group_name = url_group_names[pass_index % len(url_group_names)] if url_group_names else ''
+            group_urls = url_groups.get(group_name) if group_name else None
+            if group_name:
+                url_groups_used.add(group_name)
+            month_spread_note = month_spread_instruction(collected_events)
+            guidance = ''
+            gap_bullets_events = compute_gap_bullets('events', collected_events)
+            guidance_parts = []
+            if gap_bullets_events:
+                guidance_parts.extend(f"\u2022 {b}" for b in gap_bullets_events)
+            if month_spread_note:
+                guidance_parts.append(f"\u2022 {month_spread_note}")
+            if guidance_parts:
+                guidance = '\n'.join(guidance_parts)
+            new_items = run_pass('events', focus, feedback_notes_events, provider='xai', pass_index=pass_index, url_group_name=group_name, url_group_urls=group_urls, extra_guidance=guidance)
             if isinstance(new_items, list):
                 categories = {(it.get('category') or '').lower() for it in new_items if it.get('category')}
                 desired = {'live music','festival','food','theater','comedy'}
@@ -1033,6 +1115,18 @@ def main():
             novelty_final_rest = round(sum(1 for r in rest_valid if r.get('is_new')) / max(len(rest_valid),1),4)
             novelty_final_events = round(sum(1 for e in event_valid if e.get('is_new')) / max(len(event_valid),1),4)
             live_search_domains = sorted({d for m in metrics for d in (m.get('citation_domains') or [])})
+            # Final month spread score
+            months_events = []
+            for e in event_valid:
+                try:
+                    months_events.append(datetime.date.fromisoformat(e.get('date','')).month)
+                except Exception:
+                    pass
+            month_spread_score = 0.0
+            if months_events:
+                distinct = len(set(months_events))
+                month_spread_score = round(distinct / max(1, len(months_events)), 4)
+
             usage_summary = {
                 'run_id': run_id,
                 'ts': time.time(),
@@ -1046,6 +1140,12 @@ def main():
                 'novelty_final': {'restaurants': novelty_final_rest, 'events': novelty_final_events},
                 'augmentation': {'xai_passes': xai_passes, 'openai_passes': openai_passes},
                 'live_search': {'distinct_citation_domains': len(live_search_domains), 'citation_domains': live_search_domains},
+                    'phase2': {
+                        'url_groups_used': sorted(url_groups_used),
+                        'gap_bullets_restaurant_examples': gap_bullets_rest,
+                        'gap_bullets_event_examples': gap_bullets_events,
+                        'month_spread_score': month_spread_score
+                    },
                 'first_pass_ts': first_pass_ts,
                 'last_pass_ts': last_pass_ts,
                 'deprecated_cost_summary': True
