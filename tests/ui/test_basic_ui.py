@@ -50,14 +50,20 @@ def test_ui_core_layout():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=opts)
     try:
-        # Optionally replace docs JSON with fixtures for deterministic test
+        # Optionally replace docs JSON with fixtures for deterministic test (restored after)
         use_fx = os.environ.get('USE_FIXTURES','1') == '1'
+        originals = {}
         if use_fx:
             fx_dir = Path(__file__).resolve().parents[1] / 'fixtures'
-            for name, target in [('restaurants_test.json','restaurants.json'), ('events_test.json','events.json')]:
-                src = fx_dir / name
-                dst = DOCS_DIR / target
-                if src.exists():
+            mapping = [('restaurants_test.json','restaurants.json'), ('events_test.json','events.json')]
+            for fx_name, target_name in mapping:
+                src = fx_dir / fx_name
+                dst = DOCS_DIR / target_name
+                if src.exists() and dst.exists():
+                    try:
+                        originals[dst] = dst.read_text()
+                    except Exception:
+                        pass
                     shutil.copyfile(src, dst)
         with serve_docs():
             driver.get(f'http://localhost:{PORT}/index.html')
@@ -142,4 +148,11 @@ def test_ui_core_layout():
                 win_width = driver.get_window_size()['width']
                 assert body_width <= win_width + 5
     finally:
+        # Restore originals if fixtures used
+        if originals:
+            for path_obj, content in originals.items():
+                try:
+                    path_obj.write_text(content)
+                except Exception:
+                    pass
         driver.quit()
