@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for authentic tacos and Mexican cuisine with a modern twist, often featuring live music on weekends.",
+    "link": "https://www.albany.com/restaurants/mexican/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A beloved spot for traditional Mexican fare, especially tacos and enchiladas, with a casual and colorful vibe.",
+    "link": "https://www.albany.com/restaurants/mexican-restaurants/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American Fusion",
+    "description": "A trendy gastropub offering unique fusion dishes and craft cocktails, frequently hosting live music events.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Fusion",
+    "description": "A creative eatery blending Southern comfort food with global flavors, known for its innovative small plates.",
+    "link": "https://www.albany.com/restaurants/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "New World Bistro Bar",
+    "address": "300 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Global Fusion",
+    "description": "An eclectic restaurant with a focus on locally sourced ingredients and creative dishes from around the world.",
+    "link": "https://www.albany.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Jack's Oyster House",
+    "address": "42 State St, Albany, NY 12207",
+    "cuisine": "Seafood/American",
+    "description": "A historic Albany institution since 1913, known for its classic seafood dishes and elegant dining experience.",
+    "link": "https://www.albany.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Sheba Al-Yemen",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Yemeni",
+    "description": "Authentic Yemeni cuisine with rich, spiced dishes like mandi and haneeth, offering a unique cultural dining experience.",
+    "link": "https://www.shebaalyemen.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Cafe Capriccio",
+    "address": "49 Grand St, Albany, NY 12207",
+    "cuisine": "Italian",
+    "description": "A fine dining staple with authentic Tuscan cuisine, known for handmade pasta and an extensive wine list.",
+    "link": "https://www.cafecapriccio.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Oaxaquena Triqui",
+    "address": "77 N Lake Ave, Albany, NY 12206",
+    "cuisine": "Mexican",
+    "description": "A family-run spot specializing in Oaxacan-style tacos and moles, bringing authentic regional flavors to Albany.",
+    "link": "https://www.oaxaquenatriqui.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Villa Valenti",
+    "address": "729 Pawling Ave, Troy, NY 12180",
+    "cuisine": "Italian",
+    "description": "A family-owned restaurant near Albany, famous for its old-school Italian dishes and signature tomato sauce.",
+    "link": "https://www.villavalenti.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Tara Kitchen",
+    "address": "431 Liberty St, Schenectady, NY 12305",
+    "cuisine": "Moroccan",
+    "description": "A nearby gem offering authentic Moroccan tagines and couscous, with vibrant flavors and a cozy setting.",
+    "link": "https://www.tarakitchen.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Saratoga Springs, NY 12866",
+    "cuisine": "Italian-Mexican Fusion",
+    "description": "An innovative restaurant blending Italian and Mexican flavors, known for unique taco variations and cozy ambiance.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "address": "381 Broadway, Saratoga Springs, NY 12866",
+    "cuisine": "American Pub with Tacos",
+    "description": "A popular brewery with a diverse menu including creative tacos, paired with house-brewed beers and occasional live music.",
+    "link": "https://www.druthersbrewing.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Caffe Lena",
+    "address": "47 Phila St, Saratoga Springs, NY 12866",
+    "cuisine": "American with Small Bites",
+    "description": "A historic venue known for live music, offering light fare and a cultural experience in the heart of Saratoga.",
+    "link": "https://www.caffelena.org/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "The Olde Bryan Inn",
+    "address": "123 Maple Ave, Saratoga Springs, NY 12866",
+    "cuisine": "American",
+    "description": "A historic restaurant with hearty American dishes, often hosting local events and live music.",
+    "link": "https://www.oldebryaninn.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Common Roots Brewing Company",
+    "address": "58 Saratoga Ave, South Glens Falls, NY 12803",
+    "cuisine": "American Pub",
+    "description": "A craft brewery with a focus on local ingredients, offering a solid food menu and frequent live music events.",
+    "link": "https://www.commonrootsbrewing.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Hattie’s Restaurant",
+    "address": "45 Phila St, Saratoga Springs, NY 12866",
+    "cuisine": "Southern",
+    "description": "A long-established spot for Southern comfort food with a lively atmosphere, often featuring live music.",
+    "link": "https://www.hattiesrestaurant.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Taqueria Tren Maya",
+    "address": "387 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Mexican",
+    "description": "A newer taqueria offering authentic street-style tacos and other Mexican specialties in Albany.",
+    "link": "https://www.trenmaya.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  }
+]

@@ -1,0 +1,569 @@
+[
+  {
+    "ts": 1755142323.797774,
+    "pass": 0,
+    "kind": "restaurants",
+    "focus": "",
+    "raw_count": 5,
+    "citation_domains": [
+      "spectrumlocalnews.com",
+      "www.albany.com",
+      "www.albany.org"
+    ]
+  },
+  {
+    "ts": 1755142348.880609,
+    "pass": 0,
+    "kind": "events",
+    "focus": "",
+    "raw_count": 9,
+    "citation_domains": [
+      "www.albany.com",
+      "www.albany.org",
+      "www.eventbrite.com"
+    ]
+  },
+  {
+    "ts": 1755142669.800255,
+    "pass": 0,
+    "kind": "restaurants",
+    "focus": "",
+    "raw_count": 7,
+    "citation_domains": [
+      "spectrumlocalnews.com",
+      "www.albany.com",
+      "www.albany.org"
+    ]
+  },
+  {
+    "ts": 1755142696.643216,
+    "pass": 1,
+    "kind": "restaurants",
+    "focus": "tacos",
+    "raw_count": 10,
+    "citation_domains": [
+      "albanyny.gov",
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "www.albanyny.gov"
+    ]
+  },
+  {
+    "ts": 1755142727.3415759,
+    "pass": 2,
+    "kind": "restaurants",
+    "focus": "breweries",
+    "raw_count": 10,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.saratoga.com"
+    ]
+  },
+  {
+    "ts": 1755142769.5100129,
+    "pass": 3,
+    "kind": "restaurants",
+    "focus": "coffee",
+    "raw_count": 12,
+    "citation_domains": [
+      "downtownschenectady.org"
+    ]
+  },
+  {
+    "ts": 1755142790.110322,
+    "pass": 4,
+    "kind": "restaurants",
+    "focus": "brunch",
+    "raw_count": 10,
+    "citation_domains": [
+      "www.troyny.gov"
+    ]
+  },
+  {
+    "ts": 1755142804.24116,
+    "pass": 0,
+    "kind": "events",
+    "focus": "",
+    "raw_count": 7,
+    "citation_domains": [
+      "www.albany.com",
+      "www.albany.org",
+      "www.eventbrite.com"
+    ]
+  },
+  {
+    "ts": 1755142816.543796,
+    "pass": 1,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 5,
+    "citation_domains": [
+      "www.palacealbany.org",
+      "www.thecohoesmusichall.org",
+      "www.theegg.org",
+      "www.troymusichall.org"
+    ]
+  },
+  {
+    "ts": 1755142826.054497,
+    "pass": 2,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 2,
+    "citation_domains": [
+      "empirestateplaza.ny.gov",
+      "www.albanyevents.org",
+      "www.albanyny.gov",
+      "www.downtownalbany.org"
+    ]
+  },
+  {
+    "ts": 1755142837.381422,
+    "pass": 3,
+    "kind": "events",
+    "focus": "art exhibitions",
+    "raw_count": 3,
+    "citation_domains": [
+      "www.saratoga.com"
+    ]
+  },
+  {
+    "ts": 1755142842.105689,
+    "pass": 4,
+    "kind": "events",
+    "focus": "farmer markets",
+    "raw_count": 1,
+    "citation_domains": [
+      "downtownschenectady.org",
+      "www.discoverschenectady.com"
+    ]
+  },
+  {
+    "ts": 1755143139.1999948,
+    "pass": 0,
+    "kind": "restaurants",
+    "focus": "",
+    "raw_count": 5,
+    "citation_domains": [
+      "spectrumlocalnews.com",
+      "www.albany.com",
+      "www.albany.org"
+    ]
+  },
+  {
+    "ts": 1755143159.376456,
+    "pass": 1,
+    "kind": "restaurants",
+    "focus": "tacos",
+    "raw_count": 10,
+    "citation_domains": [
+      "albanyny.gov",
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "www.albanyny.gov"
+    ]
+  },
+  {
+    "ts": 1755143176.679167,
+    "pass": 2,
+    "kind": "restaurants",
+    "focus": "breweries",
+    "raw_count": 10,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.saratoga.com"
+    ]
+  },
+  {
+    "ts": 1755143186.683313,
+    "pass": 0,
+    "kind": "events",
+    "focus": "",
+    "raw_count": 3,
+    "citation_domains": [
+      "www.albany.com",
+      "www.albany.org",
+      "www.eventbrite.com"
+    ]
+  },
+  {
+    "ts": 1755143202.582607,
+    "pass": 1,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 6,
+    "citation_domains": [
+      "www.palacealbany.org",
+      "www.thecohoesmusichall.org",
+      "www.theegg.org",
+      "www.troymusichall.org"
+    ]
+  },
+  {
+    "ts": 1755143209.546796,
+    "pass": 2,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 2,
+    "citation_domains": [
+      "empirestateplaza.ny.gov",
+      "www.albanyevents.org",
+      "www.albanyny.gov",
+      "www.downtownalbany.org"
+    ]
+  },
+  {
+    "ts": 1755143219.6831539,
+    "pass": 3,
+    "kind": "events",
+    "focus": "art exhibitions",
+    "raw_count": 3,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.nyra.com",
+      "www.saratoga.com"
+    ]
+  },
+  {
+    "ts": 1755143228.6973078,
+    "pass": 4,
+    "kind": "events",
+    "focus": "farmer markets",
+    "raw_count": 1,
+    "citation_domains": [
+      "www.discoverschenectady.com"
+    ]
+  },
+  {
+    "ts": 1755144407.3327832,
+    "pass": 0,
+    "kind": "restaurants",
+    "focus": "",
+    "raw_count": 7,
+    "citation_domains": [
+      "spectrumlocalnews.com",
+      "www.albany.com",
+      "www.albany.org",
+      "www.wamc.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2056,
+    "completion_tokens": 723,
+    "total_tokens": 2779,
+    "estimated_cost_usd": 11.342
+  },
+  {
+    "ts": 1755144449.0915542,
+    "pass": 1,
+    "kind": "restaurants",
+    "focus": "tacos",
+    "raw_count": 10,
+    "citation_domains": [
+      "albanyny.gov",
+      "citynet.albanyny.gov",
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "www.albanyny.gov",
+      "www.downtownalbany.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2035,
+    "completion_tokens": 1030,
+    "total_tokens": 3065,
+    "estimated_cost_usd": 14.37
+  },
+  {
+    "ts": 1755144465.025818,
+    "pass": 2,
+    "kind": "restaurants",
+    "focus": "breweries",
+    "raw_count": 9,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.saratoga.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2015,
+    "completion_tokens": 1017,
+    "total_tokens": 3032,
+    "estimated_cost_usd": 14.2
+  },
+  {
+    "ts": 1755144471.991869,
+    "pass": 0,
+    "kind": "events",
+    "focus": "",
+    "raw_count": 1,
+    "citation_domains": [
+      "www.albany.com",
+      "www.albany.org",
+      "www.eventbrite.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2008,
+    "completion_tokens": 132,
+    "total_tokens": 2140,
+    "estimated_cost_usd": 5.336
+  },
+  {
+    "ts": 1755144483.355907,
+    "pass": 1,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 5,
+    "citation_domains": [
+      "www.palacealbany.org",
+      "www.thecohoesmusichall.org",
+      "www.theegg.org",
+      "www.troymusichall.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2581,
+    "completion_tokens": 667,
+    "total_tokens": 3248,
+    "estimated_cost_usd": 11.832
+  },
+  {
+    "ts": 1755144490.730416,
+    "pass": 2,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 2,
+    "citation_domains": [
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "www.albanyevents.org",
+      "www.albanyny.gov",
+      "www.downtownalbany.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2134,
+    "completion_tokens": 269,
+    "total_tokens": 2403,
+    "estimated_cost_usd": 6.958
+  },
+  {
+    "ts": 1755144499.023069,
+    "pass": 3,
+    "kind": "events",
+    "focus": "art exhibitions",
+    "raw_count": 2,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.nyra.com",
+      "www.saratoga.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2336,
+    "completion_tokens": 297,
+    "total_tokens": 2633,
+    "estimated_cost_usd": 7.642
+  },
+  {
+    "ts": 1755144503.428909,
+    "pass": 4,
+    "kind": "events",
+    "focus": "farmer markets",
+    "raw_count": 1,
+    "citation_domains": [
+      "downtownschenectady.org",
+      "www.discoverschenectady.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2354,
+    "completion_tokens": 141,
+    "total_tokens": 2495,
+    "estimated_cost_usd": 6.118
+  },
+  {
+    "ts": 1755144507.830752,
+    "pass": 5,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 0,
+    "citation_domains": [],
+    "provider": "openai"
+  },
+  {
+    "ts": 1755144511.919456,
+    "pass": 5,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 0,
+    "citation_domains": [],
+    "provider": "openai"
+  },
+  {
+    "ts": 1755144743.653902,
+    "pass": 0,
+    "kind": "restaurants",
+    "focus": "",
+    "raw_count": 10,
+    "citation_domains": [
+      "spectrumlocalnews.com",
+      "www.albany.com",
+      "www.albany.org",
+      "www.wamc.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 1917,
+    "completion_tokens": 957,
+    "total_tokens": 2874,
+    "estimated_cost_usd": 13.404
+  },
+  {
+    "ts": 1755144782.0697012,
+    "pass": 1,
+    "kind": "restaurants",
+    "focus": "tacos",
+    "raw_count": 20,
+    "citation_domains": [
+      "albanyny.gov",
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "jobs.albanyny.gov",
+      "www.albanyny.gov"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 1992,
+    "completion_tokens": 1910,
+    "total_tokens": 3902,
+    "estimated_cost_usd": 23.084
+  },
+  {
+    "ts": 1755144800.297316,
+    "pass": 2,
+    "kind": "restaurants",
+    "focus": "breweries",
+    "raw_count": 10,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.saratoga.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 1224,
+    "completion_tokens": 953,
+    "total_tokens": 2177,
+    "estimated_cost_usd": 11.978
+  },
+  {
+    "ts": 1755144847.401324,
+    "pass": 3,
+    "kind": "restaurants",
+    "focus": "coffee",
+    "raw_count": 30,
+    "citation_domains": [
+      "downtownschenectady.org",
+      "www.riverscasino.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2479,
+    "completion_tokens": 2954,
+    "total_tokens": 5433,
+    "estimated_cost_usd": 34.498
+  },
+  {
+    "ts": 1755144860.1043782,
+    "pass": 0,
+    "kind": "events",
+    "focus": "",
+    "raw_count": 7,
+    "citation_domains": [
+      "www.albany.com",
+      "www.albany.org",
+      "www.eventbrite.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2136,
+    "completion_tokens": 830,
+    "total_tokens": 2966,
+    "estimated_cost_usd": 12.572
+  },
+  {
+    "ts": 1755144875.043103,
+    "pass": 1,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 4,
+    "citation_domains": [
+      "www.palacealbany.org",
+      "www.thecohoesmusichall.org",
+      "www.theegg.org",
+      "www.troymusichall.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2496,
+    "completion_tokens": 519,
+    "total_tokens": 3015,
+    "estimated_cost_usd": 10.182
+  },
+  {
+    "ts": 1755144882.3613608,
+    "pass": 2,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 2,
+    "citation_domains": [
+      "empirelivealbany.com",
+      "empirestateplaza.ny.gov",
+      "www.albanyevents.org",
+      "www.albanyny.gov",
+      "www.downtownalbany.org"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2131,
+    "completion_tokens": 260,
+    "total_tokens": 2391,
+    "estimated_cost_usd": 6.862
+  },
+  {
+    "ts": 1755144887.754706,
+    "pass": 3,
+    "kind": "events",
+    "focus": "art exhibitions",
+    "raw_count": 1,
+    "citation_domains": [
+      "www.discoversaratoga.org",
+      "www.saratoga.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2259,
+    "completion_tokens": 141,
+    "total_tokens": 2400,
+    "estimated_cost_usd": 5.928
+  },
+  {
+    "ts": 1755144914.779667,
+    "pass": 4,
+    "kind": "events",
+    "focus": "farmer markets",
+    "raw_count": 2,
+    "citation_domains": [
+      "downtownschenectady.org",
+      "www.discoverschenectady.com"
+    ],
+    "provider": "xai",
+    "prompt_tokens": 2631,
+    "completion_tokens": 249,
+    "total_tokens": 2880,
+    "estimated_cost_usd": 7.752
+  },
+  {
+    "ts": 1755144917.134581,
+    "pass": 5,
+    "kind": "events",
+    "focus": "live music",
+    "raw_count": 0,
+    "citation_domains": [],
+    "provider": "openai"
+  },
+  {
+    "ts": 1755144918.9729621,
+    "pass": 5,
+    "kind": "events",
+    "focus": "food festivals",
+    "raw_count": 0,
+    "citation_domains": [],
+    "provider": "openai"
+  }
+]

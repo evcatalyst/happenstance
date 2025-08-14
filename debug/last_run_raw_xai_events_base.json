@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Albany Chef's Food & Wine Festival",
+    "date": "2025-09-12",
+    "venue": "Downtown Albany",
+    "category": "Food Festival",
+    "description": "A three-day festival celebrating Albany's innovative cuisine, featuring local chefs and restaurants with a focus on sustainable agriculture and support for the arts community.",
+    "link": "https://www.albany.org/things-to-do/events-calendar/annual-events-and-festivals/wine-and-dine-for-the-arts/",
+    "is_new": false,
+    "badge": "Culinary Highlight"
+  },
+  {
+    "name": "Taco Tuesday Showcase",
+    "date": "2025-08-20",
+    "venue": "Villa Di Como Ristorante",
+    "category": "Food Event",
+    "description": "Weekly Taco Tuesday event featuring a variety of tacos with unique fusions, hosted by a local favorite known for its vibrant atmosphere.",
+    "link": "https://www.albany.com/events/food-drink-festivals/",
+    "is_new": false,
+    "badge": "Taco Focus"
+  },
+  {
+    "name": "Live Music Night at The Hollow Bar + Kitchen",
+    "date": "2025-09-05",
+    "venue": "The Hollow Bar + Kitchen, 79 N Pearl St, Albany, NY",
+    "category": "Live Music",
+    "description": "An evening of live music featuring local bands with a mix of genres, paired with craft cocktails and a diverse menu at this well-loved spot.",
+    "link": "https://www.albany.com/events/",
+    "is_new": false,
+    "badge": "Music Spotlight"
+  },
+  {
+    "name": "Cultural Arts Festival",
+    "date": "2025-10-04",
+    "venue": "Washington Park, Albany, NY",
+    "category": "Cultural Event",
+    "description": "A celebration of Albany's diverse cultural heritage with performances, art exhibits, and food stalls featuring local vendors and unique culinary fusions.",
+    "link": "https://www.albany.org/things-to-do/events-calendar/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Taco & Tequila Night",
+    "date": "2025-09-25",
+    "venue": "Toro Cantina, 111 Wolf Rd, Albany, NY",
+    "category": "Food Event",
+    "description": "A special evening dedicated to tacos and tequila pairings, showcasing authentic flavors and creative twists at a popular local spot.",
+    "link": "https://www.albany.com/events/food-drink-festivals/",
+    "is_new": false,
+    "badge": "Taco Focus"
+  },
+  {
+    "name": "Albany Jazz Festival",
+    "date": "2025-09-20",
+    "venue": "Jennings Landing, 1 Quay St, Albany, NY",
+    "category": "Live Music",
+    "description": "An annual outdoor jazz festival featuring regional and national artists, set along the Hudson River with food vendors offering diverse bites.",
+    "link": "https://www.albany.org/things-to-do/events-calendar/annual-events-and-festivals/",
+    "is_new": false,
+    "badge": "Music Spotlight"
+  },
+  {
+    "name": "Fusion Feast at Iron Gate Cafe",
+    "date": "2025-10-15",
+    "venue": "Iron Gate Cafe, 182 Washington Ave, Albany, NY",
+    "category": "Food Event",
+    "description": "A special menu night featuring unique fusion dishes blending global flavors, hosted by a long-established cafe known for its creative approach.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Fusion Highlight"
+  }
+]

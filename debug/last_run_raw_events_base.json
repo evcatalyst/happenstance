@@ -1,0 +1,32 @@
+[
+  {
+    "name": "New York State Food Festival",
+    "date": "2025-08-13",
+    "venue": "Empire State Plaza, Albany, NY",
+    "category": "Food Festival",
+    "description": "Annual celebration of New York State's diverse culinary offerings, featuring local vendors, food trucks, and chefs with a focus on sustainable agriculture.",
+    "link": "https://www.albany.com/event/esp-food-festival-36224/",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "August Albany Twilight Market",
+    "date": "2025-08-09",
+    "venue": "Quackenbush Square, Albany, NY",
+    "category": "Market/Food",
+    "description": "A vibrant evening market featuring local food vendors, artisans, and live music. Perfect for exploring unique bites and community vibes.",
+    "link": "https://www.eventbrite.com/e/august-albany-twilight-market-tickets-1544959729139",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Music at the Mansion: Exploring the Music of America",
+    "date": "2025-08-23",
+    "venue": "Ten Broeck Mansion Gardens, Albany, NY",
+    "category": "Live Music",
+    "description": "Free concert featuring Deb Cavanaugh performing American music on the mountain dulcimer and more in a historic garden setting.",
+    "link": "https://www.eventbrite.com/e/music-at-the-mansion-exploring-the-music-of-america-registration-1568201796789",
+    "is_new": false,
+    "badge": "Free Event"
+  }
+]

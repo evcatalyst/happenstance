@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Community Block Party",
+    "date": "2025-08-16",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Festival",
+    "description": "A free family-friendly event featuring fun activities and community engagement outside the Palace Theatre in Downtown Albany.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": "Free Event"
+  },
+  {
+    "name": "The Little Mermaid - Free Movie",
+    "date": "2025-08-19",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Theater",
+    "description": "Enjoy a free screening of Disney's The Little Mermaid as part of the Summer in the City series. Doors open at noon for family activities, movie starts at 1:00 PM.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": "Family-Friendly"
+  },
+  {
+    "name": "Brad Williams: The Growth Spurt Tour 2025",
+    "date": "2025-08-22",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Comedy",
+    "description": "Comedian Brad Williams brings his hilarious stand-up comedy show to Albany as part of his 2025 tour.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The American Revolution: An Evening with Ken Burns",
+    "date": "2025-09-10",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Cultural Event",
+    "description": "Join award-winning filmmaker Ken Burns for a special preview of his upcoming film, The American Revolution, with clips and stories from the 8-year project.",
+    "link": "https://www.palacealbany.org/events/detail/the-american-revolution-an-evening-with-ken-burns",
+    "is_new": false,
+    "badge": "Special Preview"
+  },
+  {
+    "name": "Pro Musica on Broadway",
+    "date": "2025-09-23",
+    "venue": "The Egg, Empire State Plaza, Albany, NY 12220",
+    "category": "Live Music",
+    "description": "Albany Pro Musica closes its 2024-25 season with a tribute to Broadway, featuring favorite showtunes performed by chorus, ensembles, and soloists in the Hart Theatre.",
+    "link": "https://www.theegg.org/events/event/pro-musica-on-broadway/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Jinkx & DeLa Holiday Show",
+    "date": "2025-11-29",
+    "venue": "The Egg, Empire State Plaza, Albany, NY 12220",
+    "category": "Theater",
+    "description": "Experience a brand new edition of the internationally acclaimed holiday show by 'The Queens of Christmas,' featuring comedy, new songs, and annual favorites.",
+    "link": "https://www.theegg.org/events/event/the-jinkx-dela-holiday-show/",
+    "is_new": false,
+    "badge": "Holiday Special"
+  }
+]

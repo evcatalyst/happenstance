@@ -1,0 +1,22 @@
+[
+  {
+    "name": "New York State Food Festival",
+    "date": "2025-08-13",
+    "venue": "Empire State Plaza",
+    "category": "Food Festival",
+    "description": "A celebration of New York State's diverse culinary offerings with food vendors, tastings, and live entertainment. Perfect for food enthusiasts looking to explore local flavors.",
+    "link": "https://empirestateplaza.ny.gov/new-york-state-food-festival",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "New York State Food Festival featuring 38 Special",
+    "date": "2025-08-13",
+    "venue": "Empire State Plaza",
+    "category": "Food Festival / Live Music",
+    "description": "Enjoy a day of delicious food from across New York State, paired with a live performance by the rock band 38 Special at the Empire State Plaza.",
+    "link": "https://empirestateplaza.ny.gov/event/new-york-state-food-festival-featuring-38-special",
+    "is_new": false,
+    "badge": "Live Music"
+  }
+]

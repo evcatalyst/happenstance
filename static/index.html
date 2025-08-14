@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happenstance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="light">
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="logo-title">
+        <img id="logo" alt="Logo" />
+        <h1 id="site-title">Happenstance</h1>
+      </div>
+      <nav class="primary-controls">
+        <label class="control">
+          <span>View</span>
+          <select id="view-select">
+            <option value="restaurants">Restaurants</option>
+            <option value="events">Events</option>
+            <option value="paired">Paired</option>
+          </select>
+        </label>
+        <label class="control">
+          <span>Theme</span>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="control" id="sort-wrapper">
+          <span>Sort</span>
+          <select id="sort-select"></select>
+        </label>
+        <label class="control">
+          <span>Layout</span>
+          <select id="layout-select">
+            <option value="cards">Cards</option>
+            <option value="table">Table</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <input id="filter" placeholder="Filter… (name / cuisine / category)" />
+        </div>
+      </nav>
+    </header>
+    <main id="content" class="content"></main>
+    <footer class="site-footer">
+      <span id="counts"></span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

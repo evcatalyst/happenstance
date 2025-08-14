@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Albany Taco Fest 2025",
+    "date": "2025-09-07",
+    "venue": "Washington Park, Albany, NY",
+    "category": "Food Festival",
+    "description": "Celebrate the best tacos from local vendors in the Capital Region. Enjoy live music, craft beers, and family-friendly activities.",
+    "link": "https://www.albanyevents.org/taco-fest",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "Live Jazz Night at Villa Di Como Ristorante",
+    "date": "2025-08-22",
+    "venue": "Villa Di Como Ristorante, Albany, NY",
+    "category": "Music",
+    "description": "Experience an intimate evening of live jazz with local musicians while enjoying authentic Italian cuisine at this beloved Albany spot.",
+    "link": "https://www.villadicomoristorante.com/events",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Albany Latin Music Festival",
+    "date": "2025-09-14",
+    "venue": "Empire State Plaza, Albany, NY",
+    "category": "Music Festival",
+    "description": "A vibrant celebration of Latin music and culture with live bands, dance performances, and food vendors offering Latin-inspired dishes.",
+    "link": "https://www.empirestateplaza.ny.gov/events",
+    "is_new": false,
+    "badge": "Popular"
+  },
+  {
+    "name": "Opening Celebration: Fusion Bistro",
+    "date": "2025-08-29",
+    "venue": "Fusion Bistro, Troy, NY",
+    "category": "Food",
+    "description": "Grand opening of Fusion Bistro, a new spot blending Asian and Latin flavors. Enjoy special tasting menus and live acoustic music.",
+    "link": "https://www.fusionbistrotroy.com",
+    "is_new": true,
+    "badge": "New"
+  },
+  {
+    "name": "Albany Riverfront Blues Festival",
+    "date": "2025-08-17",
+    "venue": "Jennings Landing, Albany, NY",
+    "category": "Music Festival",
+    "description": "A weekend of soulful blues performances by regional and national artists along the Hudson River. Food trucks and craft vendors on site.",
+    "link": "https://www.albanyriverfrontbluesfest.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Taco Tuesday at Toro Cantina",
+    "date": "2025-09-03",
+    "venue": "Toro Cantina, Albany, NY",
+    "category": "Food",
+    "description": "Weekly Taco Tuesday featuring creative taco specials and margarita deals at this popular local Mexican eatery.",
+    "link": "https://www.torocantina.com/events",
+    "is_new": false,
+    "badge": "Taco Spotlight"
+  },
+  {
+    "name": "Capital Region Food Truck Festival",
+    "date": "2025-10-05",
+    "venue": "Crossgates Mall, Albany, NY",
+    "category": "Food Festival",
+    "description": "Sample diverse cuisines from the region's top food trucks, including unique fusion dishes and classic comfort foods.",
+    "link": "https://www.capitalregionfoodtruckfest.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Live Indie Rock at The Hollow Bar + Kitchen",
+    "date": "2025-09-20",
+    "venue": "The Hollow Bar + Kitchen, Albany, NY",
+    "category": "Music",
+    "description": "Catch rising local indie rock bands at this trendy venue known for its craft cocktails and eclectic menu.",
+    "link": "https://www.thehollowalbany.com/events",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Salsa Night at Cafe Capriccio",
+    "date": "2025-10-12",
+    "venue": "Cafe Capriccio, Albany, NY",
+    "category": "Music & Dance",
+    "description": "Dance the night away with live salsa music and lessons at this iconic Italian restaurant turned dance spot for the evening.",
+    "link": "https://www.cafecapriccio.com/events",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Autumn Harvest Dinner at Yono\u2019s",
+    "date": "2025-10-25",
+    "venue": "Yono\u2019s, Albany, NY",
+    "category": "Food",
+    "description": "A special seasonal menu featuring Indonesian-inspired dishes with locally sourced ingredients at this fine dining gem.",
+    "link": "https://www.yonos.com/events",
+    "is_new": false,
+    "badge": "Exclusive"
+  }
+]

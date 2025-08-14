@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for authentic tacos and Mexican cuisine with a modern twist, often featuring live music on weekends.",
+    "link": "https://www.albany.com/restaurants/mexican/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian",
+    "description": "A long-established Italian restaurant known for its hearty pasta dishes and warm, family-friendly atmosphere.",
+    "link": "https://www.albany.org/blog/post/italian-restaurants-in-albany-county/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A beloved spot for traditional Mexican fare, especially tacos and enchiladas, with a casual and colorful vibe.",
+    "link": "https://www.albany.com/restaurants/mexican-restaurants/",
+    "is_new": false,
+    "badge": "Taco Tuesday"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American Fusion",
+    "description": "A trendy gastropub offering unique fusion dishes and craft cocktails, frequently hosting live music events.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Fusion",
+    "description": "A creative eatery blending Southern comfort food with global flavors, known for its innovative small plates.",
+    "link": "https://www.albany.com/restaurants/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Caf\u00e9 Capriccio",
+    "address": "49 Grand St, Albany, NY 12207",
+    "cuisine": "Italian",
+    "description": "A long-standing favorite for authentic Northern Italian cuisine in an intimate, old-world setting.",
+    "link": "https://www.albany.org/blog/post/italian-restaurants-in-albany-county/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Mexican Radio",
+    "address": "537 Warren St, Hudson, NY 12534",
+    "cuisine": "Mexican",
+    "description": "A lively spot in the Capital Region offering bold Mexican flavors, especially tacos, with a fun atmosphere.",
+    "link": "https://www.albany.com/restaurants/mexican/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "New World Bistro Bar",
+    "address": "300 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Global Fusion",
+    "description": "An eclectic restaurant with a focus on locally sourced ingredients and creative dishes from around the world.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Jack's Oyster House",
+    "address": "42 State St, Albany, NY 12207",
+    "cuisine": "Seafood/American",
+    "description": "A historic Albany institution since 1913, known for its classic seafood dishes and elegant dining experience.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Historic"
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American",
+    "description": "A cozy spot for brunch and comfort food, housed in a historic building with a charming courtyard.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": null
+  }
+]

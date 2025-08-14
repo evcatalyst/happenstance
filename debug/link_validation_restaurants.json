@@ -1,0 +1,92 @@
+[
+  {
+    "name": "The Albany Ale & Oyster",
+    "link": "https://www.yelp.com/biz/the-albany-ale-and-oyster-albany",
+    "ok": false,
+    "status": 403
+  },
+  {
+    "name": "El Rancho",
+    "link": "https://www.reddit.com/r/Albany/comments/1j2ybud/new_restaurant/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "The Copper Crow",
+    "link": "https://www.yelp.com/biz/the-copper-crow-albany",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Quechua Peruvian",
+    "link": "https://www.yelp.com/biz/quechua-peruvian-albany",
+    "ok": false,
+    "status": 404
+  },
+  {
+    "name": "Kismet Mediterranean Grill",
+    "link": "https://www.yelp.com/biz/kismet-mediterranean-grill-albany",
+    "ok": false,
+    "status": 403
+  },
+  {
+    "name": "Lost & Found",
+    "link": "https://www.yelp.com/biz/lost-and-found-albany",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "MOSU",
+    "link": "https://www.restaurantji.com/ny/albany/mosu-/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "El Rancho",
+    "link": "https://www.reddit.com/r/Albany/comments/1j2ybud/new_restaurant/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "MOSU",
+    "link": "https://www.restaurantji.com/ny/albany/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "The Bunker",
+    "link": "https://www.yelp.com/biz/the-bunker-albany",
+    "ok": false,
+    "status": 403
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "link": "https://www.albany.com/restaurants/iron-gate-cafe/",
+    "ok": false,
+    "status": null
+  },
+  {
+    "name": "Toro Cantina",
+    "link": "https://www.albany.com/restaurants/toro-cantina/",
+    "ok": false,
+    "status": null
+  },
+  {
+    "name": "The Roosevelt Room",
+    "link": "https://www.yelp.com/biz/the-roosevelt-room-troy",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Josie\u2019s Table",
+    "link": "https://www.yelp.com/biz/josies-table-albany",
+    "ok": false,
+    "status": 403
+  },
+  {
+    "name": "Villa Di Valletta",
+    "link": "https://www.albany.org/restaurants/",
+    "ok": true,
+    "status": 200
+  }
+]

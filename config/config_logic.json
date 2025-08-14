@@ -1,0 +1,129 @@
+{
+  "profiles": [
+    {
+      "name": "capital_region",
+      "region": {
+        "name": "Capital Region",
+        "focus": "Albany NY metro area focusing on vibrant food spots and cultural events"
+      },
+      "sources": {
+        "restaurants": ["Yelp Capital Region", "Local Food Blogs", "Instagram #AlbanyEats"],
+        "events": ["Eventbrite Albany", "Downtown Arts Calendar", "Local Music Venues"]
+      },
+      "instructions": "Aggregate compelling, current restaurants and events. Favor diversity, authenticity, recency. Avoid duplicates and chains unless notable.",
+      "user_predilections": ["Prioritize tacos", "Highlight live music", "Surface unique fusions"],
+      "branding": {
+        "site_title": "Capital Region Happenstance",
+        "logo_url": "https://via.placeholder.com/120x60?text=Logo",
+        "badges": {
+          "new_restaurant": "Fresh Bite",
+          "new_event": "Just Announced"
+        }
+      },
+      "live_search": {
+        "mode": "on",
+        "allowed_sites": ["timesunion.com", "albany.com"],
+        "include_news": true,
+        "include_x": true,
+        "country": "US",
+        "max_results": 20,
+        "url_groups": {
+          "general": [
+            "https://www.albany.com/events/",
+            "https://www.eventbrite.com/d/ny--albany/events/",
+            "https://www.albany.org/things-to-do/events-calendar/",
+            "https://www.wamc.org/community-calendar",
+            "https://spectrumlocalnews.com/nys/capital-region/calendar"
+          ],
+          "albany_specific": [
+            "https://empirestateplaza.ny.gov/events",
+            "https://www.downtownalbany.org/events",
+            "https://albanyny.gov/Calendar.aspx",
+            "https://www.albanyevents.org/events/",
+            "https://empirelivealbany.com/",
+            "https://albanypinebush.org/visit-calendar",
+            "https://www.mvparena.com/events"
+          ],
+          "saratoga": [
+            "https://www.saratoga.com/events/",
+            "https://www.discoversaratoga.org/events/",
+            "https://www.spac.org/events/",
+            "https://www.nyra.com/saratoga/calendar/",
+            "https://www.saratoga-arts.org/events",
+            "https://www.saratogacountyny.gov/events",
+            "https://www.saratogacitycenter.org/events",
+            "https://saratogafarmersmarket.org/"
+          ],
+          "schenectady": [
+            "https://www.discoverschenectady.com/events/",
+            "https://downtownschenectady.org/events-calendar/",
+            "https://www.riverscasino.com/schenectady/entertainment/event-calendar",
+            "https://www.schenectadygreenmarket.com/"
+          ],
+          "troy": [
+            "https://www.downtowntroyny.org/upcoming-events",
+            "https://www.troyny.gov/1330/Annual-Events-Concerts",
+            "https://www.troymarket.org/"
+          ],
+            "venues_arts": [
+            "https://www.proctors.org/events/",
+            "https://www.theegg.org/events",
+            "https://www.palacealbany.org/events",
+            "https://www.troymusichall.org/events",
+            "https://www.thecohoesmusichall.org/events",
+            "https://attherep.org/shows/",
+            "https://www.albanysymphony.com/upcomingconcerts",
+            "https://www.thelinda.org/",
+            "https://www.caffelena.org/events/",
+            "https://putnamplace.com/events/",
+            "https://www.musichavenstage.org/",
+            "https://www.artscenteronline.org/events/",
+            "https://parks.ny.gov/events",
+            "https://empac.rpi.edu/events",
+            "https://albany.funnybone.com/calendar/",
+            "https://thecomedyworks.com/"
+          ]
+        }
+      },
+      "pairing_rules": [
+        {"match_on": "category", "examples": ["food fest -> Mexican", "concert -> music friendly eatery"]},
+        {"match_on": "location", "fuzzy_match": true}
+      ],
+      "json_schema": {
+        "restaurants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "address", "cuisine", "description", "link"],
+            "properties": {
+              "name": {"type": "string"},
+              "address": {"type": "string"},
+              "cuisine": {"type": "string"},
+              "description": {"type": "string"},
+              "link": {"type": "string"},
+              "is_new": {"type": "boolean"},
+              "badge": {"type": "string"}
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "date", "venue", "category", "description", "link"],
+              "properties": {
+                "name": {"type": "string"},
+                "date": {"type": "string"},
+                "venue": {"type": "string"},
+                "category": {"type": "string"},
+                "description": {"type": "string"},
+                "link": {"type": "string"},
+                "is_new": {"type": "boolean"},
+                "badge": {"type": "string"}
+              }
+            }
+        }
+      }
+    }
+  ]
+}

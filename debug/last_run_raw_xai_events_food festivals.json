@@ -1,0 +1,22 @@
+[
+  {
+    "name": "New York State Food Festival featuring 38 Special",
+    "date": "2025-08-13",
+    "venue": "Empire State Plaza, Albany, NY",
+    "category": "Food Festival",
+    "description": "A celebration of New York State's culinary diversity with food vendors, live music by 38 Special, and family-friendly activities. A must-visit for food enthusiasts.",
+    "link": "https://empirestateplaza.ny.gov/event/new-york-state-food-festival-featuring-38-special",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "Albany Riverfront Jazz Festival",
+    "date": "2025-08-04",
+    "venue": "Jennings Landing, Albany, NY",
+    "category": "Live Music",
+    "description": "A day-long celebration of jazz with world-class artists, local favorites, vendors, and great food. Free admission for all ages at this iconic riverside venue.",
+    "link": "https://www.albanyevents.org/events/albany-jazz-festival/",
+    "is_new": false,
+    "badge": null
+  }
+]

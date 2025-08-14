@@ -1,0 +1,32 @@
+[
+  {
+    "name": "New York Showcase Day at Saratoga Race Course",
+    "date": "2025-08-25",
+    "venue": "Saratoga Race Course, Saratoga Springs, NY",
+    "category": "Festival",
+    "description": "A day dedicated to New York-bred horses with six stakes races worth a combined $1.25 million, headlined by the $250,000 Albany race.",
+    "link": "https://www.saratoga.com/event/new-york-showcase-day-149954/",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "Saratoga Summer Meet Special Events 2025",
+    "date": "2025-08-13 to 2025-09-01",
+    "venue": "Saratoga Race Course, Saratoga Springs, NY",
+    "category": "Festival",
+    "description": "The 2025 summer meet at historic Saratoga Race Course features a variety of attractions, entertainment, and special events throughout the season.",
+    "link": "https://www.nyra.com/saratoga/news/2025-summer-meet-special-events-schedule/",
+    "is_new": false,
+    "badge": "Seasonal"
+  },
+  {
+    "name": "Saratoga Restaurant Week 2025",
+    "date": "2025-11-03 to 2025-11-09",
+    "venue": "Various Restaurants, Saratoga Springs, NY",
+    "category": "Food",
+    "description": "Annual event featuring three-course dinner specials at participating restaurants in Saratoga County. A great opportunity to explore local dining.",
+    "link": "https://www.discoversaratoga.org/events/restaurant-week/",
+    "is_new": false,
+    "badge": "Culinary"
+  }
+]

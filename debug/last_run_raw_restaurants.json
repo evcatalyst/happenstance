@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian",
+    "description": "A cozy, family-owned Italian spot in Albany known for its authentic pasta dishes and warm ambiance, perfect for a comforting meal.",
+    "link": "https://www.villadivalletta.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant Mexican eatery specializing in tacos and tequila, offering bold flavors and a lively atmosphere for taco enthusiasts.",
+    "link": "https://www.torocantina.com",
+    "is_new": false,
+    "badge": "Taco Favorite"
+  },
+  {
+    "name": "The Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Comfort",
+    "description": "A Southern-inspired gem with a creative twist, serving up fried chicken and biscuits with a side of cozy charm.",
+    "link": "https://www.thecuckoosnestalbany.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American Breakfast",
+    "description": "A beloved breakfast spot in a historic building, known for hearty brunches and a welcoming, eclectic vibe.",
+    "link": "https://www.irongatecafe.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Villa Valenti",
+    "address": "729 Pawling Ave, Troy, NY 12180",
+    "cuisine": "Italian",
+    "description": "A long-standing Italian restaurant near Albany, celebrated for its classic dishes and family-friendly environment.",
+    "link": "https://www.villavalenti.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Kuma Ani",
+    "address": "109 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Japanese Fusion",
+    "description": "A modern Japanese spot offering sushi and unique fusion rolls, blending traditional flavors with innovative flair.",
+    "link": "https://www.kuma-ani.com",
+    "is_new": false,
+    "badge": "Fusion Highlight"
+  },
+  {
+    "name": "The Olde English Pub",
+    "address": "683 Broadway, Albany, NY 12207",
+    "cuisine": "British-American",
+    "description": "A historic pub with British charm, serving fish and chips alongside local craft beers in a cozy downtown setting.",
+    "link": "https://www.oldeenglishpub.com",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "El Loco Mexican Cafe",
+    "address": "465 Madison Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A funky, local Mexican cafe with killer tacos and margaritas, loved for its casual vibe and bold flavors.",
+    "link": "https://www.ellocomexicancafe.com",
+    "is_new": false,
+    "badge": "Taco Favorite"
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "address": "1053 Broadway, Albany, NY 12204",
+    "cuisine": "American Brewpub",
+    "description": "A regional brewpub with hearty comfort food, house-brewed beers, and occasional live music events in a rustic space.",
+    "link": "https://www.druthersbrewing.com",
+    "is_new": false,
+    "badge": "Live Music Spot"
+  },
+  {
+    "name": "Sukhothai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A Lark Street staple for authentic Thai cuisine, offering spicy curries and noodles in a laid-back, colorful setting.",
+    "link": "https://www.sukhothainy.com",
+    "is_new": false,
+    "badge": null
+  }
+]

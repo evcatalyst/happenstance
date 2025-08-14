@@ -1,0 +1,46 @@
+[
+  {
+    "run_id": "33465dd3ac9d",
+    "ts": 1755144511.928588,
+    "providers": [
+      "openai",
+      "xai"
+    ],
+    "model_xai": "grok-3",
+    "model_openai": "gpt-4o-mini",
+    "prompt_tokens_total": 17519,
+    "completion_tokens_total": 4276,
+    "estimated_cost_total_usd": 77.798,
+    "passes": 30,
+    "targets": {
+      "restaurants": 15,
+      "events": 25
+    },
+    "final_counts": {
+      "restaurants": 10,
+      "events": 4
+    }
+  },
+  {
+    "run_id": "5c3e954d55f5",
+    "ts": 1755144918.986364,
+    "providers": [
+      "openai",
+      "xai"
+    ],
+    "model_xai": "grok-3",
+    "model_openai": "gpt-4o-mini",
+    "prompt_tokens_total": 36784,
+    "completion_tokens_total": 13049,
+    "estimated_cost_total_usd": 204.058,
+    "passes": 41,
+    "targets": {
+      "restaurants": 35,
+      "events": 25
+    },
+    "final_counts": {
+      "restaurants": 18,
+      "events": 9
+    }
+  }
+]

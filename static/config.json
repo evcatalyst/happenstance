@@ -1,0 +1,23 @@
+{
+  "branding": {
+    "site_title": "Capital Region Happenstance",
+    "logo_url": "https://via.placeholder.com/120x60?text=Logo",
+    "badges": {
+      "new_restaurant": "Fresh Bite",
+      "new_event": "Just Announced"
+    }
+  },
+  "pairing_rules": [
+    {
+      "match_on": "category",
+      "examples": [
+        "food fest -> Mexican",
+        "concert -> music friendly eatery"
+      ]
+    },
+    {
+      "match_on": "location",
+      "fuzzy_match": true
+    }
+  ]
+}

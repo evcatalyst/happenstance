@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian-Mediterranean",
+    "description": "A cozy spot offering a fusion of Italian and Mediterranean flavors with a vibrant atmosphere, known for unique dishes and occasional live music events.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A lively spot for authentic tacos and Mexican cuisine, featuring a modern twist on traditional recipes and a welcoming vibe for brunch or dinner.",
+    "link": "https://www.torocantina.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Sheba Al-Yemeni",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Ethiopian-Yemeni",
+    "description": "An authentic taste of Ethiopian and Yemeni cuisine with richly spiced dishes, perfect for those seeking unique cultural flavors in the Capital Region.",
+    "link": "https://www.shebaalyemeni.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Comfort",
+    "description": "A beloved spot for Southern-inspired brunch and comfort food, offering creative dishes in a quirky, welcoming environment.",
+    "link": "https://www.thecuckoosnestalbany.com/",
+    "is_new": false,
+    "badge": "Brunch Favorite"
+  },
+  {
+    "name": "Jack's Oyster House",
+    "address": "42 State St, Albany, NY 12207",
+    "cuisine": "Seafood",
+    "description": "A historic Albany institution since 1913, specializing in fresh seafood and classic American fare, perfect for a sophisticated dining experience.",
+    "link": "https://www.jacksoysterhouse.com/",
+    "is_new": false,
+    "badge": "Iconic Seafood"
+  },
+  {
+    "name": "El Loco Mexican Cafe",
+    "address": "465 Madison Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for tacos and Mexican street food, known for its bold flavors, colorful decor, and lively atmosphere in the heart of Albany.",
+    "link": "https://www.ellocomexicancafe.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American",
+    "description": "A charming cafe offering hearty brunch options with a focus on local ingredients, set in a historic building with a cozy, artsy vibe.",
+    "link": "https://www.irongatecafe.com/",
+    "is_new": false,
+    "badge": "Brunch Favorite"
+  },
+  {
+    "name": "Kuma Ani",
+    "address": "287 New Scotland Ave, Albany, NY 12208",
+    "cuisine": "Japanese-Asian Fusion",
+    "description": "A unique fusion spot blending Japanese sushi with other Asian influences, offering creative rolls and a modern dining experience.",
+    "link": "https://www.kuma-ani.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "New American",
+    "description": "A trendy spot combining inventive American cuisine with a lively bar scene, frequently hosting live music and events.",
+    "link": "https://www.thehollowalbany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Cafe Capriccio",
+    "address": "49 Grand St, Albany, NY 12207",
+    "cuisine": "Italian",
+    "description": "A long-standing favorite for authentic Italian cuisine, offering a warm, intimate setting and a menu of classic dishes with a modern flair.",
+    "link": "https://www.cafecapriccio.com/",
+    "is_new": false,
+    "badge": null
+  }
+]

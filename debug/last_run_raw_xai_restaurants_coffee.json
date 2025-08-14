@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for authentic tacos and margaritas, known for its lively atmosphere and fresh ingredients. Often features live music on weekends.",
+    "link": "https://www.torocantina.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian",
+    "description": "A long-standing Italian gem in the Capital Region, offering classic dishes with a modern twist in an elegant setting.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Ethiopian Restaurant - Sheba Al-Yemeni",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Ethiopian",
+    "description": "A cozy spot offering traditional Ethiopian dishes like injera and doro wat, celebrated for its authentic flavors and warm hospitality.",
+    "link": "https://www.yelp.com/biz/sheba-al-yemeni-albany",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Comfort",
+    "description": "A beloved spot for Southern-inspired comfort food with a creative twist, known for its brunch and cozy vibe.",
+    "link": "https://www.thecuckoosnestalbany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Kuma Ani",
+    "address": "287 New Scotland Ave, Albany, NY 12208",
+    "cuisine": "Japanese",
+    "description": "A sushi and ramen hotspot offering fresh, high-quality dishes in a modern, minimalist setting.",
+    "link": "https://www.kuma-ani.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American/Coffee",
+    "description": "A charming cafe known for its excellent coffee, hearty breakfasts, and cozy courtyard seating, a local favorite for morning meetups.",
+    "link": "https://www.irongatecafe.com/",
+    "is_new": false,
+    "badge": "Coffee Spot"
+  },
+  {
+    "name": "Thai Orchid",
+    "address": "19 New Scotland Ave, Albany, NY 12208",
+    "cuisine": "Thai",
+    "description": "A go-to for authentic Thai cuisine, featuring bold flavors in dishes like pad thai and green curry, with a welcoming atmosphere.",
+    "link": "https://www.yelp.com/biz/thai-orchid-albany",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "New World Bistro Bar",
+    "address": "300 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Global Fusion",
+    "description": "An innovative spot blending global flavors with local ingredients, often hosting live music and events in a trendy setting.",
+    "link": "https://www.newworldbistrobar.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American",
+    "description": "A downtown staple for craft cocktails and elevated pub fare, known for live music performances and a lively atmosphere.",
+    "link": "https://www.thehollowalbany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Italia Pasticceria",
+    "address": "226 Broadway, Schenectady, NY 12305",
+    "cuisine": "Italian Bakery/Coffee",
+    "description": "A historic bakery and cafe offering traditional Italian pastries and strong espresso, a beloved spot for coffee lovers.",
+    "link": "https://www.villaitaliabakery.com/",
+    "is_new": false,
+    "badge": "Coffee Spot"
+  },
+  {
+    "name": "Rubbin' Butts BBQ",
+    "address": "1053 Broadway, Albany, NY 12204",
+    "cuisine": "Barbecue",
+    "description": "A local favorite for smoked meats and hearty sides, offering a casual vibe with outdoor seating when weather permits.",
+    "link": "https://www.rubbinbuttsbbqny.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Peking Restaurant",
+    "address": "1100 Madison Ave, Albany, NY 12208",
+    "cuisine": "Chinese",
+    "description": "A long-standing spot for classic Chinese dishes, known for generous portions and a no-frills, family-friendly environment.",
+    "link": "https://www.yelp.com/biz/peking-restaurant-albany",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "El Loco Mexican Cafe",
+    "address": "465 Madison Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A quirky, colorful spot for tacos and burritos, loved for its affordable prices and vibrant decor reflecting local culture.",
+    "link": "https://www.ellocomexicancafe.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "address": "1053 Broadway, Albany, NY 12204",
+    "cuisine": "Brewpub",
+    "description": "A regional brewpub offering craft beers and elevated pub food, with a spacious venue often hosting live music.",
+    "link": "https://www.druthersbrewing.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Cafe Capriccio",
+    "address": "49 Grand St, Albany, NY 12207",
+    "cuisine": "Italian",
+    "description": "A fine dining institution with authentic Tuscan cuisine, known for its romantic ambiance and extensive wine list.",
+    "link": "https://www.cafecapriccio.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Stuyvesant Plaza - Stacks Espresso Bar",
+    "address": "1475 Western Ave, Albany, NY 12203",
+    "cuisine": "Coffee",
+    "description": "A modern coffee shop with expertly crafted brews and a minimalist vibe, perfect for a quick stop or remote work.",
+    "link": "https://www.stacksexpresso.com/",
+    "is_new": false,
+    "badge": "Coffee Spot"
+  },
+  {
+    "name": "Lark Street Tavern",
+    "address": "453 Madison Ave, Albany, NY 12210",
+    "cuisine": "American",
+    "description": "A historic tavern with a diverse menu and live music events, a staple in the Lark Street neighborhood for casual dining.",
+    "link": "https://www.yelp.com/biz/lark-street-tavern-albany",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Sukhothai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A hidden gem for Thai cuisine, offering spicy curries and fresh spring rolls in a cozy, unassuming space.",
+    "link": "https://www.yelp.com/biz/sukhothai-albany",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Berben and Wolff's",
+    "address": "156 4th St, Troy, NY 12180",
+    "cuisine": "Vegan",
+    "description": "A popular vegan deli offering creative sandwiches and comfort food, loved for its bold flavors and community focus.",
+    "link": "https://www.berbenandwolffs.com/",
+    "is_new": false,
+    "badge": "Vegan Highlight"
+  },
+  {
+    "name": "The Olde English Pub",
+    "address": "683 Broadway, Albany, NY 12207",
+    "cuisine": "British/American",
+    "description": "A cozy pub with British-inspired fare and a wide beer selection, often hosting live music and trivia nights.",
+    "link": "https://www.theoldeenglish.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "The Ginger Man",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "American",
+    "description": "A sophisticated wine bar and restaurant with a seasonal menu, known for its extensive wine list and intimate setting.",
+    "link": "https://www.thegingerman-albany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Loch & Quay",
+    "address": "414 Broadway, Albany, NY 12207",
+    "cuisine": "Seafood",
+    "description": "A newer addition to Albany's dining scene, specializing in fresh seafood with a focus on oysters and creative small plates.",
+    "link": "https://www.lochandquay.com/",
+    "is_new": true,
+    "badge": "Seafood Standout"
+  },
+  {
+    "name": "Mexican Taqueria - Oaxaquena",
+    "address": "839 New Loudon Rd, Latham, NY 12110",
+    "cuisine": "Mexican",
+    "description": "A family-run taqueria offering authentic Oaxacan tacos and moles, praised for its fresh ingredients and vibrant flavors.",
+    "link": "https://www.yelp.com/biz/taqueria-oaxaquena-latham",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Uncommon Grounds",
+    "address": "1235 Western Ave, Albany, NY 12203",
+    "cuisine": "Coffee",
+    "description": "A local coffeehouse chain with a strong following, known for roasting its own beans and offering a cozy space for studying or socializing.",
+    "link": "https://www.uncommongrounds.com/",
+    "is_new": false,
+    "badge": "Coffee Spot"
+  },
+  {
+    "name": "Wine Bar & Bistro on Lark",
+    "address": "200 Lark St, Albany, NY 12210",
+    "cuisine": "Mediterranean Fusion",
+    "description": "A chic spot blending Mediterranean flavors with local ingredients, perfect for a date night with its curated wine selection.",
+    "link": "https://www.winebaronlark.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Tara Kitchen",
+    "address": "431 Liberty St, Schenectady, NY 12305",
+    "cuisine": "Moroccan",
+    "description": "A beloved spot for Moroccan cuisine, offering tagines and couscous in a warm, inviting atmosphere with cultural decor.",
+    "link": "https://www.tarakitchen.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Pies on Wheels",
+    "address": "Mobile - Check Social Media, Albany, NY",
+    "cuisine": "Pizza/Fusion",
+    "description": "A unique food truck offering wood-fired pizzas with creative toppings, often spotted at local events and breweries.",
+    "link": "https://www.piesonwheels.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Albany Ale & Oyster",
+    "address": "281 New Scotland Ave, Albany, NY 12208",
+    "cuisine": "Seafood/American",
+    "description": "A trendy spot for craft beer and fresh oysters, with a menu focusing on seafood and locally sourced ingredients.",
+    "link": "https://www.albanyaleandoyster.com/",
+    "is_new": false,
+    "badge": "Seafood Standout"
+  },
+  {
+    "name": "Sweet Basil Thai Restaurant",
+    "address": "370 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Thai",
+    "description": "A neighborhood favorite for authentic Thai dishes, known for its friendly service and flavorful curries.",
+    "link": "https://www.yelp.com/biz/sweet-basil-thai-restaurant-albany",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Willow",
+    "address": "235 Washington Ave, Albany, NY 12210",
+    "cuisine": "Vegan/American",
+    "description": "A newer vegan-friendly eatery with a focus on plant-based comfort food, gaining attention for its creative menu.",
+    "link": "https://www.willowalbany.com/",
+    "is_new": true,
+    "badge": "Vegan Highlight"
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican/Tacos",
+    "description": "A vibrant spot for authentic tacos and Mexican fare, known for its creative menu and lively atmosphere. Perfect for taco enthusiasts with a modern twist.",
+    "link": "https://www.torocantina.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Sheba Al-Yemen",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Ethiopian/Yemeni",
+    "description": "A beloved spot offering traditional Ethiopian and Yemeni dishes, with rich flavors and communal dining experiences. A hidden gem for diverse cuisine lovers.",
+    "link": "https://www.shebaalyemen.com/",
+    "is_new": false,
+    "badge": "Cultural Gem"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Seafood/Italian",
+    "description": "An upscale dining experience focusing on fresh seafood and Italian classics. A long-standing favorite in the Capital Region for special occasions.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Sukhothai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A cozy spot on Lark Street offering authentic Thai dishes with bold flavors. Known for its curries, pad thai, and vegetarian options.",
+    "link": "https://www.sukhothai-albany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Berben and Wolff's",
+    "address": "156 4th St, Troy, NY 12180",
+    "cuisine": "Vegan",
+    "description": "A popular vegan deli offering plant-based comfort food, including sandwiches and baked goods. A must-try for vegan diners in the Capital Region.",
+    "link": "https://www.berbenandwolffs.com/",
+    "is_new": false,
+    "badge": "Vegan Favorite"
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican/Tacos",
+    "description": "A long-established spot for traditional Mexican cuisine, specializing in tacos and hearty entrees. A staple for affordable, flavorful meals.",
+    "link": "https://www.elmariachialbany.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American/Fusion",
+    "description": "A trendy spot combining creative American dishes with a vibrant live music scene. Perfect for a night out with food and entertainment.",
+    "link": "https://www.thehollowalbany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Fresh Italian Kitchen",
+    "address": "131 Colonie Center, Albany, NY 12205",
+    "cuisine": "Seafood/Italian",
+    "description": "Known for its seafood pasta and Italian classics, this spot offers a taste of the ocean with a Mediterranean flair in a casual setting.",
+    "link": "https://www.villafreshitaliankitchen.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Thai Garden",
+    "address": "338 Central Ave, Albany, NY 12206",
+    "cuisine": "Thai",
+    "description": "A local favorite for authentic Thai cuisine, featuring spicy noodles, fragrant curries, and a welcoming atmosphere in the heart of Albany.",
+    "link": "https://www.thaigardenalbany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Lark Street Taco & Burrito Bar",
+    "address": "256 Lark St, Albany, NY 12210",
+    "cuisine": "Mexican/Tacos",
+    "description": "A casual eatery on Lark Street specializing in customizable tacos and burritos. A go-to for quick, fresh, and flavorful Mexican bites.",
+    "link": "https://www.larkstreettaco.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  }
+]

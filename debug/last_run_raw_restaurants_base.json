@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for authentic tacos and creative Mexican dishes with a modern twist. Known for occasional live music events and a lively atmosphere.",
+    "link": "https://www.albany.com/restaurants/mexican-restaurants/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian-Mediterranean",
+    "description": "A unique fusion of Italian and Mediterranean flavors, offering a cozy yet upscale dining experience. A long-standing favorite in the Capital Region.",
+    "link": "https://www.albany.com/restaurants/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "El Loco Mexican Cafe",
+    "address": "465 Madison Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A beloved local spot for traditional Mexican fare, especially tacos and margaritas, with a quirky, colorful vibe that embodies Albany's eclectic food scene.",
+    "link": "https://www.albany.com/restaurants/mexican-restaurants/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American Fusion",
+    "description": "A trendy eatery and bar featuring unique American fusion dishes. Frequently hosts live music, making it a cultural hub in downtown Albany.",
+    "link": "https://www.albany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Oaxaquena Triqui",
+    "address": "77 N Lake Ave, Albany, NY 12206",
+    "cuisine": "Oaxacan-Mexican",
+    "description": "Specializing in authentic Oaxacan street food, this hidden gem offers tacos and tlayudas with bold, traditional flavors unique to the region.",
+    "link": "https://www.albany.com/restaurants/mexican-restaurants/",
+    "is_new": false,
+    "badge": null
+  }
+]

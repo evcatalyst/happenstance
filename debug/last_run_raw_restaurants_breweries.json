@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Saratoga Springs, NY 12866",
+    "cuisine": "Italian",
+    "description": "A romantic spot in Saratoga Springs offering authentic Italian dishes with a cozy atmosphere, perfect for special occasions.",
+    "link": "https://www.saratoga.com/romance/romantic-restaurants/",
+    "is_new": false,
+    "badge": "Romantic Dining"
+  },
+  {
+    "name": "The Olde Bryan Inn",
+    "address": "123 Maple Ave, Saratoga Springs, NY 12866",
+    "cuisine": "American",
+    "description": "A historic restaurant in Saratoga Springs known for its hearty American fare and waterfront views, ideal for family dining.",
+    "link": "https://www.saratoga.com/restaurants/features/waterfront-dining/",
+    "is_new": false,
+    "badge": "Waterfront Views"
+  },
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot in Albany specializing in tacos and Mexican street food, often praised for its bold flavors and lively atmosphere.",
+    "link": "https://www.yelp.com/search?find_desc=Tacos&find_loc=Albany%2C+NY",
+    "is_new": false,
+    "badge": "Taco Favorite"
+  },
+  {
+    "name": "Sheba Al-Yemen",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Ethiopian/Yemeni",
+    "description": "An authentic Ethiopian and Yemeni eatery in Albany, offering richly spiced dishes and a cultural dining experience.",
+    "link": "https://www.yelp.com/search?find_desc=Ethiopian&find_loc=Albany%2C+NY",
+    "is_new": false,
+    "badge": "Cultural Gem"
+  },
+  {
+    "name": "The Lobster Trap",
+    "address": "3 Ferry St, Schuylerville, NY 12871",
+    "cuisine": "Seafood",
+    "description": "A beloved seafood spot near Saratoga Springs, known for fresh catches and a casual dining vibe with waterfront charm.",
+    "link": "https://www.saratoga.com/restaurants/cuisine/seafood/",
+    "is_new": false,
+    "badge": "Seafood Specialist"
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "address": "381 Broadway, Saratoga Springs, NY 12866",
+    "cuisine": "American/Brewpub",
+    "description": "A popular brewery and restaurant in Saratoga Springs, offering craft beers and elevated pub fare with a lively atmosphere.",
+    "link": "https://www.discoversaratoga.org/",
+    "is_new": false,
+    "badge": "Craft Brewery"
+  },
+  {
+    "name": "Harvey's Restaurant and Bar",
+    "address": "14 Phila St, Saratoga Springs, NY 12866",
+    "cuisine": "Irish/American",
+    "description": "An Irish pub in Saratoga Springs with a welcoming vibe, serving classic pub grub and often featuring live music events.",
+    "link": "https://www.saratoga.com/nightlife/pubs/",
+    "is_new": false,
+    "badge": "Live Music Venue"
+  },
+  {
+    "name": "Common Roots Brewing Company",
+    "address": "58 Saratoga Ave, South Glens Falls, NY 12803",
+    "cuisine": "American/Brewpub",
+    "description": "A craft brewery near the Albany metro area with a focus on sustainable brews and a food menu featuring local ingredients.",
+    "link": "https://www.yelp.com/search?find_desc=Breweries&find_loc=Albany%2C+NY",
+    "is_new": false,
+    "badge": "Sustainable Brewery"
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A long-standing Albany favorite for authentic Mexican cuisine, especially known for its tacos and vibrant decor.",
+    "link": "https://www.yelp.com/search?find_desc=Mexican&find_loc=Albany%2C+NY",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American/Fusion",
+    "description": "A cozy Albany cafe with a unique fusion menu, blending local flavors with international twists, popular for brunch.",
+    "link": "https://www.yelp.com/search?find_desc=Fusion&find_loc=Albany%2C+NY",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  }
+]

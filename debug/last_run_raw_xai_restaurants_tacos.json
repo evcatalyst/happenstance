@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Villa Di Como Ristorante",
+    "address": "286 Lark St, Albany, NY 12210",
+    "cuisine": "Italian",
+    "description": "A cozy spot offering authentic Italian dishes with a focus on fresh pasta and wood-fired pizza, loved for its intimate ambiance.",
+    "link": "https://www.villadicomoristorante.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican",
+    "description": "A vibrant spot for tacos and tequila, featuring bold flavors and a modern take on traditional Mexican street food.",
+    "link": "https://www.torocantina.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American",
+    "description": "A beloved breakfast and brunch spot in a historic building, known for creative dishes and a cozy courtyard.",
+    "link": "https://www.irongatecafe.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Sheba Al-Yemen",
+    "address": "340 Central Ave, Albany, NY 12206",
+    "cuisine": "Yemeni",
+    "description": "Authentic Yemeni cuisine with rich, spiced dishes like mandi and haneeth, offering a unique cultural dining experience.",
+    "link": "https://www.shebaalyemen.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Kinnaree",
+    "address": "193 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A hidden gem for Thai cuisine, offering spicy curries and flavorful pad thai in a warm, welcoming setting.",
+    "link": "https://www.kinnareethai.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American",
+    "description": "A trendy spot combining farm-to-table dining with live music events, known for its burgers and craft cocktails.",
+    "link": "https://www.thehollowalbany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A long-standing favorite for authentic tacos and enchiladas, with a festive atmosphere and extensive margarita menu.",
+    "link": "https://www.elmariachialbany.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "New World Bistro Bar",
+    "address": "300 Delaware Ave, Albany, NY 12209",
+    "cuisine": "Global Fusion",
+    "description": "An eclectic menu inspired by global flavors, featuring small plates and creative entrees in a lively setting.",
+    "link": "https://www.newworldbistrobar.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Berben and Wolff's",
+    "address": "156 4th St, Troy, NY 12180",
+    "cuisine": "Vegan",
+    "description": "A popular vegan deli near Albany, known for inventive sandwiches and comfort food with a compassionate twist.",
+    "link": "https://www.berbenandwolffs.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Umana Yana",
+    "address": "236 Washington Ave, Albany, NY 12210",
+    "cuisine": "Ethiopian",
+    "description": "A cultural gem offering traditional Ethiopian dishes like injera and doro wat, with a focus on communal dining.",
+    "link": "https://www.umanayana.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Jack's Oyster House",
+    "address": "42 State St, Albany, NY 12207",
+    "cuisine": "Seafood",
+    "description": "A historic seafood institution since 1913, renowned for fresh oysters, lobster, and classic fine dining.",
+    "link": "https://www.jacksoysterhouse.com/",
+    "is_new": false,
+    "badge": "Long-Established"
+  },
+  {
+    "name": "Cafe Capriccio",
+    "address": "49 Grand St, Albany, NY 12207",
+    "cuisine": "Italian",
+    "description": "A fine dining staple with authentic Tuscan cuisine, known for handmade pasta and an extensive wine list.",
+    "link": "https://www.cafecapriccio.com/",
+    "is_new": false,
+    "badge": "Long-Established"
+  },
+  {
+    "name": "Oaxaquena Triqui",
+    "address": "77 N Lake Ave, Albany, NY 12206",
+    "cuisine": "Mexican",
+    "description": "A family-run spot specializing in Oaxacan-style tacos and moles, bringing authentic regional flavors to Albany.",
+    "link": "https://www.oaxaquenatriqui.com/",
+    "is_new": false,
+    "badge": "Taco Highlight"
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "address": "1053 Broadway, Albany, NY 12204",
+    "cuisine": "American",
+    "description": "A brewpub with hearty comfort food like mac and cheese, paired with house-brewed beers and a lively vibe.",
+    "link": "https://www.druthersbrewing.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Sukhothai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A go-to for authentic Thai flavors, offering spicy noodle dishes and curries in a casual, colorful space.",
+    "link": "https://www.sukhothaialbany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "The Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern",
+    "description": "A Southern-inspired eatery with comfort classics like fried chicken and biscuits, in a quirky, welcoming space.",
+    "link": "https://www.thecuckoosnestalbany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Albany Ale & Oyster",
+    "address": "281 New Scotland Ave, Albany, NY 12208",
+    "cuisine": "Seafood",
+    "description": "A modern spot for fresh oysters and craft beer, with a focus on local ingredients and a relaxed atmosphere.",
+    "link": "https://www.albanyaleandoyster.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Villa Valenti",
+    "address": "729 Pawling Ave, Troy, NY 12180",
+    "cuisine": "Italian",
+    "description": "A family-owned restaurant near Albany, famous for its old-school Italian dishes and signature tomato sauce.",
+    "link": "https://www.villavalenti.com/",
+    "is_new": false,
+    "badge": "Long-Established"
+  },
+  {
+    "name": "Tara Kitchen",
+    "address": "431 Liberty St, Schenectady, NY 12305",
+    "cuisine": "Moroccan",
+    "description": "A nearby gem offering authentic Moroccan tagines and couscous, with vibrant flavors and a cozy setting.",
+    "link": "https://www.tarakitchen.com/",
+    "is_new": false,
+    "badge": "Unique Fusion"
+  },
+  {
+    "name": "Peck's Arcade",
+    "address": "217 Broadway, Troy, NY 12180",
+    "cuisine": "New American",
+    "description": "A stylish spot near Albany with a focus on seasonal, locally-sourced dishes and an inventive cocktail menu.",
+    "link": "https://www.pecksarcade.com/",
+    "is_new": false,
+    "badge": null
+  }
+]

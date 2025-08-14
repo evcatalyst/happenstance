@@ -1,0 +1,36 @@
+{
+  "capital_region": {
+    "known_restaurants": [
+      "The Hollow Bar + Kitchen",
+      "Bombers Burrito Bar",
+      "Druthers Brewing Company",
+      "Iron Gate Cafe",
+      "Cafe Capriccio",
+      "El Loco Mexican Cafe",
+      "Toro Cantina",
+      "The Cuckoo's Nest",
+      "Kuma Ani"
+    ],
+    "known_venues": [
+      "The Egg",
+      "Empire State Plaza",
+      "Palace Theatre",
+      "Washington Park",
+      "Lark Street",
+      "Albany Capital Center",
+      "The Hollow Bar + Kitchen",
+      "Druthers Brewing Company"
+    ],
+    "allowed_link_domains": [
+      "thehollowalbany.com",
+      "bombersburritobar.com",
+      "druthersbrewing.com",
+      "irongatecafe.com",
+      "cafecapriccio.com",
+      "ellocomexicancafe.com",
+      "torocantina.com",
+      "thecuckoosnestalbany.com",
+      "kuma-ani.com"
+    ]
+  }
+}

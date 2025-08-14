@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Toro Cantina",
+    "address": "111 Wolf Rd, Albany, NY 12205",
+    "cuisine": "Mexican/Tacos",
+    "description": "A vibrant spot for authentic tacos and Mexican fare with a modern twist, often featuring live music on weekends.",
+    "link": "https://www.torocantina.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian/Seafood",
+    "description": "A long-established restaurant offering Italian classics with a strong emphasis on fresh seafood dishes.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Celadon Thai Restaurant",
+    "address": "860 Loudon Rd, Latham, NY 12110",
+    "cuisine": "Thai",
+    "description": "Known for authentic Thai flavors, this spot offers a cozy atmosphere with spicy curries and noodle dishes.",
+    "link": "https://www.celadonthai.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Iron Gate Cafe",
+    "address": "182 Washington Ave, Albany, NY 12210",
+    "cuisine": "American/Vegan-Friendly",
+    "description": "A beloved local cafe with a diverse menu including vegan options, housed in a historic building with a charming vibe.",
+    "link": "https://www.irongatecafe.com/",
+    "is_new": false,
+    "badge": "Vegan Options"
+  },
+  {
+    "name": "The Hollow Bar + Kitchen",
+    "address": "79 N Pearl St, Albany, NY 12207",
+    "cuisine": "American/Fusion",
+    "description": "A trendy spot combining unique fusion dishes with a lively atmosphere, often hosting live music events.",
+    "link": "https://www.thehollowalbany.com/",
+    "is_new": false,
+    "badge": "Live Music"
+  },
+  {
+    "name": "Stuyvesant Plaza Farmers Market Eatery",
+    "address": "1475 Western Ave, Albany, NY 12203",
+    "cuisine": "Tacos/Fusion",
+    "description": "A seasonal eatery with food stalls offering creative tacos and fusion street food, reflecting local flavors.",
+    "link": "https://www.stuyvesantplaza.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Villa Italia",
+    "address": "220 Broadway, Schenectady, NY 12305",
+    "cuisine": "Italian/Seafood",
+    "description": "A Schenectady staple known for Italian cuisine with excellent seafood options, located in the heart of downtown.",
+    "link": "https://www.villaitalia.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Sukhothai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "cuisine": "Thai",
+    "description": "A cozy Lark Street favorite offering traditional Thai dishes with bold flavors in a welcoming setting.",
+    "link": "https://www.sukhothai-albany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Berben and Wolff's",
+    "address": "156 4th St, Troy, NY 12180",
+    "cuisine": "Vegan",
+    "description": "A popular vegan deli offering creative sandwiches and comfort food, a go-to for plant-based eaters in the Capital Region.",
+    "link": "https://www.berbenandwolffs.com/",
+    "is_new": false,
+    "badge": "100% Vegan"
+  },
+  {
+    "name": "Stacks Espresso Bar",
+    "address": "488 Broadway, Albany, NY 12207",
+    "cuisine": "Coffee/Brunch",
+    "description": "A hip coffee shop with expertly crafted espresso drinks and a small, delicious brunch menu, perfect for a morning stop.",
+    "link": "https://www.stacksespresso.com/",
+    "is_new": false,
+    "badge": "Coffee Focus"
+  },
+  {
+    "name": "El Loco Mexican Cafe",
+    "address": "465 Madison Ave, Albany, NY 12210",
+    "cuisine": "Mexican/Tacos",
+    "description": "A funky, local Mexican spot on Lark Street, known for its flavorful tacos and casual, colorful atmosphere.",
+    "link": "https://www.ellocoalbany.com/",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Cafe Madison",
+    "address": "1108 Madison Ave, Albany, NY 12208",
+    "cuisine": "American/Coffee",
+    "description": "A long-standing breakfast and brunch spot with great coffee, loved for its hearty meals and cozy diner feel.",
+    "link": "https://www.cafemadisonalbany.com/",
+    "is_new": false,
+    "badge": "Coffee Focus"
+  }
+]

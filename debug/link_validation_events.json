@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Alive at Five Concert Series",
+    "link": "https://www.albanyevents.org/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Taco Tuesday Pop-Up",
+    "link": "https://www.downtownalbany.org/events",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Albany Riverfront Jazz Festival",
+    "link": "https://www.albanyevents.org/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Live Music Night at The Hollow",
+    "link": "https://www.downtownalbany.org/events",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Latin Fusion Night",
+    "link": "https://www.albany.com/events/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Trick or Trot Pumpkin Run 5K",
+    "link": "https://www.albanyevents.org/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Dia de los Muertos Celebration",
+    "link": "https://www.downtownalbany.org/events",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Sunday Brunch with Live Jazz",
+    "link": "https://www.albany.com/events/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "New York State Food Festival",
+    "link": "https://empirestateplaza.ny.gov/new-york-state-food-festival",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Taco Tuesday at Toro Cantina",
+    "link": "https://www.albany.org/things-to-do/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Cultural Arts Showcase",
+    "link": "https://www.albany.org/things-to-do/events-calendar/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Fusion Feast at Villa Di Valletta",
+    "link": "https://www.albany.org/things-to-do/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Pearlpalooza 2025",
+    "link": "https://www.albany.org/things-to-do/events-calendar/live-music/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "LarkFest 2025",
+    "link": "https://www.albany.org/things-to-do/events-calendar/live-music/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Albany Wine and Dine for the Arts 2025",
+    "link": "https://www.albanywinefest.com/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Lunchtime at the Plaza Music Series",
+    "link": "https://empirestateplaza.ny.gov/upcoming-events",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Art on Lark",
+    "link": "https://www.albany.org/things-to-do/events-calendar/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Tacos & Tequila Night at Mexican Connection",
+    "link": "https://www.albany.com/restaurants/",
+    "ok": true,
+    "status": 200
+  },
+  {
+    "name": "Live Music at Villa Di Valletta",
+    "link": "https://www.albany.com/events/",
+    "ok": true,
+    "status": 200
+  }
+]

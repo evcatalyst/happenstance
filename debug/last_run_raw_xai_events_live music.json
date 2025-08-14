@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Community Block Party",
+    "date": "2025-08-16",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Festival",
+    "description": "A free family-friendly event featuring fun activities and community engagement in Downtown Albany. Perfect for all ages to enjoy a vibrant day out.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": "Free Event"
+  },
+  {
+    "name": "The Little Mermaid - Free Movie",
+    "date": "2025-08-19",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Theater",
+    "description": "Part of the Summer in the City series, enjoy a free screening of Disney's The Little Mermaid. Doors open at noon for family activities, movie starts at 1:00 PM.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": "Free Screening"
+  },
+  {
+    "name": "Brad Williams: The Growth Spurt Tour 2025",
+    "date": "2025-10-15",
+    "venue": "Palace Theatre Albany, 19 Clinton Ave, Albany, NY 12207",
+    "category": "Comedy",
+    "description": "Comedian Brad Williams brings his hilarious stand-up show to Albany as part of his 2025 tour. Expect sharp wit and relatable humor.",
+    "link": "https://www.palacealbany.org/events/all",
+    "is_new": false,
+    "badge": null
+  },
+  {
+    "name": "Mendelssohn Club of Albany Holiday Concert",
+    "date": "2025-12-06",
+    "venue": "The Egg, Empire State Plaza, Albany, NY 12220",
+    "category": "Live Music",
+    "description": "The longest continuously performing arts group in the Capital District since 1909, the Mendelssohn Club presents a holiday concert featuring a diverse male chorus from the region.",
+    "link": "https://www.theegg.org/events/event/mendelssohn-club-of-albany-holiday-concert/",
+    "is_new": false,
+    "badge": "Holiday Special"
+  }
+]

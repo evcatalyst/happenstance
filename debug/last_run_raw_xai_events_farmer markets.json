@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Summer Restaurant Week",
+    "date": "2025-08-18 to 2025-08-24",
+    "venue": "Various Downtown Schenectady Restaurants",
+    "category": "Food",
+    "description": "Enjoy special menus at extraordinary prices at favorite Downtown Schenectady restaurants, featuring diverse cuisines and unique dining experiences.",
+    "link": "https://downtownschenectady.org/portfolio/summer-restaurant-week/",
+    "is_new": false,
+    "badge": "Multi-Day Event"
+  },
+  {
+    "name": "The Alec Lewis Group Performance",
+    "date": "2025-08-14",
+    "venue": "Wolf Hollow Brewing Company, Glenville, NY",
+    "category": "Live Music",
+    "description": "Experience a fresh mix of contemporary funk, classic rock, and blues with The Alec Lewis Group, fronted by local musician Alec Lewis, featuring original compositions.",
+    "link": "https://www.discoverschenectady.com/event/the-alec-lewis-group/7415/",
+    "is_new": false,
+    "badge": null
+  }
+]

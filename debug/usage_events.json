@@ -1,0 +1,8 @@
+{
+  "prompt_tokens": 2631,
+  "completion_tokens": 249,
+  "total_tokens": 2880,
+  "estimated_cost_usd": 7.752,
+  "pricing_model_prompt_per_1k": 2.0,
+  "pricing_model_completion_per_1k": 10.0
+}
