@@ -1,7 +1,7 @@
 [
   {
-    "name": "Albany Latin Festival",
-    "date": "2025-08-16",
+    "name": "Albany Latin Fest 2025",
+    "date": "2025-08-23",
     "venue": "Washington Park, Albany, NY",
     "category": "Cultural Festival",
     "description": "Celebrate Latin culture with live music, dance performances, and authentic food vendors featuring tacos and more.",
@@ -11,21 +11,91 @@
   },
   {
     "name": "Taco Tuesday Pop-Up at Toro Cantina",
-    "date": "2025-08-19",
+    "date": "2025-09-02",
     "venue": "Toro Cantina, Albany, NY",
     "category": "Food Event",
-    "description": "Savor a variety of tacos with unique fusion flavors at this beloved local spot.",
+    "description": "Savor creative taco specials and margaritas at Toro Cantina, a local favorite for Mexican fusion dishes.",
     "link": "https://www.torocantina.com",
     "is_new": true,
     "badge": "Just Announced"
   },
   {
-    "name": "Opening Celebration at Fusion Bistro",
-    "date": "2025-08-28",
-    "venue": "Fusion Bistro, Albany, NY",
-    "category": "Food Event",
-    "description": "Grand opening of Fusion Bistro, offering a unique blend of Asian and Latin cuisines with special tasting menus.",
-    "link": "https://www.fusionbistroalbany.com",
+    "name": "Albany Riverfront Jazz Festival",
+    "date": "2025-09-06",
+    "venue": "Jennings Landing, Albany, NY",
+    "category": "Music Festival",
+    "description": "A day of free live jazz performances by local and regional artists along the Hudson Riverfront.",
+    "link": "https://www.albanyevents.org",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Albany Food & Wine Festival",
+    "date": "2025-09-13",
+    "venue": "Empire State Plaza, Albany, NY",
+    "category": "Food Festival",
+    "description": "Sample local wines, craft beers, and dishes from top Capital Region chefs, including unique fusion cuisines.",
+    "link": "https://www.albanyfoodandwinefestival.com",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Albany Latin Festival",
+    "date": "2025-08-16",
+    "venue": "Washington Park, Albany, NY",
+    "category": "Festival",
+    "description": "Celebrate Latin culture with live music, dance performances, and authentic food vendors featuring tacos and more.",
+    "link": "https://www.albanylatinfest.com",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "Taco Tuesday Showcase",
+    "date": "2025-08-26",
+    "venue": "El Loco Mexican Cafe, Albany, NY",
+    "category": "Food",
+    "description": "Savor a variety of tacos with live acoustic music at this beloved local Mexican eatery.",
+    "link": "https://www.ellocomexicancafe.com",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Taco Tuesday Pop-Up",
+    "date": "2025-09-03",
+    "venue": "Toro Cantina, Albany, NY",
+    "category": "Food",
+    "description": "Savor authentic and creative tacos at this beloved local spot known for its vibrant flavors.",
+    "link": "https://www.torocantina.com",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Indie Rock Concert",
+    "date": "2025-10-12",
+    "venue": "The Hollow Bar + Kitchen, Albany, NY",
+    "category": "Live Music",
+    "description": "Catch rising indie bands at this intimate venue with a reputation for great sound and local eats.",
+    "link": "https://www.thehollowalbany.com",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Albany Harvest Festival",
+    "date": "2025-10-19",
+    "venue": "Washington Park, Albany, NY",
+    "category": "Festival",
+    "description": "Celebrate the fall season with local produce, food stalls, and family-friendly activities.",
+    "link": "https://www.albanyharvestfestival.com",
+    "is_new": true,
+    "badge": "Just Announced"
+  },
+  {
+    "name": "Fusion Feast Night at Druthers Brewing Company",
+    "date": "2025-11-07",
+    "venue": "Druthers Brewing Company, Albany, NY",
+    "category": "Food",
+    "description": "Experience unique fusion dishes paired with craft beers at this regionally iconic brewery and eatery.",
+    "link": "https://www.druthersbrewing.com",
     "is_new": true,
     "badge": "Just Announced"
   },
@@ -34,79 +104,64 @@
     "date": "2025-09-13",
     "venue": "Washington Park, Albany, NY",
     "category": "Food",
-    "description": "Celebrate the Capital Region's best tacos with local vendors, live music, and family-friendly activities. Featuring a variety of taco styles from traditional to fusion.",
+    "description": "A celebration of local taco vendors and Latin-inspired cuisine with live music and family-friendly activities in the heart of Albany.",
     "link": "https://www.albanyevents.org/taco-fest",
+    "is_new": false,
+    "badge": "Featured"
+  },
+  {
+    "name": "Art on Lark 2025",
+    "date": "2025-09-07",
+    "venue": "Lark Street, Albany, NY",
+    "category": "Art Exhibition",
+    "description": "Annual street fair showcasing local artists, crafts, and live performances along Albany's historic Lark Street.",
+    "link": "https://www.larkstreet.org/art-on-lark",
     "is_new": true,
     "badge": "Just Announced"
   },
   {
-    "name": "Toro Cantina Taco Night",
-    "date": "2025-09-05",
-    "venue": "Toro Cantina, Albany, NY",
+    "name": "Fusion Food Night at Villa Di Valletta",
+    "date": "2025-09-28",
+    "venue": "Villa Di Valletta, 6 Marion Ave, Albany, NY",
     "category": "Food",
-    "description": "Savor authentic Mexican tacos and margaritas at Toro Cantina, a local favorite for fresh flavors and vibrant atmosphere.",
-    "link": "https://www.torocantina.com/events",
+    "description": "Experience a unique blend of Italian and Mediterranean flavors at this hidden gem, with a special tasting menu for the evening.",
+    "link": "https://www.villadivalletta.com/",
     "is_new": true,
     "badge": "Just Announced"
   },
   {
-    "name": "Albany Food & Wine Festival",
-    "date": "2025-10-11",
-    "venue": "Empire State Plaza, Albany, NY",
-    "category": "Festival",
-    "description": "Sample culinary delights and fine wines from local chefs and vineyards at this annual event celebrating the region's food scene.",
-    "link": "https://www.albanyevents.org/food-wine-festival",
+    "name": "New Exhibit Opening: 'Urban Perspectives'",
+    "date": "2025-08-30",
+    "venue": "Albany Institute of History & Art, 125 Washington Ave, Albany, NY",
+    "category": "Art Exhibition",
+    "description": "A thought-provoking exhibit featuring contemporary urban photography and mixed media from local artists.",
+    "link": "https://www.albanyinstitute.org/",
     "is_new": true,
     "badge": "Just Announced"
   },
   {
-    "name": "Fusion Feast at Druthers Brewing Co.",
-    "date": "2025-09-25",
-    "venue": "Druthers Brewing Co., Albany, NY",
-    "category": "Food",
-    "description": "A special menu night featuring unique fusion dishes like taco-inspired burgers paired with craft beers brewed on-site.",
-    "link": "https://www.druthersbrewing.com/events",
-    "is_new": true,
-    "badge": "Just Announced"
-  },
-  {
-    "name": "Albany Taco Fest",
-    "date": "2025-09-06",
-    "venue": "Washington Park, Albany, NY",
-    "category": "Food",
-    "description": "Celebrate the Capital Region's love for tacos with local vendors offering unique and traditional recipes, live music, and family-friendly activities.",
-    "link": "https://www.albanyevents.org/taco-fest",
-    "is_new": true,
-    "badge": "Just Announced"
-  },
-  {
-    "name": "Farm-to-Table Dinner at Toro Cantina",
-    "date": "2025-09-25",
+    "name": "Taco Tuesday at Toro Cantina",
+    "date": "2025-09-02",
     "venue": "Toro Cantina, 111 Wolf Rd, Albany, NY",
     "category": "Food",
-    "description": "A special dining event featuring locally sourced ingredients with a focus on modern Mexican dishes, including unique taco offerings.",
-    "link": "https://www.torocantina.com",
+    "description": "Weekly Taco Tuesday event with authentic Mexican tacos, margarita specials, and a lively atmosphere at this local favorite.",
+    "link": "https://www.torocantina.com/",
     "is_new": true,
     "badge": "Just Announced"
   },
   {
-    "name": "Capital Region Food Truck Festival",
-    "date": "2025-09-20",
-    "venue": "Crossgates Mall, Albany, NY",
-    "category": "Food",
-    "description": "A gathering of the area's best food trucks, featuring diverse cuisines including tacos, fusion dishes, and desserts, plus live entertainment.",
-    "link": "https://www.crossgates.com/events",
-    "is_new": true,
-    "badge": "Just Announced"
-  },
-  {
-    "name": "Photography Exhibit: 'Capital Vistas'",
-    "date": "2025-09-10",
-    "venue": "Albany Institute of History & Art, Albany, NY",
-    "category": "Art Exhibition",
-    "description": "A stunning collection of photographs capturing the beauty and history of the Capital Region, on display for a limited time.",
-    "link": "https://www.albanyinstitute.org/exhibits",
-    "is_new": true,
-    "badge": "Just Announced"
+    "_meta": {
+      "run_id": "7e1fd8cff023",
+      "kind": "events",
+      "generated_at": "2025-08-14T05:31:13Z",
+      "run_start": "2025-08-14T05:28:57.717952Z",
+      "run_end": "2025-08-14T05:31:13.441419Z",
+      "first_api_response": "2025-08-14T05:28:57.718457Z",
+      "last_api_response": "2025-08-14T05:31:13.439148Z",
+      "item_count": 15,
+      "items_hash_sha256": "131b8320869825935d81428ed9064057234e1ff13b4c1aabb43bba5ff5c60562",
+      "previous_items_hash_sha256": "320bfee9c776f59c688cac7db475613e50061be456704c1042ecdfdf979f6340",
+      "items_changed": true
+    }
   }
 ]

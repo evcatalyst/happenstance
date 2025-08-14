@@ -1,0 +1,32 @@
+{
+  "version": "v2.1-wave0",
+  "profile": "capital_region",
+  "run_id": "7e1fd8cff023",
+  "generated_at": "2025-08-14T05:31:13Z",
+  "restaurants": {
+    "run_id": "7e1fd8cff023",
+    "kind": "restaurants",
+    "generated_at": "2025-08-14T05:31:13Z",
+    "run_start": "2025-08-14T05:28:57.717952Z",
+    "run_end": "2025-08-14T05:31:13.441419Z",
+    "first_api_response": "2025-08-14T05:28:57.718457Z",
+    "last_api_response": "2025-08-14T05:31:13.439148Z",
+    "item_count": 15,
+    "items_hash_sha256": "71ae8feba7a39bfbaec8ba5edaca9901675f57dde495edb2b55199091995cffc",
+    "previous_items_hash_sha256": "c3edc57dd02ada2b4c4444240206b290d01e5e0b69c98bab586d90363e078db2",
+    "items_changed": true
+  },
+  "events": {
+    "run_id": "7e1fd8cff023",
+    "kind": "events",
+    "generated_at": "2025-08-14T05:31:13Z",
+    "run_start": "2025-08-14T05:28:57.717952Z",
+    "run_end": "2025-08-14T05:31:13.441419Z",
+    "first_api_response": "2025-08-14T05:28:57.718457Z",
+    "last_api_response": "2025-08-14T05:31:13.439148Z",
+    "item_count": 15,
+    "items_hash_sha256": "131b8320869825935d81428ed9064057234e1ff13b4c1aabb43bba5ff5c60562",
+    "previous_items_hash_sha256": "320bfee9c776f59c688cac7db475613e50061be456704c1042ecdfdf979f6340",
+    "items_changed": true
+  }
+}
