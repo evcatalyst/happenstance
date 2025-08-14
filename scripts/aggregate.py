@@ -820,7 +820,8 @@ def main():
             pass_index += 1
 
         # Optional OpenAI augmentation
-        if (len(collected_rest) < target_rest or len(collected_events) < target_events) and os.environ.get('AUGMENT_WITH_OPENAI','0') == '1' and total_passes < max_total_passes:
+        force_openai = os.environ.get('FORCE_OPENAI','0') == '1'
+        if ((len(collected_rest) < target_rest or len(collected_events) < target_events) or force_openai) and os.environ.get('AUGMENT_WITH_OPENAI','0') == '1' and total_passes < max_total_passes:
             aug_passes = int(os.environ.get('OPENAI_AUG_PASSES','2'))
             aug_focus_cycler_rest = iter(rest_seeds)
             aug_focus_cycler_events = iter(event_seeds)
