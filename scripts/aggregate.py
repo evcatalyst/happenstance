@@ -693,6 +693,7 @@ def main():
             nonlocal first_api_ts, last_api_ts
             if total_passes >= max_total_passes:
                 return []
+            pass_start = time.time()
             prompt = build_prompt(profile, kind, extra_focus=extra_focus)
             if feedback:
                 prompt += f"\nFeedback from prior passes (use this ONLY to enhance completeness, do NOT repeat earlier items): {feedback}\n"
@@ -721,7 +722,11 @@ def main():
                 'raw_count': len(items),
                 'citation_domains': raw.get('_citation_domains', []) if isinstance(raw, dict) else [],
                 'provider': provider,
+                'model': MODEL if provider == 'xai' else os.environ.get('OPENAI_MODEL',''),
                 'overall_pass': total_passes + 1,
+                'pass_duration_ms': int((raw_call_end - pass_start)*1000),
+                'search_sources_count': len(raw.get('_citation_domains', [])) if isinstance(raw, dict) else 0,
+                'search_mode': os.environ.get('LIVE_SEARCH_MODE','off')
             }
             if isinstance(raw, dict) and raw.get('_usage'):
                 usage_meta = raw['_usage']
@@ -753,12 +758,28 @@ def main():
                 wanted = {'tacos','thai','ethiopian','vegan','seafood'} - cuisines
                 if wanted:
                     feedback_notes_rest = f"Prior results lacked cuisines: {', '.join(sorted(wanted))}. Prioritize these if real."
+            new_count_this_pass = 0
             for it in new_items:
                 key = (it.get('name','').lower(), it.get('address','').lower())
                 if key in seen_rest:
                     continue
                 seen_rest.add(key)
                 collected_rest.append(it)
+                new_count_this_pass += 1
+            # Augment last snapshot with novelty metrics
+            try:
+                metrics_path = DEBUG_DIR / 'pass_metrics.json'
+                metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
+                if metrics and metrics[-1].get('kind') == 'restaurants':
+                    cumulative_new = len({(r.get('name','').lower(), r.get('address','').lower()) for r in collected_rest})
+                    raw_count = metrics[-1].get('raw_count', 1) or 1
+                    metrics[-1]['new_items_this_pass'] = new_count_this_pass
+                    metrics[-1]['cumulative_new_items'] = cumulative_new
+                    metrics[-1]['novelty_rate'] = round(new_count_this_pass / raw_count, 4)
+                    metrics[-1]['domain_diversity'] = len({(r.get('cuisine') or '').lower() for r in collected_rest if r.get('cuisine')})
+                    metrics_path.write_text(json.dumps(metrics, indent=2))
+            except Exception:
+                pass
             pass_index += 1
 
         # Collect events multi-pass
@@ -775,12 +796,27 @@ def main():
                 missing = desired - categories
                 if missing:
                     feedback_notes_events = f"Missing categories so far: {', '.join(sorted(missing))}. Prefer verified upcoming items in these categories."
+            new_count_this_pass = 0
             for it in new_items:
                 key = (it.get('name','').lower(), it.get('venue','').lower(), it.get('date','').lower())
                 if key in seen_events:
                     continue
                 seen_events.add(key)
                 collected_events.append(it)
+                new_count_this_pass += 1
+            try:
+                metrics_path = DEBUG_DIR / 'pass_metrics.json'
+                metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
+                if metrics and metrics[-1].get('kind') == 'events':
+                    cumulative_new = len({(e.get('name','').lower(), e.get('venue','').lower(), e.get('date','').lower()) for e in collected_events})
+                    raw_count = metrics[-1].get('raw_count', 1) or 1
+                    metrics[-1]['new_items_this_pass'] = new_count_this_pass
+                    metrics[-1]['cumulative_new_items'] = cumulative_new
+                    metrics[-1]['novelty_rate'] = round(new_count_this_pass / raw_count, 4)
+                    metrics[-1]['domain_diversity'] = len({(e.get('category') or '').lower() for e in collected_events if e.get('category')})
+                    metrics_path.write_text(json.dumps(metrics, indent=2))
+            except Exception:
+                pass
             pass_index += 1
 
         # Optional OpenAI augmentation
@@ -804,6 +840,15 @@ def main():
                             continue
                         seen_rest.add(key)
                         collected_rest.append(it)
+                    # annotate last snapshot for restaurants openai augmentation
+                    try:
+                        metrics_path = DEBUG_DIR / 'pass_metrics.json'
+                        metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
+                        if metrics and metrics[-1].get('kind') == 'restaurants':
+                            metrics[-1]['augmentation_provider'] = 'openai'
+                            metrics_path.write_text(json.dumps(metrics, indent=2))
+                    except Exception:
+                        pass
                 if total_passes >= max_total_passes:
                     break
                 if len(collected_events) < target_events:
@@ -819,6 +864,14 @@ def main():
                             continue
                         seen_events.add(key)
                         collected_events.append(it)
+                    try:
+                        metrics_path = DEBUG_DIR / 'pass_metrics.json'
+                        metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else []
+                        if metrics and metrics[-1].get('kind') == 'events':
+                            metrics[-1]['augmentation_provider'] = 'openai'
+                            metrics_path.write_text(json.dumps(metrics, indent=2))
+                    except Exception:
+                        pass
                 if total_passes >= max_total_passes:
                     break
 
@@ -947,7 +1000,7 @@ def main():
         except Exception:
             pass
 
-        # Cost / metrics consolidation
+        # Usage metrics consolidation (cost fields deprecated)
         try:
             metrics_path = DEBUG_DIR / 'pass_metrics.json'
             if metrics_path.exists():
@@ -956,34 +1009,60 @@ def main():
                 metrics = []
             total_prompt = sum(m.get('prompt_tokens', 0) for m in metrics)
             total_completion = sum(m.get('completion_tokens', 0) for m in metrics)
-            total_cost = sum(m.get('estimated_cost_usd', 0) for m in metrics)
             providers = sorted({m.get('provider','xai') for m in metrics})
-            summary = {
+            # Aggregate per provider/model
+            aggregates: Dict[str, Any] = {}
+            for m in metrics:
+                prov = m.get('provider','unknown')
+                mod = m.get('model','') or 'unknown'
+                aggregates.setdefault(prov, {'models':{}, 'prompt_tokens':0,'completion_tokens':0,'passes':0})
+                ag = aggregates[prov]
+                ag['prompt_tokens'] += m.get('prompt_tokens',0) or 0
+                ag['completion_tokens'] += m.get('completion_tokens',0) or 0
+                ag['passes'] += 1
+                ag['models'].setdefault(mod, {'prompt_tokens':0,'completion_tokens':0,'passes':0})
+                agm = ag['models'][mod]
+                agm['prompt_tokens'] += m.get('prompt_tokens',0) or 0
+                agm['completion_tokens'] += m.get('completion_tokens',0) or 0
+                agm['passes'] += 1
+            first_pass_ts = metrics[0]['ts'] if metrics else None
+            last_pass_ts = metrics[-1]['ts'] if metrics else None
+            xai_passes = sum(1 for m in metrics if m.get('provider')=='xai')
+            openai_passes = sum(1 for m in metrics if m.get('provider')=='openai')
+            novelty_final_rest = round(sum(1 for r in rest_valid if r.get('is_new')) / max(len(rest_valid),1),4)
+            novelty_final_events = round(sum(1 for e in event_valid if e.get('is_new')) / max(len(event_valid),1),4)
+            live_search_domains = sorted({d for m in metrics for d in (m.get('citation_domains') or [])})
+            usage_summary = {
                 'run_id': run_id,
                 'ts': time.time(),
                 'providers': providers,
-                'model_xai': MODEL,
-                'model_openai': os.environ.get('OPENAI_MODEL',''),
+                'aggregates': aggregates,
                 'prompt_tokens_total': total_prompt,
                 'completion_tokens_total': total_completion,
-                'estimated_cost_total_usd': round(total_cost, 6),
-                'passes': len(metrics),
+                'passes_total': len(metrics),
                 'targets': {'restaurants': target_rest, 'events': target_events},
                 'final_counts': {'restaurants': len(rest_valid), 'events': len(event_valid)},
+                'novelty_final': {'restaurants': novelty_final_rest, 'events': novelty_final_events},
+                'augmentation': {'xai_passes': xai_passes, 'openai_passes': openai_passes},
+                'live_search': {'distinct_citation_domains': len(live_search_domains), 'citation_domains': live_search_domains},
+                'first_pass_ts': first_pass_ts,
+                'last_pass_ts': last_pass_ts,
+                'deprecated_cost_summary': True
             }
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
-            (DEBUG_DIR / 'cost_summary.json').write_text(json.dumps(summary, indent=2))
-            # Append to historical log
-            history_path = DEBUG_DIR / 'cost_history.json'
+            (DEBUG_DIR / 'usage_summary.json').write_text(json.dumps(usage_summary, indent=2))
+            # keep deprecated file for backward compatibility
+            (DEBUG_DIR / 'cost_summary.json').write_text(json.dumps({'deprecated': True, 'see': 'usage_summary.json'}, indent=2))
+            history_path = DEBUG_DIR / 'usage_history.json'
             history = []
             if history_path.exists():
                 try:
                     history = json.loads(history_path.read_text())
                 except Exception:
                     history = []
-            history.append(summary)
+            history.append({k: v for k,v in usage_summary.items() if k not in {'live_search'} or k})
             history_path.write_text(json.dumps(history, indent=2))
-            print(f"Run {run_id}: providers={providers} tokens(prompt={total_prompt}, completion={total_completion}) est_cost=${round(total_cost,4)} final(rest={len(rest_valid)}, events={len(event_valid)})")
+            print(f"Run {run_id}: providers={providers} tokens(prompt={total_prompt}, completion={total_completion}) final(rest={len(rest_valid)}, events={len(event_valid)}) openai_passes={openai_passes}")
         except Exception as cost_err:
             print(f'Cost summary error: {cost_err}', file=sys.stderr)
         # Final high-level change summary
