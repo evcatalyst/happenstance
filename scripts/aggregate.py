@@ -576,8 +576,25 @@ def write_if_changed(path: Path, data: Any) -> bool:
 def canonical_items_hash(items: List[Dict[str, Any]]) -> str:
     """Stable hash of items content (excluding meta sentinel)."""
     try:
-        # remove volatile fields if any later
-        dumped = json.dumps(items, sort_keys=True, ensure_ascii=False, separators=(',',':'))
+        # Deterministically sort items to prevent ordering noise between runs.
+        def sort_key(d: Dict[str, Any]):
+            # Use fields common to both types; missing fields become '' ensuring stable tuple length.
+            return (
+                d.get('date',''),
+                d.get('name','').lower(),
+                d.get('address','').lower(),
+                d.get('venue','').lower()
+            )
+        norm = []
+        for it in items:
+            if isinstance(it, dict):
+                c = dict(it)
+                # Drop transient validation flags if ever present
+                for k in ['link_ok','status']:
+                    c.pop(k, None)
+                norm.append(c)
+        norm_sorted = sorted(norm, key=sort_key)
+        dumped = json.dumps(norm_sorted, sort_keys=True, ensure_ascii=False, separators=(',',':'))
         return hashlib.sha256(dumped.encode('utf-8')).hexdigest()
     except Exception:
         return ''
