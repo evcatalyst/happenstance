@@ -59,6 +59,10 @@ OPENAI_PRICING = {
     'gpt-3.5-turbo': (0.50, 1.50),     # legacy example
 }
 
+# Output stability / suppression flags
+SUPPRESS_DYNAMIC_META = os.environ.get('SUPPRESS_DYNAMIC_META', '1') == '1'
+STABLE_ITEM_SORT = os.environ.get('STABLE_ITEM_SORT', '1') == '1'
+
 def get_model_pricing(provider: str, model: str) -> tuple:
     """Return (prompt_rate, completion_rate) or (0,0) if unknown.
     Env overrides COST_PER_1K_* take precedence when > 0.
@@ -418,6 +422,17 @@ def load_existing(path: Path) -> List[Dict[str, Any]]:
             return []
     return []
 
+def load_existing_meta(path: Path) -> Optional[Dict[str, Any]]:
+    """Return previous meta sentinel (dict with _meta) if present."""
+    if path.exists():
+        try:
+            data = json.load(open(path))
+            if isinstance(data, list) and data and isinstance(data[-1], dict) and '_meta' in data[-1]:
+                return data[-1]
+        except Exception:
+            return None
+    return None
+
 
 def mark_new(items: List[Dict[str, Any]], existing: List[Dict[str, Any]], kind: str, branding: Dict[str, Any]):
     existing_keys = set()
@@ -576,8 +591,27 @@ def write_if_changed(path: Path, data: Any) -> bool:
 def canonical_items_hash(items: List[Dict[str, Any]]) -> str:
     """Stable hash of items content (excluding meta sentinel)."""
     try:
-        # remove volatile fields if any later
-        dumped = json.dumps(items, sort_keys=True, ensure_ascii=False, separators=(',',':'))
+        # Normalize order & remove clearly volatile per-run decoration fields if added later.
+        norm: List[Dict[str, Any]] = []
+        for it in items:
+            if not isinstance(it, dict):
+                continue
+            it_copy = dict(it)  # shallow copy
+            # Drop any transient validation artifacts if present
+            for k in list(it_copy.keys()):
+                if k in {'link_ok','status'}:
+                    it_copy.pop(k, None)
+            norm.append(it_copy)
+        # Sort deterministically by key tuple (restaurants vs events handled by presence of fields)
+        def sort_key(d: Dict[str, Any]):
+            return (
+                d.get('date',''),
+                d.get('name','').lower(),
+                d.get('address','').lower(),
+                d.get('venue','').lower()
+            )
+        norm_sorted = sorted(norm, key=sort_key)
+        dumped = json.dumps(norm_sorted, sort_keys=True, ensure_ascii=False, separators=(',',':'))
         return hashlib.sha256(dumped.encode('utf-8')).hexdigest()
     except Exception:
         return ''
@@ -1015,6 +1049,15 @@ def main():
         rest_valid = dedupe_rest(rest_valid)[:target_rest]
         event_valid = dedupe_events(event_valid)[:target_events]
 
+        # Enforce deterministic ordering if enabled (reduces spurious diffs)
+        def stable_sort_rest(items: List[Dict[str, Any]]):
+            return sorted(items, key=lambda r: (r.get('name','').lower(), r.get('address','').lower()))
+        def stable_sort_events(items: List[Dict[str, Any]]):
+            return sorted(items, key=lambda e: (e.get('date',''), e.get('name','').lower(), e.get('venue','').lower()))
+        if STABLE_ITEM_SORT:
+            rest_valid = stable_sort_rest(rest_valid)
+            event_valid = stable_sort_events(event_valid)
+
         # HTTP link validation (optional)
         http_validate_links(rest_valid, 'restaurants')
         http_validate_links(event_valid, 'events')
@@ -1051,14 +1094,28 @@ def main():
         meta_rest = build_meta(rest_valid, existing_rest, 'restaurants')
         meta_events = build_meta(event_valid, existing_events, 'events')
 
+        # Preserve prior meta fields that are stable across runs if suppression requested
+        if SUPPRESS_DYNAMIC_META:
+            prev_rest_meta = load_existing_meta(RESTAURANTS_JSON)
+            prev_event_meta = load_existing_meta(EVENTS_JSON)
+            for new_meta, prev_meta in [(meta_rest, prev_rest_meta), (meta_events, prev_event_meta)]:
+                if prev_meta and isinstance(prev_meta, dict):
+                    # Keep previous generated_at / run_start / run_end unless items actually changed
+                    changed_flag = new_meta['_meta']['items_changed']
+                    if not changed_flag:
+                        for fld in ['generated_at','run_start','run_end','first_api_response','last_api_response','run_id']:
+                            # retain older stable values to prevent cosmetic diff
+                            old_val = prev_meta.get('_meta', {}).get(fld) if '_meta' in prev_meta else prev_meta.get(fld)
+                            if old_val:
+                                new_meta['_meta'][fld] = old_val
         rest_with_meta = list(rest_valid) + [meta_rest]
         events_with_meta = list(event_valid) + [meta_events]
 
-        # Always write (timestamps differ each run) but report whether items changed
-        write_if_changed(RESTAURANTS_JSON, rest_with_meta)
-        write_if_changed(EVENTS_JSON, events_with_meta)
-        changed_rest = meta_rest['_meta']['items_changed']
-        changed_events = meta_events['_meta']['items_changed']
+    # Write datasets (will be suppressed if identical due to content hash)
+    write_if_changed(RESTAURANTS_JSON, rest_with_meta)
+    write_if_changed(EVENTS_JSON, events_with_meta)
+    changed_rest = meta_rest['_meta']['items_changed']
+    changed_events = meta_events['_meta']['items_changed']
 
         front_cfg = {
             'branding': branding,
