@@ -1,142 +1,223 @@
 [
   {
+    "name": "Villa Di Valletta",
+    "address": "6 Marion Ave, Albany, NY 12203",
+    "cuisine": "Italian",
+    "description": "A cozy, family-owned Italian restaurant offering classic dishes with a modern twist, known for its homemade pasta and warm ambiance.",
+    "link": "https://www.villadivalletta.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
     "name": "Toro Cantina",
     "address": "111 Wolf Rd, Albany, NY 12205",
     "cuisine": "Mexican",
-    "description": "A vibrant spot for modern Mexican fare with a focus on tacos and craft tequila cocktails, often hosting live music events.",
+    "description": "A vibrant spot for authentic tacos and tequila, featuring bold flavors and a lively atmosphere perfect for gatherings.",
     "link": "https://www.torocantina.com/",
     "is_new": false,
-    "badge": "Live Music"
+    "badge": "Taco Heaven"
   },
   {
-    "name": "Druthers Brewing Company",
-    "address": "1053 Broadway, Albany, NY 12204",
-    "cuisine": "American",
-    "description": "A regionally iconic brewpub offering house-brewed beers and elevated pub fare in a rustic, industrial space.",
-    "link": "https://www.druthersbrewing.com/",
-    "is_new": false,
-    "badge": "Craft Beer"
+    "name": "The Cuckoo's Nest",
+    "address": "234 Western Ave, Albany, NY 12203",
+    "cuisine": "Southern Comfort",
+    "description": "A unique eatery blending Southern comfort food with local ingredients, famous for fried chicken and creative brunch options.",
+    "link": "https://www.thecuckoosnestalbany.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Villa Italia",
+    "address": "220 Broadway, Schenectady, NY 12305",
+    "cuisine": "Italian Bakery",
+    "description": "A beloved bakery and cafe with authentic Italian pastries, sandwiches, and gelato, a staple in the Capital Region.",
+    "link": "https://www.villaitaliabakery.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Cafe Madison",
+    "address": "1108 Madison Ave, Albany, NY 12208",
+    "cuisine": "American Breakfast",
+    "description": "A long-standing breakfast and brunch destination with a cozy vibe, known for its creative omelets and fluffy pancakes.",
+    "link": "https://www.cafemadisonalbany.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
   },
   {
     "name": "New World Bistro Bar",
     "address": "300 Delaware Ave, Albany, NY 12209",
     "cuisine": "Global Fusion",
-    "description": "An innovative spot with a globally inspired menu, featuring unique fusions and locally sourced ingredients.",
+    "description": "An innovative spot with a globally inspired menu, featuring unique flavor combinations and a focus on local sourcing.",
     "link": "https://www.newworldbistrobar.com/",
     "is_new": false,
-    "badge": "Unique Fusion"
+    "badge": "Fusion Gem"
+  },
+  {
+    "name": "El Mariachi",
+    "address": "144 Washington Ave, Albany, NY 12210",
+    "cuisine": "Mexican",
+    "description": "A colorful, authentic Mexican restaurant serving traditional dishes like mole and handmade tacos in a festive setting.",
+    "link": "https://www.elmariachirestaurant.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
   },
   {
     "name": "The Hollow Bar + Kitchen",
     "address": "79 N Pearl St, Albany, NY 12207",
-    "cuisine": "American",
-    "description": "A trendy spot combining great food with live music, known for burgers, craft beers, and a vibrant nightlife scene.",
+    "cuisine": "American Gastropub",
+    "description": "A trendy gastropub with live music events, offering craft cocktails and elevated pub fare in a historic downtown space.",
     "link": "https://www.thehollowalbany.com/",
     "is_new": false,
-    "badge": "Live Music"
+    "badge": "Live Music Hub"
   },
   {
-    "name": "El Mariachi Mexican Restaurant",
-    "address": "144 Washington Ave, Albany, NY 12210",
+    "name": "Peck's Arcade",
+    "address": "217 Broadway, Troy, NY 12180",
+    "cuisine": "New American",
+    "description": "A stylish restaurant in Troy with a focus on seasonal, farm-to-table dishes and an extensive craft beer selection.",
+    "link": "https://www.pecksarcade.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Taqueria Tren Maya",
+    "address": "387 Delaware Ave, Albany, NY 12209",
     "cuisine": "Mexican",
-    "description": "A colorful, family-run spot for classic Mexican dishes, especially known for tacos and margaritas.",
-    "link": "https://www.elmariachialbany.com/",
-    "is_new": false,
-    "badge": "Taco Favorite"
-  },
-  {
-    "name": "Jack's Oyster House",
-    "address": "42 State St, Albany, NY 12207",
-    "cuisine": "Seafood",
-    "description": "A historic Albany institution since 1913, offering classic seafood and steak in an elegant setting.",
-    "link": "https://www.jacksoysterhouse.com/",
-    "is_new": false,
-    "badge": "Historic"
-  },
-  {
-    "name": "Yono's Restaurant",
-    "address": "25 Chapel St, Albany, NY 12210",
-    "cuisine": "Indonesian-Fusion",
-    "description": "A fine dining spot blending Indonesian flavors with contemporary cuisine, offering an upscale experience.",
-    "link": "https://www.yonos.com/",
+    "description": "A small, authentic taqueria offering Yucatan-inspired tacos and street food with bold, fresh flavors.",
+    "link": "https://www.taqueriatrenmaya.com/",
     "is_new": true,
     "badge": "Fresh Bite"
   },
   {
-    "name": "Lark Street Tavern",
-    "address": "453 Madison Ave, Albany, NY 12210",
-    "cuisine": "American",
-    "description": "A neighborhood staple with hearty pub food, local beers, and occasional live music performances.",
-    "link": "https://www.larkstreettavern.com/",
+    "name": "Druthers Brewing Company",
+    "address": "1053 Broadway, Albany, NY 12204",
+    "cuisine": "Brewpub",
+    "description": "A popular brewpub with house-made beers and a hearty menu of burgers, pizzas, and comfort food in a rustic setting.",
+    "link": "https://www.druthersbrewing.com/",
     "is_new": false,
-    "badge": "Live Music"
+    "badge": "Craft Beer Spot"
   },
   {
-    "name": "Albany Pump Station",
-    "address": "19 Quackenbush Square, Albany, NY 12207",
-    "cuisine": "American",
-    "description": "A historic brewpub in a converted pump station, serving craft beer and elevated comfort food.",
-    "link": "https://www.evansale.com/",
+    "name": "The Olde English Pub",
+    "address": "683 Broadway, Albany, NY 12207",
+    "cuisine": "British Pub Fare",
+    "description": "A historic pub with a British flair, serving fish and chips, shepherd's pie, and a wide selection of beers on tap.",
+    "link": "https://www.oldeenglishpub.com/",
     "is_new": true,
     "badge": "Fresh Bite"
   },
   {
-    "name": "Mexican Radio",
-    "address": "537 Warren St, Hudson, NY 12534",
-    "cuisine": "Mexican",
-    "description": "A lively Mexican spot with a focus on fresh, bold flavors and a great tequila selection, worth the drive from Albany.",
-    "link": "https://www.mexrad.com/",
+    "name": "Bombers Burrito Bar",
+    "address": "258 Lark St, Albany, NY 12210",
+    "cuisine": "Mexican-American",
+    "description": "A funky, local spot known for massive burritos, wings, and a laid-back vibe with a focus on bold flavors.",
+    "link": "https://www.bombersburritobar.com/",
     "is_new": true,
     "badge": "Fresh Bite"
   },
   {
-    "name": "Brown's Brewing Co.",
-    "address": "417 River St, Troy, NY 12180",
-    "cuisine": "American",
-    "description": "A regional brewpub with house-made beers and hearty pub fare, located along the Hudson River.",
-    "link": "https://www.brownsbrewing.com/",
-    "is_new": false,
-    "badge": "Craft Beer"
+    "name": "Lo Porto Ristorante",
+    "address": "85 4th St, Troy, NY 12180",
+    "cuisine": "Italian",
+    "description": "A family-run Italian restaurant in Troy, offering traditional dishes with a focus on quality and heartfelt service.",
+    "link": "https://www.loportos.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
   },
   {
     "name": "Tara Kitchen",
     "address": "431 Liberty St, Schenectady, NY 12305",
     "cuisine": "Moroccan",
-    "description": "A unique spot offering authentic Moroccan cuisine with bold flavors, tagines, and a cozy setting.",
+    "description": "A hidden gem serving authentic Moroccan tagines, couscous, and flavorful dishes in an intimate, cultural setting.",
     "link": "https://www.tarakitchen.com/",
     "is_new": false,
-    "badge": "Unique Fusion"
+    "badge": "Cultural Experience"
+  },
+  {
+    "name": "Jack's Oyster House",
+    "address": "42 State St, Albany, NY 12207",
+    "cuisine": "Seafood",
+    "description": "An iconic Albany restaurant since 1913, specializing in fresh oysters, steaks, and classic fine dining.",
+    "link": "https://www.jacksoysterhouse.com/",
+    "is_new": false,
+    "badge": "Historic Icon"
+  },
+  {
+    "name": "Mingle on the Avenue",
+    "address": "2630 Saratoga Rd, Schenectady, NY 12309",
+    "cuisine": "Asian Fusion",
+    "description": "A modern eatery blending Korean, Thai, and other Asian cuisines with creative cocktails and a sleek vibe.",
+    "link": "https://www.mingleontheavenue.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
   },
   {
     "name": "Cornell's Restaurant",
     "address": "39 N Jay St, Schenectady, NY 12305",
     "cuisine": "Italian",
-    "description": "A historic Italian eatery near Albany, offering traditional fare in an elegant, old-world setting.",
+    "description": "A historic Italian restaurant with old-world charm, serving classic dishes like veal parmigiana and homemade sauces.",
     "link": "https://www.cornellsrestaurant.com/",
+    "is_new": false,
+    "badge": "Timeless Classic"
+  },
+  {
+    "name": "Lark Street Tavern",
+    "address": "453 Madison Ave, Albany, NY 12210",
+    "cuisine": "American Pub",
+    "description": "A neighborhood pub with a focus on comfort food, local beers, and live music on select nights.",
+    "link": "https://www.larkstreettavern.com/",
+    "is_new": false,
+    "badge": "Live Music Spot"
+  },
+  {
+    "name": "DeFazio's Pizzeria",
+    "address": "266 4th St, Troy, NY 12180",
+    "cuisine": "Pizza",
+    "description": "A Troy institution known for wood-fired pizzas with crispy crusts and high-quality toppings, a local favorite for decades.",
+    "link": "https://www.defaziospizza.com/",
     "is_new": true,
     "badge": "Fresh Bite"
   },
   {
-    "name": "Madam Chef",
-    "address": "2429 State Route 9, Malta, NY 12020",
-    "cuisine": "African-Caribbean",
-    "description": "A newer spot offering vibrant African and Caribbean flavors, with dishes like jollof rice and jerk chicken.",
-    "link": "https://www.madamchefny.com/",
+    "name": "The Ruck",
+    "address": "104 3rd St, Troy, NY 12180",
+    "cuisine": "American Pub",
+    "description": "A dive bar with killer wings, a huge beer selection, and a reputation for hosting live music and events.",
+    "link": "https://www.getrucked.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Ali Baba",
+    "address": "2243 15th St, Troy, NY 12180",
+    "cuisine": "Turkish/Mediterranean",
+    "description": "A cozy spot for authentic Turkish and Mediterranean cuisine, featuring kebabs, falafel, and rich, flavorful dishes.",
+    "link": "https://www.alibabarestaurantny.com/",
+    "is_new": true,
+    "badge": "Fresh Bite"
+  },
+  {
+    "name": "Café Hollywood",
+    "address": "275 Lark St, Albany, NY 12210",
+    "cuisine": "American Diner",
+    "description": "A retro diner with a rock 'n' roll theme, serving classic burgers, shakes, and late-night bites in a fun atmosphere.",
+    "link": "https://www.cafehollywoodalbany.com/",
     "is_new": true,
     "badge": "Fresh Bite"
   },
   {
     "_meta": {
-      "run_id": "efa41d94869e",
+      "run_id": "732162da3da5",
       "kind": "restaurants",
-      "generated_at": "2025-08-14T05:50:28Z",
-      "run_start": "2025-08-14T05:48:21.864342Z",
-      "run_end": "2025-08-14T05:50:28.976966Z",
-      "first_api_response": "2025-08-14T05:48:21.864861Z",
-      "last_api_response": "2025-08-14T05:50:28.974776Z",
-      "item_count": 14,
-      "items_hash_sha256": "bba2c54fffa780f18ee3d5cf977ee143ec2b66a110123a3b1098516c1019820a",
-      "previous_items_hash_sha256": "71ae8feba7a39bfbaec8ba5edaca9901675f57dde495edb2b55199091995cffc",
+      "generated_at": "2025-08-14T05:56:32Z",
+      "run_start": "2025-08-14T05:54:17.902403Z",
+      "run_end": "2025-08-14T05:56:32.611180Z",
+      "first_api_response": "2025-08-14T05:54:17.902906Z",
+      "last_api_response": "2025-08-14T05:56:32.608267Z",
+      "item_count": 23,
+      "items_hash_sha256": "456482381d0366a82d802d29181be7700c31da7552523d9571be630fbc002cfe",
+      "previous_items_hash_sha256": "bba2c54fffa780f18ee3d5cf977ee143ec2b66a110123a3b1098516c1019820a",
       "items_changed": true
     }
   }
