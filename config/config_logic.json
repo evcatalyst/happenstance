@@ -1,0 +1,26 @@
+{
+  "profiles": {
+    "default": {
+      "region": "Sample City",
+      "branding": {
+        "title": "Happenstance",
+        "tagline": "Plan your weekend with great food and events",
+        "accent_color": "#3b82f6"
+      },
+      "pairing_rules": [
+        "Pair live music with vibrant, shareable plates.",
+        "Match family-friendly events with comforting classics.",
+        "Keep late-night shows close to late-night kitchens."
+      ],
+      "sources": ["fixtures"],
+      "live_search": {
+        "mode": "local",
+        "radius_km": 5,
+        "limit": 10
+      },
+      "target_cuisines": ["Italian", "Sushi", "BBQ", "Vegan"],
+      "target_categories": ["live music", "art", "family", "sports"],
+      "base_url": "https://evcatalyst.github.io/happenstance"
+    }
+  }
+}

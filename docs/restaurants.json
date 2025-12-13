@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Blue Harbor Grill",
+    "cuisine": "Seafood",
+    "address": "Sample City Waterfront",
+    "url": "https://example.com/blue-harbor",
+    "match_reason": "Great before a waterfront concert"
+  },
+  {
+    "name": "Sunset Pasta",
+    "cuisine": "Italian",
+    "address": "Sample City Arts District",
+    "url": "https://example.com/sunset-pasta",
+    "match_reason": "Close to the gallery walk"
+  },
+  {
+    "name": "Midnight Sushi",
+    "cuisine": "Sushi",
+    "address": "Sample City Downtown",
+    "url": "https://example.com/midnight-sushi",
+    "match_reason": "Open late after live music"
+  },
+  {
+    "name": "Firepit BBQ",
+    "cuisine": "BBQ",
+    "address": "Sample City Market",
+    "url": "https://example.com/firepit-bbq",
+    "match_reason": "Perfect for families near the park"
+  },
+  {
+    "_meta": {
+      "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
+      "items_changed": false,
+      "item_count": 4
+    }
+  }
+]

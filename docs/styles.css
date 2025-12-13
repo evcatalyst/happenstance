@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #0b1224;
+  color: #e8edf7;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f172a;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.brand p {
+  margin: 0;
+  color: #94a3b8;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+button {
+  background: #1f2937;
+  border: 1px solid #334155;
+  color: #e8edf7;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button.active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+input,
+select {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #e8edf7;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+main {
+  padding: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+}
+
+.meta {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #1f2937;
+}
+
+a {
+  color: #93c5fd;
+}

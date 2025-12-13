@@ -1,0 +1,58 @@
+{
+  "generated_at": "2025-12-13T06:49:28.464525",
+  "profile": "default",
+  "region": "Sample City",
+  "branding": {
+    "title": "Happenstance",
+    "tagline": "Plan your weekend with great food and events",
+    "accent_color": "#3b82f6"
+  },
+  "pairing_rules": [
+    "Pair live music with vibrant, shareable plates.",
+    "Match family-friendly events with comforting classics.",
+    "Keep late-night shows close to late-night kitchens."
+  ],
+  "search": {
+    "mode": "local",
+    "radius_km": 5,
+    "limit": 10
+  },
+  "gap_bullets": [
+    "Add more options for Vegan.",
+    "Add more options for sports."
+  ],
+  "events": {
+    "items_hash": "989322ef8ba3c52bf504ca8baadae95ab738fe03c6d06a642f1cbb9b1c5ccd68",
+    "items_changed": false,
+    "item_count": 3
+  },
+  "restaurants": {
+    "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
+    "items_changed": false,
+    "item_count": 4
+  },
+  "pairings": [
+    {
+      "event": "Waterfront Jazz Night",
+      "restaurant": "Blue Harbor Grill",
+      "match_reason": "Great before a waterfront concert",
+      "event_url": "https://example.com/jazz-night",
+      "restaurant_url": "https://example.com/blue-harbor"
+    },
+    {
+      "event": "Gallery Walk",
+      "restaurant": "Sunset Pasta",
+      "match_reason": "Close to the gallery walk",
+      "event_url": "https://example.com/gallery-walk",
+      "restaurant_url": "https://example.com/sunset-pasta"
+    },
+    {
+      "event": "Family Picnic at the Park",
+      "restaurant": "Midnight Sushi",
+      "match_reason": "Open late after live music",
+      "event_url": "https://example.com/family-picnic",
+      "restaurant_url": "https://example.com/midnight-sushi"
+    }
+  ],
+  "guidance": "Spread recommendations across the next 2 months when available."
+}

@@ -1,0 +1,63 @@
+const { test, expect } = require("@playwright/test");
+const { spawn } = require("child_process");
+const fs = require("fs");
+const path = require("path");
+
+const ARTIFACT_DIR = path.join(__dirname, "..", "..", "artifacts", "journeys");
+let server;
+
+test.describe.configure({ mode: "serial" });
+
+test.beforeAll(async () => {
+  fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
+  const reportSrc = path.join(__dirname, "..", "..", "docs", "journeys", "README.md");
+  if (fs.existsSync(reportSrc)) {
+    fs.copyFileSync(reportSrc, path.join(ARTIFACT_DIR, "README.md"));
+  }
+  const docsDir = path.join(__dirname, "..", "..", "docs");
+  server = spawn("python", ["-m", "http.server", "8000", "--directory", docsDir], {
+    stdio: "inherit",
+  });
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+});
+
+test.afterAll(() => {
+  if (server && !server.killed) {
+    server.kill();
+  }
+});
+
+test("journeys with screenshots", async ({ page }) => {
+  await page.goto("http://localhost:8000");
+  await page.waitForSelector('[data-hs-ready="1"]');
+
+  const restaurantsCards = page.locator("#restaurants-view .card");
+  await expect(restaurantsCards).not.toHaveCount(0);
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "01-home.png") });
+
+  await page.getByRole("button", { name: "Events" }).click();
+  await expect(page.locator("#events-view")).toBeVisible();
+  const eventsCards = page.locator("#events-view .card");
+  await expect(eventsCards).not.toHaveCount(0);
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "02-events.png") });
+
+  const beforeCount = await eventsCards.count();
+  await page.fill("#filter-input", "music");
+  await page.waitForTimeout(300);
+  const afterCount = await eventsCards.count();
+  expect(afterCount).toBeLessThanOrEqual(beforeCount);
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "03-filtered-events.png") });
+  await expect(page).toHaveURL(/filter=music/);
+
+  await page.getByRole("button", { name: "Paired" }).click();
+  await expect(page.locator("#paired-view")).toBeVisible();
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "04-paired.png") });
+
+  await page.getByRole("button", { name: "Restaurants" }).click();
+  await page.fill("#filter-input", "Sushi");
+  await page.waitForTimeout(200);
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "05-restaurants-filter.png") });
+  await page.selectOption("#layout-select", "table");
+  await expect(page.locator("table")).toBeVisible();
+  await page.screenshot({ path: path.join(ARTIFACT_DIR, "06-layout-table.png") });
+});
