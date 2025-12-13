@@ -79,6 +79,8 @@ def _fixture_events(region: str) -> List[Dict]:
 
 
 def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
+    if not restaurants:
+        return []
     pairings: List[Dict] = []
     for idx, event in enumerate(events):
         restaurant = restaurants[idx % len(restaurants)]
@@ -109,7 +111,7 @@ def aggregate(profile: str | None = None) -> Dict[str, Mapping]:
     events_meta = compute_meta(events, previous_meta.get("events", {}))
 
     meta_payload = {
-        "generated_at": datetime.utcnow().isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "profile": cfg["profile"],
         "region": cfg["region"],
         "branding": cfg.get("branding", {}),
