@@ -124,11 +124,22 @@ def aggregate(profile: str | None = None) -> Dict[str, Mapping]:
         "guidance": month_spread_guidance(),
     }
 
+    persist_outputs(restaurants, restaurants_meta, events, events_meta, cfg, meta_payload)
+    return {"events": events, "restaurants": restaurants, "meta": meta_payload}
+
+
+def persist_outputs(
+    restaurants: List[Mapping],
+    restaurants_meta: Mapping,
+    events: List[Mapping],
+    events_meta: Mapping,
+    cfg: Mapping,
+    meta_payload: Mapping,
+) -> None:
     append_meta_write("restaurants.json", restaurants, restaurants_meta)
     append_meta_write("events.json", events, events_meta)
     write_json_raw("config.json", {"branding": cfg.get("branding", {}), "pairing_rules": cfg.get("pairing_rules", [])})
     write_json_raw("meta.json", meta_payload)
-    return {"events": events, "restaurants": restaurants, "meta": meta_payload}
 
 
 def append_meta_write(name: str, items: List[Mapping], meta: Mapping) -> None:

@@ -31,7 +31,7 @@ def build_parser() -> argparse.ArgumentParser:
     agg.set_defaults(func=aggregate_command)
 
     srv = sub.add_parser("serve", help="Serve docs/ locally")
-    srv.add_argument("--directory", default=Path(__file__).resolve().parent.parent / "docs")
+    srv.add_argument("--directory", default=Path.cwd() / "docs")
     srv.add_argument("--port", type=int, default=int(os.getenv("PORT", "8000")))
     srv.set_defaults(func=serve_command)
     return parser

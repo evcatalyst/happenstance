@@ -10,6 +10,21 @@ let server;
 
 test.describe.configure({ mode: "serial" });
 
+async function waitForServer(port, attempts = 10) {
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      const response = await fetch(`http://localhost:${port}`);
+      if (response.ok) {
+        return;
+      }
+    } catch (err) {
+      // retry
+    }
+    await new Promise((resolve) => setTimeout(resolve, 300));
+  }
+  throw new Error(`Server did not start on port ${port}`);
+}
+
 test.beforeAll(async () => {
   fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
   const reportSrc = path.join(__dirname, "..", "..", "docs", "journeys", "README.md");
@@ -20,7 +35,7 @@ test.beforeAll(async () => {
   server = spawn(PYTHON, ["-m", "http.server", PORT, "--directory", docsDir], {
     stdio: "inherit",
   });
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await waitForServer(PORT);
 });
 
 test.afterAll(() => {
