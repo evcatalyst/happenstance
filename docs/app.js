@@ -109,6 +109,10 @@ function renderPaired() {
   const filtered = state.data.pairings.filter(
     (p) => matchesFilter(p.event) || matchesFilter(p.restaurant) || matchesFilter(p.match_reason || "")
   );
+  if (filtered.length === 0) {
+    pairedContainer.innerHTML = `<div class="empty">No pairings match the current filter.</div>`;
+    return;
+  }
   const cards = filtered
     .map(
       (p) => `<div class="card">
