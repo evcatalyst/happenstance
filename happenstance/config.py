@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 from pathlib import Path
@@ -19,7 +20,7 @@ def load_config(profile: str | None = None) -> Dict[str, Any]:
     if selected not in profiles:
         raise ValueError(f"Profile '{selected}' not found in config.")
 
-    config = profiles[selected].copy()
+    config = copy.deepcopy(profiles[selected])
     live_search_mode = os.getenv("LIVE_SEARCH_MODE")
     if live_search_mode:
         config.setdefault("live_search", {})

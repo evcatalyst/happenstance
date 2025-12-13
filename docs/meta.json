@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-13T06:56:33.700463+00:00",
+  "generated_at": "2025-12-13T07:16:58.918873+00:00",
   "profile": "default",
   "region": "Sample City",
   "branding": {
@@ -34,24 +34,24 @@
   "pairings": [
     {
       "event": "Waterfront Jazz Night",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Great before a waterfront concert",
+      "restaurant": "Midnight Sushi",
+      "match_reason": "Open late for night event",
       "event_url": "https://example.com/jazz-night",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "restaurant_url": "https://example.com/midnight-sushi"
     },
     {
       "event": "Gallery Walk",
-      "restaurant": "Sunset Pasta",
-      "match_reason": "Close to the gallery walk",
+      "restaurant": "Blue Harbor Grill",
+      "match_reason": "Great before a waterfront concert",
       "event_url": "https://example.com/gallery-walk",
-      "restaurant_url": "https://example.com/sunset-pasta"
+      "restaurant_url": "https://example.com/blue-harbor"
     },
     {
       "event": "Family Picnic at the Park",
-      "restaurant": "Midnight Sushi",
-      "match_reason": "Open late after live music",
+      "restaurant": "Blue Harbor Grill",
+      "match_reason": "Great before a waterfront concert",
       "event_url": "https://example.com/family-picnic",
-      "restaurant_url": "https://example.com/midnight-sushi"
+      "restaurant_url": "https://example.com/blue-harbor"
     }
   ],
   "guidance": "Spread recommendations across the next 2 months when available."

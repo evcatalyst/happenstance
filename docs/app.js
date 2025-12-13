@@ -55,6 +55,10 @@ function matchesFilter(text) {
   return text.toLowerCase().includes(state.filter.toLowerCase());
 }
 
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
 function renderRestaurants() {
   const filtered = state.data.restaurants.filter(
     (r) => matchesFilter(r.name) || matchesFilter(r.cuisine) || matchesFilter(r.address || "")
@@ -63,7 +67,9 @@ function renderRestaurants() {
     const rows = filtered
       .map(
         (r) =>
-          `<tr><td>${r.name}</td><td>${r.cuisine}</td><td>${r.address}</td><td><a href="${r.url}" target="_blank">Link</a></td></tr>`
+          `<tr><td>${escapeHTML(r.name)}</td><td>${escapeHTML(r.cuisine)}</td><td>${escapeHTML(
+            r.address
+          )}</td><td><a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">Link</a></td></tr>`
       )
       .join("");
     restaurantsContainer.innerHTML = `<table><thead><tr><th>Name</th><th>Cuisine</th><th>Address</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table>`;
@@ -71,10 +77,10 @@ function renderRestaurants() {
     const cards = filtered
       .map(
         (r) => `<div class="card">
-      <h3>${r.name}</h3>
-      <p>${r.cuisine}</p>
-      <p class="meta">${r.address}</p>
-      <a href="${r.url}" target="_blank">View</a>
+      <h3>${escapeHTML(r.name)}</h3>
+      <p>${escapeHTML(r.cuisine)}</p>
+      <p class="meta">${escapeHTML(r.address)}</p>
+      <a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">View</a>
     </div>`
       )
       .join("");
@@ -89,10 +95,10 @@ function renderEvents() {
   const cards = filtered
     .map(
       (e) => `<div class="card">
-        <h3>${e.title}</h3>
-        <p>${e.category}</p>
-        <p class="meta">${new Date(e.date).toLocaleString()} – ${e.location}</p>
-        <a href="${e.url}" target="_blank">Details</a>
+        <h3>${escapeHTML(e.title)}</h3>
+        <p>${escapeHTML(e.category)}</p>
+        <p class="meta">${escapeHTML(new Date(e.date).toLocaleString())} – ${escapeHTML(e.location)}</p>
+        <a href="${escapeHTML(e.url)}" target="_blank" rel="noopener">Details</a>
       </div>`
     )
     .join("");
@@ -106,10 +112,12 @@ function renderPaired() {
   const cards = filtered
     .map(
       (p) => `<div class="card">
-        <h3>${p.event}</h3>
-        <p>+ ${p.restaurant}</p>
-        <p class="meta">${p.match_reason || "Great together"}</p>
-        <p><a href="${p.event_url}" target="_blank">Event</a> · <a href="${p.restaurant_url}" target="_blank">Restaurant</a></p>
+        <h3>${escapeHTML(p.event)}</h3>
+        <p>+ ${escapeHTML(p.restaurant)}</p>
+        <p class="meta">${escapeHTML(p.match_reason || "Great together")}</p>
+        <p><a href="${escapeHTML(p.event_url)}" target="_blank" rel="noopener">Event</a> · <a href="${escapeHTML(
+            p.restaurant_url
+          )}" target="_blank" rel="noopener">Restaurant</a></p>
       </div>`
     )
     .join("");

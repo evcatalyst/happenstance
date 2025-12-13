@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Mapping
+from typing import Any, Dict, List, Mapping
 
 from .config import load_config
 from .hash import compute_meta
@@ -78,19 +78,55 @@ def _fixture_events(region: str) -> List[Dict]:
     ]
 
 
+def _compute_match_score(event: Dict, restaurant: Dict) -> tuple[int, str]:
+    score = 0
+    reasons: List[str] = []
+    category = event.get("category", "").lower()
+    cuisine = restaurant.get("cuisine", "").lower()
+    title = event.get("title", "").lower()
+    match_reason = restaurant.get("match_reason", "")
+
+    if category and cuisine and category in cuisine:
+        score += 2
+        reasons.append(f"Matches category '{event.get('category')}' with cuisine '{restaurant.get('cuisine')}'")
+
+    if "family" in title or "kids" in title:
+        if "family" in match_reason.lower() or "family" in cuisine:
+            score += 2
+            reasons.append("Family-friendly pairing")
+
+    if "night" in title or "late" in title:
+        if "late" in match_reason.lower() or "open" in match_reason.lower():
+            score += 1
+            reasons.append("Open late for night event")
+
+    if not reasons:
+        reasons.append(match_reason or "Nearby and reliable")
+
+    return score, "; ".join(reasons)
+
+
 def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
     if not restaurants:
         return []
     pairings: List[Dict] = []
-    for idx, event in enumerate(events):
-        restaurant = restaurants[idx % len(restaurants)]
+    for event in events:
+        best_score = float("-inf")
+        best_restaurant: Dict | None = None
+        best_reason = ""
+        for restaurant in restaurants:
+            score, reason = _compute_match_score(event, restaurant)
+            if score > best_score:
+                best_score = score
+                best_restaurant = restaurant
+                best_reason = reason
         pairings.append(
             {
                 "event": event["title"],
-                "restaurant": restaurant["name"],
-                "match_reason": restaurant.get("match_reason", "Nearby and reliable"),
+                "restaurant": best_restaurant["name"] if best_restaurant else "",
+                "match_reason": best_reason,
                 "event_url": event.get("url"),
-                "restaurant_url": restaurant.get("url"),
+                "restaurant_url": best_restaurant.get("url") if best_restaurant else None,
             }
         )
     return pairings
@@ -147,5 +183,5 @@ def append_meta_write(name: str, items: List[Mapping], meta: Mapping) -> None:
     write_json(docs_path(name), payload)
 
 
-def write_json_raw(name: str, payload) -> None:
+def write_json_raw(name: str, payload: Any) -> None:
     write_json(docs_path(name), payload)

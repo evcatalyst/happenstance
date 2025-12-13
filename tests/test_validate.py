@@ -1,11 +1,11 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from happenstance.prompting import build_gap_bullets
 from happenstance.validate import filter_events_by_window
 
 
 def test_filter_events_by_window_excludes_outside():
-    now = datetime(2024, 1, 1, 12, 0, 0)
+    now = datetime(2024, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
     events = [
         {"title": "soon", "date": (now + timedelta(days=2)).isoformat()},
         {"title": "far", "date": (now + timedelta(days=20)).isoformat()},

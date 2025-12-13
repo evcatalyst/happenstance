@@ -32,10 +32,17 @@ test.beforeAll(async () => {
     fs.copyFileSync(reportSrc, path.join(ARTIFACT_DIR, "README.md"));
   }
   const docsDir = path.join(__dirname, "..", "..", "docs");
-  server = spawn(PYTHON, ["-m", "http.server", PORT, "--directory", docsDir], {
-    stdio: "inherit",
-  });
-  await waitForServer(PORT);
+  try {
+    server = spawn(PYTHON, ["-m", "http.server", PORT, "--directory", docsDir], {
+      stdio: "inherit",
+    });
+    await waitForServer(PORT);
+  } catch (err) {
+    if (server && !server.killed) {
+      server.kill();
+    }
+    throw err;
+  }
 });
 
 test.afterAll(() => {
