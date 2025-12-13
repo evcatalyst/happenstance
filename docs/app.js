@@ -192,4 +192,6 @@ layoutSelect.addEventListener("change", (e) => {
 setActiveView(state.view);
 loadData().catch((err) => {
   console.error("Failed to load data", err);
+  metaInfo.textContent = "Unable to load data. Please refresh or try again later.";
+  document.body.setAttribute("data-hs-ready", "error");
 });

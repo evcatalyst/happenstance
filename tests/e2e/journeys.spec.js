@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ARTIFACT_DIR = path.join(__dirname, "..", "..", "artifacts", "journeys");
+const PORT = process.env.PORT || "8000";
 let server;
 
 test.describe.configure({ mode: "serial" });
@@ -15,7 +16,7 @@ test.beforeAll(async () => {
     fs.copyFileSync(reportSrc, path.join(ARTIFACT_DIR, "README.md"));
   }
   const docsDir = path.join(__dirname, "..", "..", "docs");
-  server = spawn("python", ["-m", "http.server", "8000", "--directory", docsDir], {
+  server = spawn("python", ["-m", "http.server", PORT, "--directory", docsDir], {
     stdio: "inherit",
   });
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -28,7 +29,7 @@ test.afterAll(() => {
 });
 
 test("journeys with screenshots", async ({ page }) => {
-  await page.goto("http://localhost:8000");
+  await page.goto(`http://localhost:${PORT}`);
   await page.waitForSelector('[data-hs-ready="1"]');
 
   const restaurantsCards = page.locator("#restaurants-view .card");
@@ -43,7 +44,10 @@ test("journeys with screenshots", async ({ page }) => {
 
   const beforeCount = await eventsCards.count();
   await page.fill("#filter-input", "music");
-  await page.waitForTimeout(300);
+  await page.waitForFunction(
+    (expected) => document.querySelectorAll("#events-view .card").length <= expected,
+    beforeCount
+  );
   const afterCount = await eventsCards.count();
   expect(afterCount).toBeLessThanOrEqual(beforeCount);
   await page.screenshot({ path: path.join(ARTIFACT_DIR, "03-filtered-events.png") });
@@ -55,7 +59,9 @@ test("journeys with screenshots", async ({ page }) => {
 
   await page.getByRole("button", { name: "Restaurants" }).click();
   await page.fill("#filter-input", "Sushi");
-  await page.waitForTimeout(200);
+  await page.waitForFunction(
+    () => document.querySelectorAll("#restaurants-view .card, #restaurants-view tbody tr").length > 0
+  );
   await page.screenshot({ path: path.join(ARTIFACT_DIR, "05-restaurants-filter.png") });
   await page.selectOption("#layout-select", "table");
   await expect(page.locator("table")).toBeVisible();

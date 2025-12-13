@@ -30,7 +30,7 @@ def load_config(profile: str | None = None) -> Dict[str, Any]:
         try:
             config["event_window_days"] = int(event_window)
         except ValueError as err:
-            raise ValueError("EVENT_WINDOW_DAYS must be an integer") from err
+            raise ValueError(f"EVENT_WINDOW_DAYS must be an integer, got: {event_window}") from err
     else:
         config["event_window_days"] = config.get("event_window_days", 14)
 

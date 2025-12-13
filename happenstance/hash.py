@@ -2,7 +2,8 @@ import hashlib
 import json
 from typing import Iterable, List, Mapping, MutableMapping, Sequence
 
-IGNORED_FIELDS = {"_meta", "timestamp", "meta", "match_reason"}
+IGNORED_FIELDS: set[str] = {"_meta", "timestamp", "meta", "match_reason"}
+"""Fields ignored when computing canonical content hashes."""
 
 
 def _strip_ignored(obj: MutableMapping, ignore_fields: set[str]) -> MutableMapping:

@@ -29,4 +29,5 @@ def require_fields(items: Iterable[Mapping], required: Sequence[str]) -> None:
     for idx, item in enumerate(items):
         missing = [field for field in required if field not in item]
         if missing:
-            raise ValueError(f"Item {idx} missing required fields: {', '.join(missing)}")
+            label = item.get("name") or item.get("title") or "unknown"
+            raise ValueError(f"Item {idx} ({label}) missing required fields: {', '.join(missing)}")
