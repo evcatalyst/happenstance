@@ -42,9 +42,10 @@ def check_list(name, data, required):
             sys.exit(f"{name} empty without meta explanation")
         return
     *items, last = data
-    for field in required:
-        if field not in items[0]:
-            sys.exit(f"{name} missing field {field}")
+    for idx, item in enumerate(items):
+        for field in required:
+            if field not in item:
+                sys.exit(f"{name} item {idx} missing field {field}")
     if "_meta" not in last:
         sys.exit(f"{name} missing meta sentinel")
 
