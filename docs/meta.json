@@ -1,0 +1,58 @@
+{
+  "generated_at": "2025-12-13T07:16:58.918873+00:00",
+  "profile": "default",
+  "region": "Sample City",
+  "branding": {
+    "title": "Happenstance",
+    "tagline": "Plan your weekend with great food and events",
+    "accent_color": "#3b82f6"
+  },
+  "pairing_rules": [
+    "Pair live music with vibrant, shareable plates.",
+    "Match family-friendly events with comforting classics.",
+    "Keep late-night shows close to late-night kitchens."
+  ],
+  "search": {
+    "mode": "local",
+    "radius_km": 5,
+    "limit": 10
+  },
+  "gap_bullets": [
+    "Add more options for Vegan.",
+    "Add more options for sports."
+  ],
+  "events": {
+    "items_hash": "a446b8a955552bffec9145f97e930802b29d84b8fbe504ad6efc15bce0696cbb",
+    "items_changed": false,
+    "item_count": 3
+  },
+  "restaurants": {
+    "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
+    "items_changed": false,
+    "item_count": 4
+  },
+  "pairings": [
+    {
+      "event": "Waterfront Jazz Night",
+      "restaurant": "Midnight Sushi",
+      "match_reason": "Open late for night event",
+      "event_url": "https://example.com/jazz-night",
+      "restaurant_url": "https://example.com/midnight-sushi"
+    },
+    {
+      "event": "Gallery Walk",
+      "restaurant": "Blue Harbor Grill",
+      "match_reason": "Great before a waterfront concert",
+      "event_url": "https://example.com/gallery-walk",
+      "restaurant_url": "https://example.com/blue-harbor"
+    },
+    {
+      "event": "Family Picnic at the Park",
+      "restaurant": "Blue Harbor Grill",
+      "match_reason": "Great before a waterfront concert",
+      "event_url": "https://example.com/family-picnic",
+      "restaurant_url": "https://example.com/blue-harbor"
+    }
+  ],
+  "guidance": "Spread recommendations across the next 2 months when available."
+}
