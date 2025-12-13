@@ -5,6 +5,7 @@ const path = require("path");
 
 const ARTIFACT_DIR = path.join(__dirname, "..", "..", "artifacts", "journeys");
 const PORT = process.env.PORT || "8000";
+const PYTHON = process.env.PYTHON || "python3";
 let server;
 
 test.describe.configure({ mode: "serial" });
@@ -16,7 +17,7 @@ test.beforeAll(async () => {
     fs.copyFileSync(reportSrc, path.join(ARTIFACT_DIR, "README.md"));
   }
   const docsDir = path.join(__dirname, "..", "..", "docs");
-  server = spawn("python", ["-m", "http.server", PORT, "--directory", docsDir], {
+  server = spawn(PYTHON, ["-m", "http.server", PORT, "--directory", docsDir], {
     stdio: "inherit",
   });
   await new Promise((resolve) => setTimeout(resolve, 2000));

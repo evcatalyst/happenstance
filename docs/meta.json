@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-13T06:49:28.464525",
+  "generated_at": "2025-12-13T06:54:38.858974",
   "profile": "default",
   "region": "Sample City",
   "branding": {
@@ -22,7 +22,7 @@
     "Add more options for sports."
   ],
   "events": {
-    "items_hash": "989322ef8ba3c52bf504ca8baadae95ab738fe03c6d06a642f1cbb9b1c5ccd68",
+    "items_hash": "a446b8a955552bffec9145f97e930802b29d84b8fbe504ad6efc15bce0696cbb",
     "items_changed": false,
     "item_count": 3
   },

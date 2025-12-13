@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Mapping
 
 from .config import load_config
@@ -45,7 +45,7 @@ def _fixture_restaurants(region: str) -> List[Dict]:
 
 
 def _fixture_events(region: str) -> List[Dict]:
-    now = datetime.utcnow().replace(hour=12, minute=0, second=0, microsecond=0)
+    now = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0, microsecond=0)
     return [
         {
             "title": "Waterfront Jazz Night",

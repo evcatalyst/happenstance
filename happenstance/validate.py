@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Iterable, Mapping, Sequence
 
 
@@ -9,7 +9,7 @@ def filter_events_by_window(
     days: int,
     now: datetime | None = None,
 ) -> list[Mapping]:
-    now = now or datetime.utcnow()
+    now = now or datetime.now(timezone.utc)
     cutoff = now + timedelta(days=days)
     filtered: list[Mapping] = []
     for event in events:
