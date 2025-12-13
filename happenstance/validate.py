@@ -18,6 +18,8 @@ def filter_events_by_window(
             continue
         try:
             event_dt = datetime.fromisoformat(date_str)
+            if event_dt.tzinfo is None or event_dt.tzinfo.utcoffset(event_dt) is None:
+                event_dt = event_dt.replace(tzinfo=timezone.utc)
         except ValueError:
             continue
         if event_dt.tzinfo is None or event_dt.tzinfo.utcoffset(event_dt) is None:
