@@ -2,6 +2,21 @@
 
 Static weekend planner for restaurants and events. Data lives in `docs/*.json` and a lightweight UI renders it for GitHub Pages.
 
+### 🌐 Live Demo
+
+**[View the live app →](https://evcatalyst.github.io/happenstance/)**
+
+The app is automatically deployed to GitHub Pages daily and on every push to `main`. Browse restaurants, events, and paired recommendations with filtering and multiple layout options.
+
+**How to use:**
+- **Restaurants tab**: Browse dining options filtered by cuisine or keywords
+- **Events tab**: Explore upcoming events by category (art, music, family, etc.)
+- **Paired tab**: See recommended restaurant + event combinations for a complete evening
+- **Filter**: Use the search box to filter by keywords or categories
+- **Layout**: Toggle between card view (visual) and table view (compact)
+
+The app loads data from JSON files and indicates readiness with `data-hs-ready="1"` on the `<body>` element.
+
 ### Quickstart
 ```bash
 pip install -r requirements.txt
@@ -32,6 +47,18 @@ python -m happenstance.cli serve       # serves docs/ (PORT defaults to 8000)
 - Make targets: `make test`, `make e2e`
 
 ### GitHub Pages
+
+**Live site**: [https://evcatalyst.github.io/happenstance/](https://evcatalyst.github.io/happenstance/)
+
+The site is automatically deployed using GitHub Actions:
+- **Automatic deployment**: Runs on every push to `main`, daily at 6 AM UTC via cron schedule, or manually via workflow dispatch
+- **Workflow**: `.github/workflows/pages.yml` handles build and deployment
+- **Process**: 
+  1. Runs `python -m happenstance.cli aggregate` to generate fresh JSON data
+  2. Uploads the `docs/` directory as a GitHub Pages artifact
+  3. Deploys to GitHub Pages
+- **Validation**: `.github/workflows/validate-pages.yml` checks that published endpoints are accessible and contain valid data
+
 Pages deploy uses `actions/upload-pages-artifact` + `actions/deploy-pages` from the generated `docs/` output. Generated JSON is published via artifact by default; set `COMMIT_DATA=1` to allow commits when hashes change.
 
 ### Troubleshooting
