@@ -21,10 +21,13 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Generate data using AI (Grok/OpenAI via web search)
+      - name: Generate data using real APIs
         env:
-          # AI responses can be provided as environment variables
-          # These would be fetched using web_search tool with Grok/OpenAI
+          # API keys for real data sources
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          EVENTBRITE_API_KEY: ${{ secrets.EVENTBRITE_API_KEY }}
+          # AI responses can be provided as fallback
           AI_RESTAURANTS_DATA: ${{ secrets.AI_RESTAURANTS_DATA }}
           AI_EVENTS_DATA: ${{ secrets.AI_EVENTS_DATA }}
         run: python -m happenstance.cli aggregate

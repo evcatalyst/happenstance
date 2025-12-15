@@ -8,7 +8,13 @@ from .hash import compute_meta
 from .io import append_meta, docs_path, read_json, write_json
 from .prompting import build_gap_bullets, month_spread_guidance
 from .search import build_live_search_params
-from .sources import fetch_ai_events, fetch_ai_restaurants
+from .sources import (
+    fetch_ai_events,
+    fetch_ai_restaurants,
+    fetch_eventbrite_events,
+    fetch_google_places_restaurants,
+    fetch_ticketmaster_events,
+)
 from .validate import filter_events_by_window
 
 
@@ -180,6 +186,22 @@ def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
     if restaurant_source == "fixtures":
         print(f"Using fixture data for restaurants in {region}")
         return _fixture_restaurants(region)
+    elif restaurant_source == "google_places":
+        print(f"Fetching restaurants from Google Places API for {region}")
+        api_config = cfg.get("api_config", {}).get("google_places", {})
+        city = api_config.get("city", region)
+        try:
+            return fetch_google_places_restaurants(
+                city=city,
+                region=region,
+                cuisine_types=cfg.get("target_cuisines"),
+                radius=api_config.get("radius", 5000),
+                count=api_config.get("count", 20),
+            )
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from Google Places API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_restaurants(region)
     elif restaurant_source == "ai":
         print(f"Fetching restaurants using AI-powered search for {region}")
         api_config = cfg.get("api_config", {}).get("ai", {})
@@ -209,6 +231,38 @@ def _fetch_events(cfg: Mapping) -> List[Dict]:
     if event_source == "fixtures":
         print(f"Using fixture data for events in {region}")
         return _fixture_events(region)
+    elif event_source == "ticketmaster":
+        print(f"Fetching events from Ticketmaster API for {region}")
+        api_config = cfg.get("api_config", {}).get("ticketmaster", {})
+        city = api_config.get("city", region)
+        try:
+            return fetch_ticketmaster_events(
+                city=city,
+                region=region,
+                categories=cfg.get("target_categories"),
+                days_ahead=days_ahead,
+                count=api_config.get("count", 20),
+            )
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from Ticketmaster API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_events(region)
+    elif event_source == "eventbrite":
+        print(f"Fetching events from Eventbrite API for {region}")
+        api_config = cfg.get("api_config", {}).get("eventbrite", {})
+        city = api_config.get("city", region)
+        try:
+            return fetch_eventbrite_events(
+                city=city,
+                region=region,
+                categories=cfg.get("target_categories"),
+                days_ahead=days_ahead,
+                count=api_config.get("count", 20),
+            )
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from Eventbrite API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_events(region)
     elif event_source == "ai":
         print(f"Fetching events using AI-powered search for {region}")
         api_config = cfg.get("api_config", {}).get("ai", {})
