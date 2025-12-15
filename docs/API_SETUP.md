@@ -23,13 +23,12 @@ Without API keys, the system automatically falls back to demo/fixture data.
 5. (Optional but recommended) Restrict the API key to Places API only
 
 **Configure the location:**
-Edit `config/config_logic.json` to set your target location:
+Edit `config/config_logic.json` to set your target city:
 ```json
 {
   "api_config": {
     "google_places": {
       "city": "San Francisco",
-      "radius": 5000,
       "count": 20
     }
   }

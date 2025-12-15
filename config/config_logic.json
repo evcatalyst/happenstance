@@ -19,7 +19,6 @@
       "api_config": {
         "google_places": {
           "city": "San Francisco",
-          "radius": 5000,
           "count": 20
         },
         "ticketmaster": {

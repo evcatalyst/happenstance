@@ -76,17 +76,15 @@ def fetch_google_places_restaurants(
     city: str,
     region: str,
     cuisine_types: List[str] | None = None,
-    radius: int = 5000,
     count: int = 20,
 ) -> List[Dict]:
     """
     Fetch restaurants from Google Places API.
     
     Args:
-        city: City name to search
+        city: City name to search (e.g., "San Francisco", "New York")
         region: Region name for display
         cuisine_types: List of preferred cuisine types (optional)
-        radius: Search radius in meters
         count: Number of restaurants to fetch
         
     Returns:
@@ -111,15 +109,6 @@ def fetch_google_places_restaurants(
     body = {
         "textQuery": query,
         "maxResultCount": min(count, 20),  # API limit
-        "locationBias": {
-            "circle": {
-                "center": {
-                    "latitude": 37.7749,  # Default to SF, should geocode city
-                    "longitude": -122.4194
-                },
-                "radius": radius
-            }
-        }
     }
     
     try:

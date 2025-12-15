@@ -195,7 +195,6 @@ def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
                 city=city,
                 region=region,
                 cuisine_types=cfg.get("target_cuisines"),
-                radius=api_config.get("radius", 5000),
                 count=api_config.get("count", 20),
             )
         except ValueError as e:
