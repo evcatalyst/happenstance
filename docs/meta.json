@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-15T01:26:20.418145+00:00",
+  "generated_at": "2025-12-15T01:28:39.798436+00:00",
   "profile": "default",
   "region": "Sample City",
   "branding": {
@@ -23,7 +23,7 @@
   ],
   "events": {
     "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-    "items_changed": true,
+    "items_changed": false,
     "item_count": 3
   },
   "restaurants": {

@@ -34,6 +34,51 @@ Configure profiles in `config/config_logic.json`. Environment overrides:
 - `BASE_URL` – override base URL
 - `COMMIT_DATA` – set to `1` to allow committing generated JSON (artifact deploy is default)
 
+### Data Sources
+
+The system supports both **fixture (demo) data** and **real API data sources**:
+
+**Fixture Data** (default fallback):
+- Uses hardcoded sample restaurants and events
+- No API keys required
+- Perfect for testing and development
+
+**Real API Data Sources**:
+Configure in `config/config_logic.json` under `data_sources`:
+```json
+{
+  "data_sources": {
+    "restaurants": "google_places",  // or "fixtures"
+    "events": "ticketmaster"         // or "eventbrite" or "fixtures"
+  }
+}
+```
+
+**Setting Up API Keys**:
+
+1. **Google Places API** (for restaurants):
+   - Get API key: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+   - Set environment variable: `GOOGLE_PLACES_API_KEY=your_key_here`
+   - Configure location in `config/config_logic.json` → `api_config.google_places.location`
+
+2. **Ticketmaster API** (for events):
+   - Get API key: https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
+   - Set environment variable: `TICKETMASTER_API_KEY=your_key_here`
+   - Configure city/state in `config/config_logic.json` → `api_config.ticketmaster`
+
+3. **Eventbrite API** (alternative for events):
+   - Get API token: https://www.eventbrite.com/platform/api
+   - Set environment variable: `EVENTBRITE_API_KEY=your_token_here`
+   - Configure location in `config/config_logic.json` → `api_config.eventbrite`
+
+**For GitHub Actions**: Add API keys as repository secrets:
+- Go to repository Settings → Secrets and variables → Actions
+- Add secrets: `GOOGLE_PLACES_API_KEY`, `TICKETMASTER_API_KEY`, `EVENTBRITE_API_KEY`
+
+**Local Development**: Copy `.env.example` to `.env` and add your API keys.
+
+The system automatically falls back to fixture data if API keys are missing or API calls fail, ensuring the site always has data to display.
+
 ### CLI
 ```
 python -m happenstance.cli aggregate   # writes docs/*.json

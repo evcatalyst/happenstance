@@ -13,8 +13,8 @@
         "Keep late-night shows close to late-night kitchens."
       ],
       "data_sources": {
-        "restaurants": "fixtures",
-        "events": "fixtures"
+        "restaurants": "google_places",
+        "events": "ticketmaster"
       },
       "api_config": {
         "google_places": {
