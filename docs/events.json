@@ -2,28 +2,28 @@
   {
     "title": "Waterfront Jazz Night",
     "category": "live music",
-    "date": "2025-12-15T12:00:00+00:00",
+    "date": "2025-12-17T12:00:00+00:00",
     "location": "Sample City Waterfront Stage",
     "url": "https://example.com/jazz-night"
   },
   {
     "title": "Gallery Walk",
     "category": "art",
-    "date": "2025-12-18T12:00:00+00:00",
+    "date": "2025-12-20T12:00:00+00:00",
     "location": "Sample City Arts District",
     "url": "https://example.com/gallery-walk"
   },
   {
     "title": "Family Picnic at the Park",
     "category": "family",
-    "date": "2025-12-20T12:00:00+00:00",
+    "date": "2025-12-22T12:00:00+00:00",
     "location": "Sample City Central Park",
     "url": "https://example.com/family-picnic"
   },
   {
     "_meta": {
-      "items_hash": "a446b8a955552bffec9145f97e930802b29d84b8fbe504ad6efc15bce0696cbb",
-      "items_changed": false,
+      "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
+      "items_changed": true,
       "item_count": 3
     }
   }

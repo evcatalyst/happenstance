@@ -12,7 +12,26 @@
         "Match family-friendly events with comforting classics.",
         "Keep late-night shows close to late-night kitchens."
       ],
-      "sources": ["fixtures"],
+      "data_sources": {
+        "restaurants": "fixtures",
+        "events": "fixtures"
+      },
+      "api_config": {
+        "google_places": {
+          "location": "37.7749,-122.4194",
+          "radius_meters": 5000
+        },
+        "ticketmaster": {
+          "city": "San Francisco",
+          "state_code": "CA",
+          "country_code": "US",
+          "radius_miles": 25
+        },
+        "eventbrite": {
+          "location_address": "San Francisco, CA",
+          "location_within": "25mi"
+        }
+      },
       "live_search": {
         "mode": "local",
         "radius_km": 5,

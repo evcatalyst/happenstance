@@ -8,6 +8,11 @@ from .hash import compute_meta
 from .io import append_meta, docs_path, read_json, write_json
 from .prompting import build_gap_bullets, month_spread_guidance
 from .search import build_live_search_params
+from .sources import (
+    fetch_eventbrite_events,
+    fetch_google_places_restaurants,
+    fetch_ticketmaster_events,
+)
 from .validate import filter_events_by_window
 
 
@@ -132,10 +137,84 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
     return pairings
 
 
+def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
+    """Fetch restaurants based on configured data source."""
+    data_sources = cfg.get("data_sources", {})
+    restaurant_source = data_sources.get("restaurants", "fixtures")
+    region = cfg["region"]
+    
+    if restaurant_source == "fixtures":
+        print(f"Using fixture data for restaurants in {region}")
+        return _fixture_restaurants(region)
+    elif restaurant_source == "google_places":
+        print(f"Fetching restaurants from Google Places API for {region}")
+        api_config = cfg.get("api_config", {}).get("google_places", {})
+        try:
+            return fetch_google_places_restaurants(
+                region=region,
+                location=api_config.get("location"),
+                radius_meters=api_config.get("radius_meters", 5000),
+            )
+        except Exception as e:
+            print(f"Warning: Failed to fetch from Google Places API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_restaurants(region)
+    else:
+        print(f"Warning: Unknown restaurant source '{restaurant_source}', using fixtures")
+        return _fixture_restaurants(region)
+
+
+def _fetch_events(cfg: Mapping) -> List[Dict]:
+    """Fetch events based on configured data source."""
+    data_sources = cfg.get("data_sources", {})
+    event_source = data_sources.get("events", "fixtures")
+    region = cfg["region"]
+    days_ahead = cfg.get("event_window_days", 30)
+    
+    if event_source == "fixtures":
+        print(f"Using fixture data for events in {region}")
+        return _fixture_events(region)
+    elif event_source == "ticketmaster":
+        print(f"Fetching events from Ticketmaster API for {region}")
+        api_config = cfg.get("api_config", {}).get("ticketmaster", {})
+        try:
+            return fetch_ticketmaster_events(
+                region=region,
+                city=api_config.get("city"),
+                state_code=api_config.get("state_code"),
+                country_code=api_config.get("country_code", "US"),
+                radius_miles=api_config.get("radius_miles", 25),
+                days_ahead=days_ahead,
+            )
+        except Exception as e:
+            print(f"Warning: Failed to fetch from Ticketmaster API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_events(region)
+    elif event_source == "eventbrite":
+        print(f"Fetching events from Eventbrite API for {region}")
+        api_config = cfg.get("api_config", {}).get("eventbrite", {})
+        try:
+            return fetch_eventbrite_events(
+                region=region,
+                location_address=api_config.get("location_address"),
+                location_within=api_config.get("location_within", "25mi"),
+                days_ahead=days_ahead,
+            )
+        except Exception as e:
+            print(f"Warning: Failed to fetch from Eventbrite API: {e}")
+            print("Falling back to fixture data")
+            return _fixture_events(region)
+    else:
+        print(f"Warning: Unknown event source '{event_source}', using fixtures")
+        return _fixture_events(region)
+
+
 def aggregate(profile: str | None = None) -> Dict[str, Mapping]:
     cfg = load_config(profile)
-    restaurants = _fixture_restaurants(cfg["region"])
-    events = filter_events_by_window(_fixture_events(cfg["region"]), cfg["event_window_days"])
+    
+    # Fetch data from configured sources
+    restaurants = _fetch_restaurants(cfg)
+    events = filter_events_by_window(_fetch_events(cfg), cfg["event_window_days"])
 
     gap_cuisines = [c for c in cfg.get("target_cuisines", []) if c not in {r["cuisine"] for r in restaurants}]
     gap_categories = [c for c in cfg.get("target_categories", []) if c not in {e["category"] for e in events}]
