@@ -59,6 +59,17 @@ function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+function formatEventDate(dateString) {
+  return new Date(dateString).toLocaleDateString('en-US', { 
+    weekday: 'short', 
+    month: 'short', 
+    day: 'numeric', 
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
+}
+
 function renderRestaurants() {
   const filtered = state.data.restaurants.filter(
     (r) => matchesFilter(r.name) || matchesFilter(r.cuisine) || matchesFilter(r.address || "")
@@ -102,7 +113,7 @@ function renderEvents() {
           <h3>${escapeHTML(e.title)}</h3>
           <span class="badge badge-category">${escapeHTML(e.category)}</span>
         </div>
-        <p class="meta">📅 ${escapeHTML(new Date(e.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }))}</p>
+        <p class="meta">📅 ${escapeHTML(formatEventDate(e.date))}</p>
         <p class="meta">📍 ${escapeHTML(e.location)}</p>
         <a href="${escapeHTML(e.url)}" target="_blank" rel="noopener">Event Details →</a>
       </div>`

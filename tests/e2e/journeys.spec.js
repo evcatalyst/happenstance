@@ -152,13 +152,19 @@ test("filter functionality across views", async ({ page }) => {
   
   // Test restaurant filtering
   await page.fill("#filter-input", "BBQ");
-  await page.waitForTimeout(300); // Wait for filter to apply
+  await page.waitForFunction(() => {
+    const cards = document.querySelectorAll("#restaurants-view .card");
+    return cards.length > 0 && cards.length <= 4;
+  });
   const restaurantCards = page.locator("#restaurants-view .card");
   const visibleCount = await restaurantCards.count();
   
   // Clear filter
   await page.fill("#filter-input", "");
-  await page.waitForTimeout(300);
+  await page.waitForFunction(() => {
+    const cards = document.querySelectorAll("#restaurants-view .card");
+    return cards.length >= 4;
+  });
   const allCount = await restaurantCards.count();
   expect(allCount).toBeGreaterThanOrEqual(visibleCount);
   
@@ -186,7 +192,12 @@ test("empty state handling", async ({ page }) => {
   // Navigate to paired view and apply filter that yields no results
   await page.getByRole("button", { name: "Paired" }).click();
   await page.fill("#filter-input", "nonexistentitem12345");
-  await page.waitForTimeout(300);
+  
+  // Wait for empty state to appear
+  await page.waitForFunction(() => {
+    const emptyState = document.querySelector("#paired-view .empty");
+    return emptyState !== null && emptyState.offsetParent !== null;
+  });
   
   // Verify empty state is shown
   const emptyState = page.locator("#paired-view .empty");
