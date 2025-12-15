@@ -12,7 +12,17 @@
         "Match family-friendly events with comforting classics.",
         "Keep late-night shows close to late-night kitchens."
       ],
-      "sources": ["fixtures"],
+      "data_sources": {
+        "restaurants": "ai",
+        "events": "ai"
+      },
+      "api_config": {
+        "ai": {
+          "city": "San Francisco",
+          "restaurant_count": 20,
+          "event_count": 20
+        }
+      },
       "live_search": {
         "mode": "local",
         "radius_km": 5,

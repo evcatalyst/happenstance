@@ -21,7 +21,13 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: python -m happenstance.cli aggregate
+      - name: Generate data using AI (Grok/OpenAI via web search)
+        env:
+          # AI responses can be provided as environment variables
+          # These would be fetched using web_search tool with Grok/OpenAI
+          AI_RESTAURANTS_DATA: ${{ secrets.AI_RESTAURANTS_DATA }}
+          AI_EVENTS_DATA: ${{ secrets.AI_EVENTS_DATA }}
+        run: python -m happenstance.cli aggregate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

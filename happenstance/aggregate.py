@@ -8,6 +8,7 @@ from .hash import compute_meta
 from .io import append_meta, docs_path, read_json, write_json
 from .prompting import build_gap_bullets, month_spread_guidance
 from .search import build_live_search_params
+from .sources import fetch_ai_events, fetch_ai_restaurants
 from .validate import filter_events_by_window
 
 
@@ -85,20 +86,58 @@ def _compute_match_score(event: Dict, restaurant: Dict) -> tuple[int, str]:
     cuisine = restaurant.get("cuisine", "").lower()
     title = event.get("title", "").lower()
     match_reason = restaurant.get("match_reason", "")
+    location = event.get("location", "").lower()
+    address = restaurant.get("address", "").lower()
 
-    if category and cuisine and category in cuisine:
-        score += 2
-        reasons.append(f"Matches category '{event.get('category')}' with cuisine '{restaurant.get('cuisine')}'")
+    # Match category with cuisine
+    if category and cuisine:
+        if category in cuisine or cuisine in category:
+            score += 3
+            reasons.append("Cuisine matches event type")
+        # Special category matches
+        if "music" in category and any(k in cuisine for k in ["jazz", "american", "mediterranean"]):
+            score += 2
+            reasons.append("Great dining for music events")
+        if "art" in category and any(k in cuisine for k in ["italian", "french", "contemporary"]):
+            score += 2
+            reasons.append("Sophisticated dining for art events")
+        if "sports" in category and any(k in cuisine for k in ["american", "bbq", "pizza", "mexican"]):
+            score += 2
+            reasons.append("Casual dining for sports events")
 
-    if "family" in title or "kids" in title:
-        if "family" in match_reason.lower() or "family" in cuisine:
+    # Family-friendly matching
+    if "family" in title or "kids" in title or "family" in category:
+        if "family" in match_reason.lower() or any(k in cuisine for k in ["pizza", "american", "italian"]):
             score += 2
             reasons.append("Family-friendly pairing")
 
-    if "night" in title or "late" in title:
-        if "late" in match_reason.lower() or "open" in match_reason.lower():
+    # Late night events
+    if "night" in title or "late" in title or "evening" in title:
+        if "late" in match_reason.lower() or "sushi" in cuisine or "contemporary" in cuisine:
             score += 1
-            reasons.append("Open late for night event")
+            reasons.append("Good for evening events")
+
+    # Location proximity (simple string matching)
+    if location and address:
+        # Extract neighborhood/district names
+        for neighborhood in ["downtown", "waterfront", "financial", "mission", "castro", "fillmore", "pacific"]:
+            if neighborhood in location and neighborhood in address:
+                score += 3
+                reasons.append("Same neighborhood")
+                break
+
+    # High-quality restaurants get a bonus
+    rating = restaurant.get("rating", 0)
+    if rating >= 4.7:
+        score += 2
+        reasons.append("Highly rated")
+    elif rating >= 4.5:
+        score += 1
+        reasons.append("Well rated")
+
+    # Add variety - use a hash of cuisine to spread choices
+    cuisine_variety_score = hash(cuisine) % 3
+    score += cuisine_variety_score
 
     if not reasons:
         reasons.append(match_reason or "Nearby and reliable")
@@ -132,10 +171,70 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
     return pairings
 
 
+def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
+    """Fetch restaurants based on configured data source."""
+    data_sources = cfg.get("data_sources", {})
+    restaurant_source = data_sources.get("restaurants", "fixtures")
+    region = cfg["region"]
+    
+    if restaurant_source == "fixtures":
+        print(f"Using fixture data for restaurants in {region}")
+        return _fixture_restaurants(region)
+    elif restaurant_source == "ai":
+        print(f"Fetching restaurants using AI-powered search for {region}")
+        api_config = cfg.get("api_config", {}).get("ai", {})
+        try:
+            return fetch_ai_restaurants(
+                region=region,
+                city=api_config.get("city"),
+                cuisine_types=cfg.get("target_cuisines"),
+                count=api_config.get("restaurant_count", 20),
+            )
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from AI: {e}")
+            print("Falling back to fixture data")
+            return _fixture_restaurants(region)
+    else:
+        print(f"Warning: Unknown restaurant source '{restaurant_source}', using fixtures")
+        return _fixture_restaurants(region)
+
+
+def _fetch_events(cfg: Mapping) -> List[Dict]:
+    """Fetch events based on configured data source."""
+    data_sources = cfg.get("data_sources", {})
+    event_source = data_sources.get("events", "fixtures")
+    region = cfg["region"]
+    days_ahead = cfg.get("event_window_days", 30)
+    
+    if event_source == "fixtures":
+        print(f"Using fixture data for events in {region}")
+        return _fixture_events(region)
+    elif event_source == "ai":
+        print(f"Fetching events using AI-powered search for {region}")
+        api_config = cfg.get("api_config", {}).get("ai", {})
+        try:
+            return fetch_ai_events(
+                region=region,
+                city=api_config.get("city"),
+                categories=cfg.get("target_categories"),
+                days_ahead=days_ahead,
+                count=api_config.get("event_count", 20),
+            )
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from AI: {e}")
+            print("Falling back to fixture data")
+            return _fixture_events(region)
+    else:
+        print(f"Warning: Unknown event source '{event_source}', using fixtures")
+        return _fixture_events(region)
+
+
 def aggregate(profile: str | None = None) -> Dict[str, Mapping]:
     cfg = load_config(profile)
-    restaurants = _fixture_restaurants(cfg["region"])
-    events = filter_events_by_window(_fixture_events(cfg["region"]), cfg["event_window_days"])
+    
+    # Fetch data from configured sources
+    restaurants = _fetch_restaurants(cfg)
+    events = filter_events_by_window(_fetch_events(cfg), cfg["event_window_days"])
 
     gap_cuisines = [c for c in cfg.get("target_cuisines", []) if c not in {r["cuisine"] for r in restaurants}]
     gap_categories = [c for c in cfg.get("target_categories", []) if c not in {e["category"] for e in events}]
