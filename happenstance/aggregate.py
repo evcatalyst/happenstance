@@ -3,6 +3,8 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Mapping
 
+import requests
+
 from .config import load_config
 from .hash import compute_meta
 from .io import append_meta, docs_path, read_json, write_json
@@ -155,7 +157,7 @@ def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
                 location=api_config.get("location"),
                 radius_meters=api_config.get("radius_meters", 5000),
             )
-        except Exception as e:
+        except (ValueError, requests.RequestException) as e:
             print(f"Warning: Failed to fetch from Google Places API: {e}")
             print("Falling back to fixture data")
             return _fixture_restaurants(region)
@@ -186,7 +188,7 @@ def _fetch_events(cfg: Mapping) -> List[Dict]:
                 radius_miles=api_config.get("radius_miles", 25),
                 days_ahead=days_ahead,
             )
-        except Exception as e:
+        except (ValueError, requests.RequestException) as e:
             print(f"Warning: Failed to fetch from Ticketmaster API: {e}")
             print("Falling back to fixture data")
             return _fixture_events(region)
@@ -200,7 +202,7 @@ def _fetch_events(cfg: Mapping) -> List[Dict]:
                 location_within=api_config.get("location_within", "25mi"),
                 days_ahead=days_ahead,
             )
-        except Exception as e:
+        except (ValueError, requests.RequestException) as e:
             print(f"Warning: Failed to fetch from Eventbrite API: {e}")
             print("Falling back to fixture data")
             return _fixture_events(region)

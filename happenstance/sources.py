@@ -55,7 +55,7 @@ def fetch_google_places_restaurants(
         for place in data.get("results", [])[:20]:  # Limit to 20 restaurants
             # Determine cuisine from types or default
             types = place.get("types", [])
-            cuisine = _infer_cuisine_from_types(types)
+            cuisine = _infer_cuisine_from_types(types) if types else "Restaurant"
             
             restaurants.append({
                 "name": place.get("name", "Unknown"),
