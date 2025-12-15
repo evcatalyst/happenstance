@@ -1,30 +1,100 @@
 [
   {
-    "title": "Waterfront Jazz Night",
-    "category": "live music",
-    "date": "2025-12-17T12:00:00+00:00",
-    "location": "Sample City Waterfront Stage",
-    "url": "https://example.com/jazz-night"
-  },
-  {
-    "title": "Gallery Walk",
-    "category": "art",
-    "date": "2025-12-20T12:00:00+00:00",
-    "location": "Sample City Arts District",
-    "url": "https://example.com/gallery-walk"
-  },
-  {
-    "title": "Family Picnic at the Park",
+    "title": "San Francisco Symphony: Disney's Frozen In Concert - Film With Live Orchestra",
     "category": "family",
-    "date": "2025-12-22T12:00:00+00:00",
-    "location": "Sample City Central Park",
-    "url": "https://example.com/family-picnic"
+    "date": "2025-12-15T19:00:00+00:00",
+    "location": "Davies Symphony Hall, 201 Van Ness Ave, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Disney+Frozen+Davies+Symphony+Hall+San+Francisco"
+  },
+  {
+    "title": "San Francisco Ballet: The Nutcracker",
+    "category": "entertainment",
+    "date": "2025-12-16T19:30:00+00:00",
+    "location": "War Memorial Opera House, 301 Van Ness Avenue, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Nutcracker+War+Memorial+Opera+House+San+Francisco"
+  },
+  {
+    "title": "City Ballet: The Nutcracker",
+    "category": "family",
+    "date": "2025-12-18T14:00:00+00:00",
+    "location": "Palace of Fine Arts, 3301 Lyon Street, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=City+Ballet+Palace+of+Fine+Arts+San+Francisco"
+  },
+  {
+    "title": "Cirque du Soleil - Echo",
+    "category": "entertainment",
+    "date": "2025-12-16T19:00:00+00:00",
+    "location": "Oracle Park, 24 Willie Mays Plaza, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cirque+du+Soleil+Oracle+Park+San+Francisco"
+  },
+  {
+    "title": "Mads Tolling: A Cool Yule",
+    "category": "live music",
+    "date": "2025-12-20T19:00:00+00:00",
+    "location": "SFJazz Center - Joe Henderson Lab, 201 Franklin Street, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mads+Tolling+SFJazz+San+Francisco"
+  },
+  {
+    "title": "Keys Jazz Bistro: Cosmo Alleycats",
+    "category": "live music",
+    "date": "2025-12-21T17:00:00+00:00",
+    "location": "Keys Jazz Bistro, 498 Broadway, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cosmo+Alleycats+Keys+Jazz+Bistro+San+Francisco"
+  },
+  {
+    "title": "Holiday Music Series at The Ferry Building",
+    "category": "live music",
+    "date": "2025-12-23T17:00:00+00:00",
+    "location": "Ferry Building, 1 Ferry Building, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Holiday+Music+Series+Ferry+Building+San+Francisco"
+  },
+  {
+    "title": "Let's Glow SF",
+    "category": "art",
+    "date": "2025-12-19T17:30:00+00:00",
+    "location": "Financial District/Downtown, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Let's+Glow+SF+Financial+District+San+Francisco"
+  },
+  {
+    "title": "Peter and the Wolf",
+    "category": "family",
+    "date": "2025-12-15T14:00:00+00:00",
+    "location": "Davies Symphony Hall, 201 Van Ness Ave, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Peter+and+the+Wolf+Davies+Symphony+Hall+San+Francisco"
+  },
+  {
+    "title": "The Dillinger Escape Plan - Calculating Infinity Live",
+    "category": "live music",
+    "date": "2025-12-15T20:00:00+00:00",
+    "location": "Regency Ballroom, 1290 Sutter Street, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dillinger+Escape+Plan+Regency+Ballroom+San+Francisco"
+  },
+  {
+    "title": "Unscripted: John Cusack",
+    "category": "entertainment",
+    "date": "2025-12-15T19:30:00+00:00",
+    "location": "Golden Gate Theatre, 1 Taylor St, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=John+Cusack+Golden+Gate+Theatre+San+Francisco"
+  },
+  {
+    "title": "San Francisco 49ers vs. Indianapolis Colts",
+    "category": "sports",
+    "date": "2025-12-28T13:25:00+00:00",
+    "location": "Levi's Stadium, 4900 Marie P DeBartolo Way, Santa Clara",
+    "url": "https://www.google.com/maps/search/?api=1&query=San+Francisco+49ers+Levi's+Stadium+Santa+Clara"
+  },
+  {
+    "title": "Ape Drums at 1015 Folsom",
+    "category": "live music",
+    "date": "2025-12-26T22:00:00+00:00",
+    "location": "1015 Folsom, 1015 Folsom St, San Francisco",
+    "url": "https://www.google.com/maps/search/?api=1&query=Ape+Drums+1015+Folsom+San+Francisco"
   },
   {
     "_meta": {
-      "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-      "items_changed": false,
-      "item_count": 3
+      "items_hash": "c6874e6242d2859335bda923f482085122c46b5e3bdde512d3761290d8ef4800",
+      "items_changed": true,
+      "item_count": 13
     }
   }
 ]

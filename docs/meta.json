@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-15T01:35:35.986507+00:00",
+  "generated_at": "2025-12-15T04:06:17.608838+00:00",
   "profile": "default",
   "region": "Sample City",
   "branding": {
@@ -18,40 +18,111 @@
     "limit": 10
   },
   "gap_bullets": [
-    "Add more options for Vegan.",
-    "Add more options for sports."
+    "Add more options for Sushi.",
+    "Add more options for BBQ.",
+    "Add more options for Vegan."
   ],
   "events": {
-    "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-    "items_changed": false,
-    "item_count": 3
+    "items_hash": "c6874e6242d2859335bda923f482085122c46b5e3bdde512d3761290d8ef4800",
+    "items_changed": true,
+    "item_count": 13
   },
   "restaurants": {
-    "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
-    "items_changed": false,
-    "item_count": 4
+    "items_hash": "c16149db51eabedb4032c4c031b9f5983e23e9a916ba03c6611185ac606595a8",
+    "items_changed": true,
+    "item_count": 20
   },
   "pairings": [
     {
-      "event": "Waterfront Jazz Night",
-      "restaurant": "Midnight Sushi",
-      "match_reason": "Open late for night event",
-      "event_url": "https://example.com/jazz-night",
-      "restaurant_url": "https://example.com/midnight-sushi"
+      "event": "San Francisco Symphony: Disney's Frozen In Concert - Film With Live Orchestra",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Disney+Frozen+Davies+Symphony+Hall+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
     },
     {
-      "event": "Gallery Walk",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Great before a waterfront concert",
-      "event_url": "https://example.com/gallery-walk",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "event": "San Francisco Ballet: The Nutcracker",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=The+Nutcracker+War+Memorial+Opera+House+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
     },
     {
-      "event": "Family Picnic at the Park",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Great before a waterfront concert",
-      "event_url": "https://example.com/family-picnic",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "event": "City Ballet: The Nutcracker",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=City+Ballet+Palace+of+Fine+Arts+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Cirque du Soleil - Echo",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Cirque+du+Soleil+Oracle+Park+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Mads Tolling: A Cool Yule",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Mads+Tolling+SFJazz+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Keys Jazz Bistro: Cosmo Alleycats",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Cosmo+Alleycats+Keys+Jazz+Bistro+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Holiday Music Series at The Ferry Building",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Holiday+Music+Series+Ferry+Building+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Let's Glow SF",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Let's+Glow+SF+Financial+District+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Peter and the Wolf",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Peter+and+the+Wolf+Davies+Symphony+Hall+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "The Dillinger Escape Plan - Calculating Infinity Live",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Dillinger+Escape+Plan+Regency+Ballroom+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Unscripted: John Cusack",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=John+Cusack+Golden+Gate+Theatre+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "San Francisco 49ers vs. Indianapolis Colts",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=San+Francisco+49ers+Levi's+Stadium+Santa+Clara",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
+    },
+    {
+      "event": "Ape Drums at 1015 Folsom",
+      "restaurant": "Acquerello",
+      "match_reason": "Michelin-starred destination for refined Italian cuisine",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Ape+Drums+1015+Folsom+San+Francisco",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco"
     }
   ],
   "guidance": "Spread recommendations across the next 2 months when available."

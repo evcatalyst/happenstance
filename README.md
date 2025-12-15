@@ -36,48 +36,58 @@ Configure profiles in `config/config_logic.json`. Environment overrides:
 
 ### Data Sources
 
-The system supports both **fixture (demo) data** and **real API data sources**:
+The system supports both **fixture (demo) data** and **real AI-powered data sources**:
 
 **Fixture Data** (default fallback):
 - Uses hardcoded sample restaurants and events
-- No API keys required
+- No setup required
 - Perfect for testing and development
 
-**Real API Data Sources**:
-Configure in `config/config_logic.json` under `data_sources`:
+**AI-Powered Data** (Grok/OpenAI via web_search):
+Configure in `config/config_logic.json`:
 ```json
 {
   "data_sources": {
-    "restaurants": "google_places",  // or "fixtures"
-    "events": "ticketmaster"         // or "eventbrite" or "fixtures"
+    "restaurants": "ai",
+    "events": "ai"
+  },
+  "api_config": {
+    "ai": {
+      "city": "San Francisco",
+      "restaurant_count": 20,
+      "event_count": 20
+    }
   }
 }
 ```
 
-**Setting Up API Keys**:
+**Setting Up AI Data**:
 
-1. **Google Places API** (for restaurants):
-   - Get API key: https://developers.google.com/maps/documentation/places/web-service/get-api-key
-   - Set environment variable: `GOOGLE_PLACES_API_KEY=your_key_here`
-   - Configure location in `config/config_logic.json` → `api_config.google_places.location`
+The system uses **Grok and OpenAI** (available through GitHub Copilot) to fetch real restaurant and event data via intelligent web search. See `docs/AI_SETUP.md` for complete instructions.
 
-2. **Ticketmaster API** (for events):
-   - Get API key: https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
-   - Set environment variable: `TICKETMASTER_API_KEY=your_key_here`
-   - Configure city/state in `config/config_logic.json` → `api_config.ticketmaster`
+**Quick Start**:
+1. Generate prompts: `python scripts/fetch_ai_data.py`
+2. Use Copilot agent's `web_search` tool with the prompts
+3. Set environment variables with the JSON responses:
+   ```bash
+   export AI_RESTAURANTS_DATA=$(cat /tmp/ai_restaurants_response.json)
+   export AI_EVENTS_DATA=$(cat /tmp/ai_events_response.json)
+   ```
+4. Run: `python -m happenstance.cli aggregate`
 
-3. **Eventbrite API** (alternative for events):
-   - Get API token: https://www.eventbrite.com/platform/api
-   - Set environment variable: `EVENTBRITE_API_KEY=your_token_here`
-   - Configure location in `config/config_logic.json` → `api_config.eventbrite`
-
-**For GitHub Actions**: Add API keys as repository secrets:
+**For GitHub Actions**: Add AI-fetched data as repository secrets:
 - Go to repository Settings → Secrets and variables → Actions
-- Add secrets: `GOOGLE_PLACES_API_KEY`, `TICKETMASTER_API_KEY`, `EVENTBRITE_API_KEY`
+- Add secrets: `AI_RESTAURANTS_DATA` (JSON array), `AI_EVENTS_DATA` (JSON array)
+- See `docs/AI_SETUP.md` for detailed instructions
 
-**Local Development**: Copy `.env.example` to `.env` and add your API keys.
+**Advantages**:
+- ✅ Uses existing Grok/OpenAI access (no additional API keys needed)
+- ✅ Fetches real, current data from any city
+- ✅ Intelligent search and parsing
+- ✅ Automatic fallback to fixture data
+- ✅ No per-request costs
 
-The system automatically falls back to fixture data if API keys are missing or API calls fail, ensuring the site always has data to display.
+The system automatically falls back to fixture data if AI responses are not provided, ensuring the site always has data to display.
 
 ### CLI
 ```

@@ -3,18 +3,12 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Mapping
 
-import requests
-
 from .config import load_config
 from .hash import compute_meta
 from .io import append_meta, docs_path, read_json, write_json
 from .prompting import build_gap_bullets, month_spread_guidance
 from .search import build_live_search_params
-from .sources import (
-    fetch_eventbrite_events,
-    fetch_google_places_restaurants,
-    fetch_ticketmaster_events,
-)
+from .sources import fetch_ai_events, fetch_ai_restaurants
 from .validate import filter_events_by_window
 
 
@@ -148,17 +142,18 @@ def _fetch_restaurants(cfg: Mapping) -> List[Dict]:
     if restaurant_source == "fixtures":
         print(f"Using fixture data for restaurants in {region}")
         return _fixture_restaurants(region)
-    elif restaurant_source == "google_places":
-        print(f"Fetching restaurants from Google Places API for {region}")
-        api_config = cfg.get("api_config", {}).get("google_places", {})
+    elif restaurant_source == "ai":
+        print(f"Fetching restaurants using AI-powered search for {region}")
+        api_config = cfg.get("api_config", {}).get("ai", {})
         try:
-            return fetch_google_places_restaurants(
+            return fetch_ai_restaurants(
                 region=region,
-                location=api_config.get("location"),
-                radius_meters=api_config.get("radius_meters", 5000),
+                city=api_config.get("city"),
+                cuisine_types=cfg.get("target_cuisines"),
+                count=api_config.get("restaurant_count", 20),
             )
-        except (ValueError, requests.RequestException) as e:
-            print(f"Warning: Failed to fetch from Google Places API: {e}")
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from AI: {e}")
             print("Falling back to fixture data")
             return _fixture_restaurants(region)
     else:
@@ -176,34 +171,19 @@ def _fetch_events(cfg: Mapping) -> List[Dict]:
     if event_source == "fixtures":
         print(f"Using fixture data for events in {region}")
         return _fixture_events(region)
-    elif event_source == "ticketmaster":
-        print(f"Fetching events from Ticketmaster API for {region}")
-        api_config = cfg.get("api_config", {}).get("ticketmaster", {})
+    elif event_source == "ai":
+        print(f"Fetching events using AI-powered search for {region}")
+        api_config = cfg.get("api_config", {}).get("ai", {})
         try:
-            return fetch_ticketmaster_events(
+            return fetch_ai_events(
                 region=region,
                 city=api_config.get("city"),
-                state_code=api_config.get("state_code"),
-                country_code=api_config.get("country_code", "US"),
-                radius_miles=api_config.get("radius_miles", 25),
+                categories=cfg.get("target_categories"),
                 days_ahead=days_ahead,
+                count=api_config.get("event_count", 20),
             )
-        except (ValueError, requests.RequestException) as e:
-            print(f"Warning: Failed to fetch from Ticketmaster API: {e}")
-            print("Falling back to fixture data")
-            return _fixture_events(region)
-    elif event_source == "eventbrite":
-        print(f"Fetching events from Eventbrite API for {region}")
-        api_config = cfg.get("api_config", {}).get("eventbrite", {})
-        try:
-            return fetch_eventbrite_events(
-                region=region,
-                location_address=api_config.get("location_address"),
-                location_within=api_config.get("location_within", "25mi"),
-                days_ahead=days_ahead,
-            )
-        except (ValueError, requests.RequestException) as e:
-            print(f"Warning: Failed to fetch from Eventbrite API: {e}")
+        except ValueError as e:
+            print(f"Warning: Failed to fetch from AI: {e}")
             print("Falling back to fixture data")
             return _fixture_events(region)
     else:

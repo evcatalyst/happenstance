@@ -13,23 +13,14 @@
         "Keep late-night shows close to late-night kitchens."
       ],
       "data_sources": {
-        "restaurants": "google_places",
-        "events": "ticketmaster"
+        "restaurants": "ai",
+        "events": "ai"
       },
       "api_config": {
-        "google_places": {
-          "location": "37.7749,-122.4194",
-          "radius_meters": 5000
-        },
-        "ticketmaster": {
+        "ai": {
           "city": "San Francisco",
-          "state_code": "CA",
-          "country_code": "US",
-          "radius_miles": 25
-        },
-        "eventbrite": {
-          "location_address": "San Francisco, CA",
-          "location_within": "25mi"
+          "restaurant_count": 20,
+          "event_count": 20
         }
       },
       "live_search": {
