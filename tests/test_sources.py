@@ -1,7 +1,6 @@
 """Tests for data source integrations."""
-import json
 import os
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -116,11 +115,10 @@ class TestGooglePlacesRestaurants:
             fetch_google_places_restaurants("San Francisco", "Sample City")
     
     @patch.dict(os.environ, {"GOOGLE_PLACES_API_KEY": "test_key"})
-    @patch("happenstance.sources.urllib.request.urlopen")
-    def test_successful_fetch(self, mock_urlopen):
+    @patch("happenstance.sources._make_request")
+    def test_successful_fetch(self, mock_request):
         """Test successful restaurant fetch."""
-        mock_response = MagicMock()
-        mock_response.read.return_value = json.dumps({
+        mock_request.return_value = {
             "places": [
                 {
                     "displayName": {"text": "Test Restaurant"},
@@ -131,10 +129,7 @@ class TestGooglePlacesRestaurants:
                     "priceLevel": "PRICE_LEVEL_MODERATE"
                 }
             ]
-        }).encode()
-        mock_response.__enter__ = MagicMock(return_value=mock_response)
-        mock_response.__exit__ = MagicMock(return_value=False)
-        mock_urlopen.return_value = mock_response
+        }
         
         restaurants = fetch_google_places_restaurants("San Francisco", "Sample City")
         

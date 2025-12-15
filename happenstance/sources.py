@@ -17,9 +17,33 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List
 
 
-def _make_request(url: str, headers: Dict[str, str] | None = None) -> Dict:
-    """Make an HTTP GET request and return JSON response."""
-    req = urllib.request.Request(url, headers=headers or {})
+def _make_request(
+    url: str,
+    headers: Dict[str, str] | None = None,
+    method: str = "GET",
+    data: Dict | None = None,
+) -> Dict:
+    """Make an HTTP request and return JSON response.
+    
+    Args:
+        url: URL to request
+        headers: Optional headers dict
+        method: HTTP method (GET or POST)
+        data: Optional data dict for POST requests
+        
+    Returns:
+        Parsed JSON response
+        
+    Raises:
+        ValueError: If request fails
+    """
+    req_data = json.dumps(data).encode() if data else None
+    req = urllib.request.Request(
+        url,
+        data=req_data,
+        headers=headers or {},
+        method=method
+    )
     try:
         with urllib.request.urlopen(req, timeout=10) as response:
             return json.loads(response.read().decode())
@@ -112,15 +136,13 @@ def fetch_google_places_restaurants(
     }
     
     try:
-        req = urllib.request.Request(
+        data = _make_request(
             url,
-            data=json.dumps(body).encode(),
             headers=headers,
-            method="POST"
+            method="POST",
+            data=body
         )
-        with urllib.request.urlopen(req, timeout=10) as response:
-            data = json.loads(response.read().decode())
-    except Exception as e:
+    except ValueError as e:
         raise ValueError(f"Google Places API request failed: {e}") from e
     
     restaurants = []
