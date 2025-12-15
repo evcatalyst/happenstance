@@ -1,189 +1,37 @@
 [
   {
-    "name": "Acquerello",
+    "name": "Blue Harbor Grill",
+    "cuisine": "Seafood",
+    "address": "Sample City Waterfront",
+    "url": "https://example.com/blue-harbor",
+    "match_reason": "Great before a waterfront concert"
+  },
+  {
+    "name": "Sunset Pasta",
     "cuisine": "Italian",
-    "address": "1722 Sacramento St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Acquerello+San+Francisco",
-    "match_reason": "Michelin-starred destination for refined Italian cuisine",
-    "rating": 4.8,
-    "price_level": 4
+    "address": "Sample City Arts District",
+    "url": "https://example.com/sunset-pasta",
+    "match_reason": "Close to the gallery walk"
   },
   {
-    "name": "Kokkari Estiatorio",
-    "cuisine": "Greek/Mediterranean",
-    "address": "200 Jackson St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Kokkari+Estiatorio+San+Francisco",
-    "match_reason": "Beloved upscale Greek spot with wood-fired specialties",
-    "rating": 4.7,
-    "price_level": 3
+    "name": "Midnight Sushi",
+    "cuisine": "Sushi",
+    "address": "Sample City Downtown",
+    "url": "https://example.com/midnight-sushi",
+    "match_reason": "Open late after live music"
   },
   {
-    "name": "State Bird Provisions",
-    "cuisine": "New American",
-    "address": "1529 Fillmore St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=State+Bird+Provisions+San+Francisco",
-    "match_reason": "Innovative small plates, frequently changing menu",
-    "rating": 4.6,
-    "price_level": 3
-  },
-  {
-    "name": "Sons & Daughters",
-    "cuisine": "American/Contemporary",
-    "address": "708 Bush St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Sons+and+Daughters+San+Francisco",
-    "match_reason": "Known for tasting menus and creative Californian cuisine",
-    "rating": 4.7,
-    "price_level": 3
-  },
-  {
-    "name": "Aziza",
-    "cuisine": "Middle Eastern",
-    "address": "5800 Geary Blvd, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Aziza+San+Francisco",
-    "match_reason": "Modern Moroccan feasts and vibrant setting",
-    "rating": 4.6,
-    "price_level": 2
-  },
-  {
-    "name": "Quince",
-    "cuisine": "Italian/French",
-    "address": "470 Pacific Ave, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Quince+San+Francisco",
-    "match_reason": "3-Michelin-starred, elegant tasting menu experience",
-    "rating": 4.8,
-    "price_level": 4
-  },
-  {
-    "name": "Rich Table",
-    "cuisine": "American/Contemporary",
-    "address": "199 Gough St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Rich+Table+San+Francisco",
-    "match_reason": "Inventive, ingredient-driven Californian cuisine",
-    "rating": 4.7,
-    "price_level": 3
-  },
-  {
-    "name": "Lazy Bear",
-    "cuisine": "New American",
-    "address": "3416 19th St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Lazy+Bear+San+Francisco",
-    "match_reason": "Communal dining, multi-course inventive menu",
-    "rating": 4.7,
-    "price_level": 4
-  },
-  {
-    "name": "San Ho Won",
-    "cuisine": "Korean/BBQ",
-    "address": "2170 Bryant St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=San+Ho+Won+San+Francisco",
-    "match_reason": "Award-winning, modern Korean BBQ experience",
-    "rating": 4.8,
-    "price_level": 3
-  },
-  {
-    "name": "Californios",
-    "cuisine": "Mexican/Contemporary",
-    "address": "355 11th St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Californios+San+Francisco",
-    "match_reason": "Two-Michelin-starred, modern Mexican tasting menu",
-    "rating": 4.9,
-    "price_level": 4
-  },
-  {
-    "name": "Del Popolo",
-    "cuisine": "Italian/Pizza",
-    "address": "855 Bush St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Del+Popolo+San+Francisco",
-    "match_reason": "Acclaimed for wood-fired pizzas and cozy vibe",
-    "rating": 4.7,
-    "price_level": 2
-  },
-  {
-    "name": "Mister Jiu's",
-    "cuisine": "Chinese",
-    "address": "28 Waverly Pl, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Mister+Jiu's+San+Francisco",
-    "match_reason": "Michelin-starred, creative Chinese fare in Chinatown",
-    "rating": 4.6,
-    "price_level": 3
-  },
-  {
-    "name": "House of Prime Rib",
-    "cuisine": "Steakhouse/American",
-    "address": "1906 Van Ness Ave, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=House+of+Prime+Rib+San+Francisco",
-    "match_reason": "Classic prime rib destination, a local institution",
-    "rating": 4.8,
-    "price_level": 3
-  },
-  {
-    "name": "Tony's Pizza Napoletana",
-    "cuisine": "Italian/Pizza",
-    "address": "1570 Stockton St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Tony's+Pizza+Napoletana+San+Francisco",
-    "match_reason": "Multiple award-winning, diverse pizza styles",
-    "rating": 4.7,
-    "price_level": 2
-  },
-  {
-    "name": "Foreign Cinema",
-    "cuisine": "Californian",
-    "address": "2534 Mission St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Foreign+Cinema+San+Francisco",
-    "match_reason": "Iconic for its outdoor patio and brunch",
-    "rating": 4.6,
-    "price_level": 3
-  },
-  {
-    "name": "Cafe de Casa",
-    "cuisine": "Brazilian",
-    "address": "3985 17th St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Cafe+de+Casa+San+Francisco",
-    "match_reason": "Beloved for authentic Brazilian pastry and a\u00e7a\u00ed bowls",
-    "rating": 4.7,
-    "price_level": 1
-  },
-  {
-    "name": "A\u00edso",
-    "cuisine": "Vegan/Plant-Based",
-    "address": "200 Church St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Aiso+San+Francisco",
-    "match_reason": "Innovative vegan spot with creative plant-based dishes",
-    "rating": 4.7,
-    "price_level": 2
-  },
-  {
-    "name": "Zuni Caf\u00e9",
-    "cuisine": "Californian/Mediterranean",
-    "address": "1658 Market St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Zuni+Cafe+San+Francisco",
-    "match_reason": "Renowned for its roast chicken and Caesar salad",
-    "rating": 4.7,
-    "price_level": 3
-  },
-  {
-    "name": "Ken",
-    "cuisine": "Sushi/Japanese",
-    "address": "252 Divisadero St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Ken+San+Francisco",
-    "match_reason": "Intimate sushi omakase with high-end ingredients",
-    "rating": 4.8,
-    "price_level": 4
-  },
-  {
-    "name": "Brenda's French Soul Food",
-    "cuisine": "Cajun/Creole",
-    "address": "652 Polk St, San Francisco",
-    "url": "https://www.google.com/maps/search/?api=1&query=Brenda's+French+Soul+Food+San+Francisco",
-    "match_reason": "Famous for beignets and Southern classics",
-    "rating": 4.6,
-    "price_level": 2
+    "name": "Firepit BBQ",
+    "cuisine": "BBQ",
+    "address": "Sample City Market",
+    "url": "https://example.com/firepit-bbq",
+    "match_reason": "Perfect for families near the park"
   },
   {
     "_meta": {
-      "items_hash": "c16149db51eabedb4032c4c031b9f5983e23e9a916ba03c6611185ac606595a8",
-      "items_changed": false,
-      "item_count": 20
+      "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
+      "items_changed": true,
+      "item_count": 4
     }
   }
 ]

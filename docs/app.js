@@ -59,6 +59,17 @@ function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+function formatEventDate(dateString) {
+  return new Date(dateString).toLocaleDateString('en-US', { 
+    weekday: 'short', 
+    month: 'short', 
+    day: 'numeric', 
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
+}
+
 function renderRestaurants() {
   const filtered = state.data.restaurants.filter(
     (r) => matchesFilter(r.name) || matchesFilter(r.cuisine) || matchesFilter(r.address || "")
@@ -67,9 +78,9 @@ function renderRestaurants() {
     const rows = filtered
       .map(
         (r) =>
-          `<tr><td>${escapeHTML(r.name)}</td><td>${escapeHTML(r.cuisine)}</td><td>${escapeHTML(
+          `<tr><td><strong>${escapeHTML(r.name)}</strong></td><td><span class="badge">${escapeHTML(r.cuisine)}</span></td><td>${escapeHTML(
             r.address
-          )}</td><td><a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">Link</a></td></tr>`
+          )}</td><td><a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">View →</a></td></tr>`
       )
       .join("");
     restaurantsContainer.innerHTML = `<table><thead><tr><th>Name</th><th>Cuisine</th><th>Address</th><th>Link</th></tr></thead><tbody>${rows}</tbody></table>`;
@@ -77,10 +88,13 @@ function renderRestaurants() {
     const cards = filtered
       .map(
         (r) => `<div class="card">
-      <h3>${escapeHTML(r.name)}</h3>
-      <p>${escapeHTML(r.cuisine)}</p>
-      <p class="meta">${escapeHTML(r.address)}</p>
-      <a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">View</a>
+      <div class="card-header">
+        <h3>${escapeHTML(r.name)}</h3>
+        <span class="badge badge-cuisine">${escapeHTML(r.cuisine)}</span>
+      </div>
+      <p class="meta">📍 ${escapeHTML(r.address)}</p>
+      ${r.match_reason ? `<p class="match-reason">${escapeHTML(r.match_reason)}</p>` : ''}
+      <a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">View Details →</a>
     </div>`
       )
       .join("");
@@ -95,10 +109,13 @@ function renderEvents() {
   const cards = filtered
     .map(
       (e) => `<div class="card">
-        <h3>${escapeHTML(e.title)}</h3>
-        <p>${escapeHTML(e.category)}</p>
-        <p class="meta">${escapeHTML(new Date(e.date).toLocaleString())} – ${escapeHTML(e.location)}</p>
-        <a href="${escapeHTML(e.url)}" target="_blank" rel="noopener">Details</a>
+        <div class="card-header">
+          <h3>${escapeHTML(e.title)}</h3>
+          <span class="badge badge-category">${escapeHTML(e.category)}</span>
+        </div>
+        <p class="meta">📅 ${escapeHTML(formatEventDate(e.date))}</p>
+        <p class="meta">📍 ${escapeHTML(e.location)}</p>
+        <a href="${escapeHTML(e.url)}" target="_blank" rel="noopener">Event Details →</a>
       </div>`
     )
     .join("");
@@ -110,18 +127,30 @@ function renderPaired() {
     (p) => matchesFilter(p.event) || matchesFilter(p.restaurant) || matchesFilter(p.match_reason || "")
   );
   if (filtered.length === 0) {
-    pairedContainer.innerHTML = `<div class="empty">No pairings match the current filter.</div>`;
+    pairedContainer.innerHTML = `<div class="empty">
+      <strong>No pairings match the current filter.</strong>
+      <p>Try clearing your search or browse all pairings.</p>
+    </div>`;
     return;
   }
   const cards = filtered
     .map(
-      (p) => `<div class="card">
-        <h3>${escapeHTML(p.event)}</h3>
-        <p>+ ${escapeHTML(p.restaurant)}</p>
-        <p class="meta">${escapeHTML(p.match_reason || "Great together")}</p>
-        <p><a href="${escapeHTML(p.event_url)}" target="_blank" rel="noopener">Event</a> · <a href="${escapeHTML(
-            p.restaurant_url
-          )}" target="_blank" rel="noopener">Restaurant</a></p>
+      (p) => `<div class="card card-paired">
+        <div class="pairing-event">
+          <strong>🎉 Event</strong>
+          <h3>${escapeHTML(p.event)}</h3>
+        </div>
+        <div class="pairing-divider">+</div>
+        <div class="pairing-restaurant">
+          <strong>🍽️ Restaurant</strong>
+          <h3>${escapeHTML(p.restaurant)}</h3>
+        </div>
+        <p class="match-reason">💡 ${escapeHTML(p.match_reason || "Great together")}</p>
+        <div class="pairing-links">
+          <a href="${escapeHTML(p.event_url)}" target="_blank" rel="noopener">Event Details</a>
+          <span>•</span>
+          <a href="${escapeHTML(p.restaurant_url)}" target="_blank" rel="noopener">Restaurant Details</a>
+        </div>
       </div>`
     )
     .join("");
