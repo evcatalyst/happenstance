@@ -86,20 +86,58 @@ def _compute_match_score(event: Dict, restaurant: Dict) -> tuple[int, str]:
     cuisine = restaurant.get("cuisine", "").lower()
     title = event.get("title", "").lower()
     match_reason = restaurant.get("match_reason", "")
+    location = event.get("location", "").lower()
+    address = restaurant.get("address", "").lower()
 
-    if category and cuisine and category in cuisine:
-        score += 2
-        reasons.append(f"Matches category '{event.get('category')}' with cuisine '{restaurant.get('cuisine')}'")
+    # Match category with cuisine
+    if category and cuisine:
+        if category in cuisine or cuisine in category:
+            score += 3
+            reasons.append("Cuisine matches event type")
+        # Special category matches
+        if "music" in category and any(k in cuisine for k in ["jazz", "american", "mediterranean"]):
+            score += 2
+            reasons.append("Great dining for music events")
+        if "art" in category and any(k in cuisine for k in ["italian", "french", "contemporary"]):
+            score += 2
+            reasons.append("Sophisticated dining for art events")
+        if "sports" in category and any(k in cuisine for k in ["american", "bbq", "pizza", "mexican"]):
+            score += 2
+            reasons.append("Casual dining for sports events")
 
-    if "family" in title or "kids" in title:
-        if "family" in match_reason.lower() or "family" in cuisine:
+    # Family-friendly matching
+    if "family" in title or "kids" in title or "family" in category:
+        if "family" in match_reason.lower() or any(k in cuisine for k in ["pizza", "american", "italian"]):
             score += 2
             reasons.append("Family-friendly pairing")
 
-    if "night" in title or "late" in title:
-        if "late" in match_reason.lower() or "open" in match_reason.lower():
+    # Late night events
+    if "night" in title or "late" in title or "evening" in title:
+        if "late" in match_reason.lower() or "sushi" in cuisine or "contemporary" in cuisine:
             score += 1
-            reasons.append("Open late for night event")
+            reasons.append("Good for evening events")
+
+    # Location proximity (simple string matching)
+    if location and address:
+        # Extract neighborhood/district names
+        for neighborhood in ["downtown", "waterfront", "financial", "mission", "castro", "fillmore", "pacific"]:
+            if neighborhood in location and neighborhood in address:
+                score += 3
+                reasons.append("Same neighborhood")
+                break
+
+    # High-quality restaurants get a bonus
+    rating = restaurant.get("rating", 0)
+    if rating >= 4.7:
+        score += 2
+        reasons.append("Highly rated")
+    elif rating >= 4.5:
+        score += 1
+        reasons.append("Well rated")
+
+    # Add variety - use a hash of cuisine to spread choices
+    cuisine_variety_score = hash(cuisine) % 3
+    score += cuisine_variety_score
 
     if not reasons:
         reasons.append(match_reason or "Nearby and reliable")
