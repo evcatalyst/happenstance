@@ -23,13 +23,13 @@ Without API keys, the system automatically falls back to demo/fixture data.
 5. (Optional but recommended) Restrict the API key to Places API only
 
 **Configure the location:**
-Edit `config/config_logic.json` to set your target location:
+Edit `config/config_logic.json` to set your target city:
 ```json
 {
   "api_config": {
     "google_places": {
-      "location": "37.7749,-122.4194",  // Latitude,Longitude
-      "radius_meters": 5000
+      "city": "San Francisco",
+      "count": 20
     }
   }
 }
@@ -49,9 +49,7 @@ Edit `config/config_logic.json`:
   "api_config": {
     "ticketmaster": {
       "city": "San Francisco",
-      "state_code": "CA",
-      "country_code": "US",
-      "radius_miles": 25
+      "count": 20
     }
   }
 }
@@ -70,8 +68,8 @@ Edit `config/config_logic.json`:
 {
   "api_config": {
     "eventbrite": {
-      "location_address": "San Francisco, CA",
-      "location_within": "25mi"
+      "city": "San Francisco",
+      "count": 20
     }
   }
 }
@@ -112,8 +110,8 @@ Edit `config/config_logic.json` to select which sources to use:
 ```json
 {
   "data_sources": {
-    "restaurants": "google_places",  // Options: "fixtures", "google_places"
-    "events": "ticketmaster"         // Options: "fixtures", "ticketmaster", "eventbrite"
+    "restaurants": "google_places",  // Options: "fixtures", "google_places", "ai"
+    "events": "ticketmaster"         // Options: "fixtures", "ticketmaster", "eventbrite", "ai"
   }
 }
 ```

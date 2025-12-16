@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-15T04:34:58.240551+00:00",
+  "generated_at": "2025-12-15T20:07:03.932301+00:00",
   "profile": "default",
   "region": "Sample City",
   "branding": {
@@ -23,12 +23,12 @@
   ],
   "events": {
     "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-    "items_changed": true,
+    "items_changed": false,
     "item_count": 3
   },
   "restaurants": {
     "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
-    "items_changed": true,
+    "items_changed": false,
     "item_count": 4
   },
   "pairings": [
@@ -41,17 +41,17 @@
     },
     {
       "event": "Gallery Walk",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Great before a waterfront concert",
+      "restaurant": "Sunset Pasta",
+      "match_reason": "Sophisticated dining for art events",
       "event_url": "https://example.com/gallery-walk",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "restaurant_url": "https://example.com/sunset-pasta"
     },
     {
       "event": "Family Picnic at the Park",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Great before a waterfront concert",
+      "restaurant": "Sunset Pasta",
+      "match_reason": "Family-friendly pairing",
       "event_url": "https://example.com/family-picnic",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "restaurant_url": "https://example.com/sunset-pasta"
     }
   ],
   "guidance": "Spread recommendations across the next 2 months when available."

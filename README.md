@@ -36,58 +36,65 @@ Configure profiles in `config/config_logic.json`. Environment overrides:
 
 ### Data Sources
 
-The system supports both **fixture (demo) data** and **real AI-powered data sources**:
+The system supports both **fixture (demo) data** and **real API-powered data sources**:
 
 **Fixture Data** (default fallback):
 - Uses hardcoded sample restaurants and events
 - No setup required
 - Perfect for testing and development
 
-**AI-Powered Data** (Grok/OpenAI via web_search):
+**API-Powered Data** (Google Places, Ticketmaster):
 Configure in `config/config_logic.json`:
 ```json
 {
   "data_sources": {
-    "restaurants": "ai",
-    "events": "ai"
+    "restaurants": "google_places",
+    "events": "ticketmaster"
   },
   "api_config": {
-    "ai": {
+    "google_places": {
       "city": "San Francisco",
-      "restaurant_count": 20,
-      "event_count": 20
+      "radius": 5000,
+      "count": 20
+    },
+    "ticketmaster": {
+      "city": "San Francisco",
+      "count": 20
     }
   }
 }
 ```
 
-**Setting Up AI Data**:
+**Setting Up API Data**:
 
-The system uses **Grok and OpenAI** (available through GitHub Copilot) to fetch real restaurant and event data via intelligent web search. See `docs/AI_SETUP.md` for complete instructions.
+The system uses **Google Places** and **Ticketmaster** APIs to fetch real restaurant and event data. See `docs/API_SETUP.md` for complete instructions.
 
 **Quick Start**:
-1. Generate prompts: `python scripts/fetch_ai_data.py`
-2. Use Copilot agent's `web_search` tool with the prompts
-3. Set environment variables with the JSON responses:
+1. Get API keys from Google Places and Ticketmaster (see `docs/API_SETUP.md`)
+2. Set environment variables:
    ```bash
-   export AI_RESTAURANTS_DATA=$(cat /tmp/ai_restaurants_response.json)
-   export AI_EVENTS_DATA=$(cat /tmp/ai_events_response.json)
+   export GOOGLE_PLACES_API_KEY="your_google_key"
+   export TICKETMASTER_API_KEY="your_ticketmaster_key"
    ```
-4. Run: `python -m happenstance.cli aggregate`
+3. Run: `python -m happenstance.cli aggregate`
 
-**For GitHub Actions**: Add AI-fetched data as repository secrets:
+**For GitHub Actions**: Add API keys as repository secrets:
 - Go to repository Settings → Secrets and variables → Actions
-- Add secrets: `AI_RESTAURANTS_DATA` (JSON array), `AI_EVENTS_DATA` (JSON array)
-- See `docs/AI_SETUP.md` for detailed instructions
+- Add secrets: `GOOGLE_PLACES_API_KEY`, `TICKETMASTER_API_KEY`
+- See `docs/API_SETUP.md` for detailed instructions
+
+**AI-Powered Data** (Alternative):
+
+As an alternative to traditional APIs, you can use AI-powered search (Grok/OpenAI). See `docs/AI_SETUP.md` for instructions.
 
 **Advantages**:
-- ✅ Uses existing Grok/OpenAI access (no additional API keys needed)
-- ✅ Fetches real, current data from any city
-- ✅ Intelligent search and parsing
+- ✅ Real, current data from any city
 - ✅ Automatic fallback to fixture data
-- ✅ No per-request costs
+- ✅ Multiple data source options (APIs or AI)
+- ✅ No per-request costs with free API tiers
+- ✅ Flexible configuration
 
-The system automatically falls back to fixture data if AI responses are not provided, ensuring the site always has data to display.
+The system automatically falls back to fixture data if API keys are not provided, ensuring the site always has data to display.
 
 ### CLI
 ```

@@ -8,17 +8,19 @@ Created `happenstance/sources.py` with three API integrations:
 - **Google Places API** for fetching real restaurant data
 - **Ticketmaster API** for fetching real event data  
 - **Eventbrite API** as an alternative event data source
+- **AI-powered search** (Grok/OpenAI) as an alternative data source
 
 All integrations include:
 - Proper error handling with automatic fallback to fixture data
-- Configurable parameters (location, radius, etc.)
+- Configurable parameters (location, radius, count, etc.)
 - Category/cuisine inference from API responses
 - URL generation for each item
+- Real HTTP requests using urllib
 
 ### 2. Updated Data Pipeline
 
 Modified `happenstance/aggregate.py` to:
-- Support multiple data sources (fixtures, google_places, ticketmaster, eventbrite)
+- Support multiple data sources (fixtures, google_places, ticketmaster, eventbrite, ai)
 - Automatically fetch from configured sources
 - Fall back to fixture data if API keys are missing or API calls fail
 - Print clear status messages about which data source is being used
@@ -40,26 +42,26 @@ Updated `.github/workflows/pages.yml` to:
 
 ### 5. Comprehensive Documentation
 
-Created documentation:
-- **README.md**: Updated with data sources overview and setup instructions
+Updated documentation:
+- **README.md**: Overview of data sources and setup
 - **docs/API_SETUP.md**: Detailed guide for obtaining and configuring API keys
+- **docs/AI_SETUP.md**: Guide for using AI-powered data (alternative approach)
 - **docs/GITHUB_PAGES_SETUP.md**: Guide for fixing GitHub Pages deployment
-- **.env.example**: Updated with API key environment variables
+- **.env.example**: Updated with all API key environment variables
 
 ## What You Need to Do
 
 ### Required Actions
 
-1. **Fix GitHub Pages Deployment**
-   - Follow instructions in `docs/GITHUB_PAGES_SETUP.md`
-   - Key step: Set Pages Source to "GitHub Actions" in repository Settings
-   
-2. **Add API Keys to Repository Secrets**
+1. **Add API Keys to Repository Secrets** (Optional but recommended for real data)
    - Follow instructions in `docs/API_SETUP.md`
    - Add secrets in repository Settings → Secrets and variables → Actions
-   - At minimum, add:
+   - Recommended:
      - `GOOGLE_PLACES_API_KEY` (for restaurants)
      - `TICKETMASTER_API_KEY` (for events)
+   - Optional alternatives:
+     - `EVENTBRITE_API_KEY` (alternative events source)
+     - `AI_RESTAURANTS_DATA` and `AI_EVENTS_DATA` (AI-powered alternative)
 
 ### Testing the Pipeline
 
@@ -87,11 +89,11 @@ Output: Fetches real restaurants and events
 ### When APIs Are Missing (Current State)
 ```
 Fetching restaurants from Google Places API for Sample City
-Warning: Failed to fetch from Google Places API: Google Places API key not provided.
+Warning: Failed to fetch from Google Places API: Google Places API key not provided...
 Falling back to fixture data
 
 Fetching events from Ticketmaster API for Sample City
-Warning: Failed to fetch from Ticketmaster API: Ticketmaster API key not provided.
+Warning: Failed to fetch from Ticketmaster API: Ticketmaster API key not provided...
 Falling back to fixture data
 ```
 
@@ -111,6 +113,7 @@ Fetching events from Ticketmaster API for Sample City
 3. **Flexible Configuration**: Easy to switch between data sources
 4. **Production Ready**: Real data updates automatically via GitHub Actions
 5. **Cost Effective**: Free tiers sufficient for daily updates
+6. **Multiple Options**: Choose between API-based or AI-powered data
 
 ## API Costs
 
@@ -122,25 +125,25 @@ Based on daily updates (once per day):
 ## Next Steps
 
 1. ✅ Code is ready and tested
-2. ⏳ You configure GitHub Pages (see GITHUB_PAGES_SETUP.md)
-3. ⏳ You add API keys as repository secrets (see API_SETUP.md)
-4. ✅ System automatically fetches and displays real data
-5. ✅ Daily updates keep data fresh
+2. ⏳ You add API keys as repository secrets (see API_SETUP.md)
+3. ✅ System automatically fetches and displays real data
+4. ✅ Daily updates keep data fresh
 
 ## Verification Checklist
 
-After you complete the setup:
-- [ ] GitHub Pages deploys successfully
-- [ ] Visit the live site and see it loads
-- [ ] Check if restaurant data shows real places (if Google API key added)
-- [ ] Check if event data shows real events (if Ticketmaster API key added)
+After you add API keys:
+- [ ] Add API keys to repository secrets
+- [ ] Trigger GitHub Actions workflow (push to main or manual dispatch)
+- [ ] Check workflow logs to see if real data was fetched
+- [ ] Visit the live site and verify real restaurants/events appear
+- [ ] Confirm data matches your configured city
 - [ ] Verify daily cron job runs at 6 AM UTC
-- [ ] Confirm data updates automatically
 
 ## Questions?
 
 Refer to:
 - `docs/API_SETUP.md` for API setup details
+- `docs/AI_SETUP.md` for AI-powered alternative
 - `docs/GITHUB_PAGES_SETUP.md` for deployment troubleshooting
 - `README.md` for general usage
 - `.env.example` for local development setup
