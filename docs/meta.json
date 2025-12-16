@@ -1,10 +1,10 @@
 {
-  "generated_at": "2025-12-15T20:07:03.932301+00:00",
+  "generated_at": "2025-12-16T05:40:34.441388+00:00",
   "profile": "default",
-  "region": "Sample City",
+  "region": "Capital Region, NY",
   "branding": {
-    "title": "Happenstance",
-    "tagline": "Plan your weekend with great food and events",
+    "title": "Happenstance - Capital Region",
+    "tagline": "Plan your weekend with great food and events around Niskayuna, Albany & Saratoga",
     "accent_color": "#3b82f6"
   },
   "pairing_rules": [
@@ -14,44 +14,111 @@
   ],
   "search": {
     "mode": "local",
-    "radius_km": 5,
+    "radius_km": 40,
     "limit": 10
   },
-  "gap_bullets": [
-    "Add more options for Vegan.",
-    "Add more options for sports."
-  ],
+  "gap_bullets": [],
   "events": {
-    "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-    "items_changed": false,
-    "item_count": 3
+    "items_hash": "063e13f4e887064020dbed858421792cd3b0ffbc6f21673ddd9b3845b0bae706",
+    "items_changed": true,
+    "item_count": 13
   },
   "restaurants": {
-    "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
-    "items_changed": false,
-    "item_count": 4
+    "items_hash": "bc4e705027651535381fcdd1a09d58871486e21eb45d32bd355223c3f59ccdab",
+    "items_changed": true,
+    "item_count": 35
   },
   "pairings": [
     {
-      "event": "Waterfront Jazz Night",
-      "restaurant": "Blue Harbor Grill",
-      "match_reason": "Same neighborhood",
-      "event_url": "https://example.com/jazz-night",
-      "restaurant_url": "https://example.com/blue-harbor"
+      "event": "Family Tree",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Great dining for music events; Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Putnam+Place+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
     },
     {
-      "event": "Gallery Walk",
-      "restaurant": "Sunset Pasta",
-      "match_reason": "Sophisticated dining for art events",
-      "event_url": "https://example.com/gallery-walk",
-      "restaurant_url": "https://example.com/sunset-pasta"
+      "event": "Santa's Playland",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Santa's+Playland+Round+Lake+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
     },
     {
-      "event": "Family Picnic at the Park",
-      "restaurant": "Sunset Pasta",
-      "match_reason": "Family-friendly pairing",
-      "event_url": "https://example.com/family-picnic",
-      "restaurant_url": "https://example.com/sunset-pasta"
+      "event": "Trans-Siberian Orchestra",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Great dining for music events; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Empire State Plaza Farmers Market",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Empire+State+Plaza+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "CBS 6 Melodies of Christmas",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Proctors+Theatre+Schenectady+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Holiday Book Sale",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Springs+Public+Library+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Trail of Lights",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Artisanal+Brew+Works+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Schenectady Light Show at Central Park",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Central+Park+Schenectady+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Saratoga Performing Arts Center Winter Concert Series",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Great dining for music events; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Performing+Arts+Center+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Albany Firebirds Indoor Football",
+      "restaurant": "Meat & Company",
+      "match_reason": "Casual dining for sports events; Highly rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Meat+Company+Niskayuna+NY"
+    },
+    {
+      "event": "Winter Farmers Market",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Family-friendly pairing; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Honest+Weight+Food+Co-op+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Holiday Show at Universal Preservation Hall",
+      "restaurant": "Blue Ribbon Restaurant & Bakery",
+      "match_reason": "Great dining for music events; Well rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Universal+Preservation+Hall+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY"
+    },
+    {
+      "event": "Albany Institute of History & Art Holiday Exhibition",
+      "restaurant": "Meat & Company",
+      "match_reason": "Highly rated",
+      "event_url": "https://www.google.com/maps/search/?api=1&query=Albany+Institute+of+History+Art+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Meat+Company+Niskayuna+NY"
     }
   ],
   "guidance": "Spread recommendations across the next 2 months when available."

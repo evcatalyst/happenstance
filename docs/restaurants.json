@@ -1,37 +1,324 @@
 [
   {
-    "name": "Blue Harbor Grill",
-    "cuisine": "Seafood",
-    "address": "Sample City Waterfront",
-    "url": "https://example.com/blue-harbor",
-    "match_reason": "Great before a waterfront concert"
-  },
-  {
-    "name": "Sunset Pasta",
+    "name": "Mario's Restaurant & Pizzeria",
     "cuisine": "Italian",
-    "address": "Sample City Arts District",
-    "url": "https://example.com/sunset-pasta",
-    "match_reason": "Close to the gallery walk"
+    "address": "2850 River Rd, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mario's+Restaurant+Pizzeria+Niskayuna+NY",
+    "match_reason": "Popular Italian restaurant and pizzeria in Niskayuna",
+    "rating": 4.5,
+    "price_level": 2
   },
   {
-    "name": "Midnight Sushi",
-    "cuisine": "Sushi",
-    "address": "Sample City Downtown",
-    "url": "https://example.com/midnight-sushi",
-    "match_reason": "Open late after live music"
-  },
-  {
-    "name": "Firepit BBQ",
+    "name": "Meat & Company",
     "cuisine": "BBQ",
-    "address": "Sample City Market",
-    "url": "https://example.com/firepit-bbq",
-    "match_reason": "Perfect for families near the park"
+    "address": "2321 Nott St E, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=Meat+Company+Niskayuna+NY",
+    "match_reason": "Highly rated BBQ and sandwich spot",
+    "rating": 4.8,
+    "price_level": 2
+  },
+  {
+    "name": "VOLCANO Asian BBQ and Hot Pot",
+    "cuisine": "Asian",
+    "address": "2309 Nott St E, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=VOLCANO+Asian+BBQ+Hot+Pot+Niskayuna+NY",
+    "match_reason": "Asian fusion BBQ and hot pot restaurant",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Thai Thai Bistro",
+    "cuisine": "Thai",
+    "address": "2309 Nott St E, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=Thai+Thai+Bistro+Niskayuna+NY",
+    "match_reason": "Thai cuisine with sushi and bar",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Tequila's Mexican Bar & Grill",
+    "cuisine": "Mexican",
+    "address": "2305 Nott St, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tequila's+Mexican+Bar+Grill+Niskayuna+NY",
+    "match_reason": "Mexican restaurant with bar",
+    "rating": 4.1,
+    "price_level": 2
+  },
+  {
+    "name": "The Broken Inn",
+    "cuisine": "American",
+    "address": "2209 Nott St, Niskayuna, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Broken+Inn+Niskayuna+NY",
+    "match_reason": "American pub with casual dining",
+    "rating": 4.3,
+    "price_level": 2
+  },
+  {
+    "name": "MORE Perreca's",
+    "cuisine": "Italian",
+    "address": "33 N Jay St, Schenectady, NY 12305",
+    "url": "https://www.google.com/maps/search/?api=1&query=MORE+Perreca's+Schenectady+NY",
+    "match_reason": "Traditional Italian bakery and restaurant",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "The Memphis King BBQ",
+    "cuisine": "BBQ",
+    "address": "1909 5th Ave, Schenectady, NY 12303",
+    "url": "https://www.google.com/maps/search/?api=1&query=Memphis+King+BBQ+Schenectady+NY",
+    "match_reason": "Authentic Memphis-style BBQ",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Blue Ribbon Restaurant & Bakery",
+    "cuisine": "American",
+    "address": "1801 State St, Schenectady, NY 12304",
+    "url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY",
+    "match_reason": "Popular breakfast and American diner",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Tara Kitchen",
+    "cuisine": "Indian",
+    "address": "431 Liberty St, Schenectady, NY 12305",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tara+Kitchen+Schenectady+NY",
+    "match_reason": "Moroccan and Indian fusion cuisine",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Gershon's Deli",
+    "cuisine": "American",
+    "address": "1600 Union St, Schenectady, NY 12309",
+    "url": "https://www.google.com/maps/search/?api=1&query=Gershon's+Deli+Schenectady+NY",
+    "match_reason": "Classic American deli",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Caffe Italia",
+    "cuisine": "Italian",
+    "address": "662 Central Ave, Albany, NY 12206",
+    "url": "https://www.google.com/maps/search/?api=1&query=Caffe+Italia+Albany+NY",
+    "match_reason": "Authentic Italian cafe",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Sushi Tei",
+    "cuisine": "Sushi",
+    "address": "1800 Western Ave, Albany, NY 12203",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sushi+Tei+Albany+NY",
+    "match_reason": "Japanese sushi restaurant",
+    "rating": 4.3,
+    "price_level": 2
+  },
+  {
+    "name": "Dinosaur Bar-B-Que",
+    "cuisine": "BBQ",
+    "address": "377 River St, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dinosaur+Bar-B-Que+Troy+NY",
+    "match_reason": "Famous BBQ chain location",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "El Mariachi Mexican Restaurant",
+    "cuisine": "Mexican",
+    "address": "289 Hamilton St, Albany, NY 12210",
+    "url": "https://www.google.com/maps/search/?api=1&query=El+Mariachi+Mexican+Restaurant+Albany+NY",
+    "match_reason": "Authentic Mexican cuisine",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Bountiful Bread",
+    "cuisine": "Vegan",
+    "address": "1475 Western Ave, Albany, NY 12203",
+    "url": "https://www.google.com/maps/search/?api=1&query=Bountiful+Bread+Albany+NY",
+    "match_reason": "Vegan and vegetarian American restaurant",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Sukhothai",
+    "cuisine": "Thai",
+    "address": "254 Lark St, Albany, NY 12210",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sukhothai+Albany+NY",
+    "match_reason": "Authentic Thai cuisine",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Emperor's Palace",
+    "cuisine": "Chinese",
+    "address": "10 Wolf Rd, Albany, NY 12205",
+    "url": "https://www.google.com/maps/search/?api=1&query=Emperor's+Palace+Albany+NY",
+    "match_reason": "Traditional Chinese restaurant",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Moghul Palace",
+    "cuisine": "Indian",
+    "address": "911 Central Ave, Albany, NY 12206",
+    "url": "https://www.google.com/maps/search/?api=1&query=Moghul+Palace+Albany+NY",
+    "match_reason": "Classic Indian restaurant",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "DeFazio's Pizzeria",
+    "cuisine": "Italian",
+    "address": "266 4th St, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=DeFazio's+Pizzeria+Troy+NY",
+    "match_reason": "Highly rated pizza and Italian food",
+    "rating": 4.8,
+    "price_level": 2
+  },
+  {
+    "name": "Sushi King",
+    "cuisine": "Sushi",
+    "address": "2209 15th St, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sushi+King+Troy+NY",
+    "match_reason": "Japanese sushi restaurant",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "La Mexicana Grocery & Restaurant",
+    "cuisine": "Mexican",
+    "address": "1758 Fifth Ave, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=La+Mexicana+Grocery+Restaurant+Troy+NY",
+    "match_reason": "Authentic Mexican restaurant",
+    "rating": 4.9,
+    "price_level": 1
+  },
+  {
+    "name": "The Whistling Kettle",
+    "cuisine": "American",
+    "address": "138 Broadway, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Whistling+Kettle+Troy+NY",
+    "match_reason": "American tea room with cafe fare",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Bua Thai",
+    "cuisine": "Thai",
+    "address": "194 River St, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=Bua+Thai+Troy+NY",
+    "match_reason": "Highly rated Thai restaurant",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Lee Lin Chinese Restaurant",
+    "cuisine": "Chinese",
+    "address": "96 3rd St, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lee+Lin+Chinese+Restaurant+Troy+NY",
+    "match_reason": "Traditional Chinese dining",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Spice Root",
+    "cuisine": "Indian",
+    "address": "2712 5th Ave, Troy, NY 12180",
+    "url": "https://www.google.com/maps/search/?api=1&query=Spice+Root+Troy+NY",
+    "match_reason": "Authentic Indian cuisine",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Chianti Il Ristorante",
+    "cuisine": "Italian",
+    "address": "18 Division St, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Chianti+Il+Ristorante+Saratoga+Springs+NY",
+    "match_reason": "Fine Italian dining in Saratoga Springs",
+    "rating": 4.5,
+    "price_level": 3
+  },
+  {
+    "name": "Sushi Thai Garden",
+    "cuisine": "Sushi",
+    "address": "44 Phila St, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sushi+Thai+Garden+Saratoga+Springs+NY",
+    "match_reason": "Sushi and Thai cuisine",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "PJ's BAR-B-QSA",
+    "cuisine": "BBQ",
+    "address": "1 Kaydeross Ave W, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=PJ's+BAR-B-QSA+Saratoga+Springs+NY",
+    "match_reason": "BBQ restaurant in Saratoga Springs",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Cantina",
+    "cuisine": "Mexican",
+    "address": "408 Broadway, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cantina+Saratoga+Springs+NY",
+    "match_reason": "Mexican restaurant on Broadway",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "cuisine": "American",
+    "address": "381 Broadway, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Druthers+Brewing+Company+Saratoga+Springs+NY",
+    "match_reason": "American brewpub with craft beers",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Four Seasons Natural Foods",
+    "cuisine": "Vegan",
+    "address": "120 Henry St, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Natural+Foods+Saratoga+Springs+NY",
+    "match_reason": "Vegan and vegetarian health food spot",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Phila Fusion Noodle Bar",
+    "cuisine": "Thai",
+    "address": "54 Phila St, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Phila+Fusion+Noodle+Bar+Saratoga+Springs+NY",
+    "match_reason": "Thai and Asian fusion noodle bar",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Great Tang's Restaurant",
+    "cuisine": "Chinese",
+    "address": "1018 Route 9, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Great+Tang's+Restaurant+Saratoga+Springs+NY",
+    "match_reason": "Chinese restaurant with sushi",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Karavalli",
+    "cuisine": "Indian",
+    "address": "47 Caroline St, Saratoga Springs, NY 12866",
+    "url": "https://www.google.com/maps/search/?api=1&query=Karavalli+Saratoga+Springs+NY",
+    "match_reason": "Fine Indian dining in Saratoga Springs",
+    "rating": 4.6,
+    "price_level": 3
   },
   {
     "_meta": {
-      "items_hash": "167a653171c1d4af6c443bc491d4d84ac96886f6adfb3b20d122c7bb8e935018",
-      "items_changed": false,
-      "item_count": 4
+      "items_hash": "bc4e705027651535381fcdd1a09d58871486e21eb45d32bd355223c3f59ccdab",
+      "items_changed": true,
+      "item_count": 35
     }
   }
 ]

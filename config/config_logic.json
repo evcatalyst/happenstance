@@ -1,10 +1,10 @@
 {
   "profiles": {
     "default": {
-      "region": "Sample City",
+      "region": "Capital Region, NY",
       "branding": {
-        "title": "Happenstance",
-        "tagline": "Plan your weekend with great food and events",
+        "title": "Happenstance - Capital Region",
+        "tagline": "Plan your weekend with great food and events around Niskayuna, Albany & Saratoga",
         "accent_color": "#3b82f6"
       },
       "pairing_rules": [
@@ -13,8 +13,8 @@
         "Keep late-night shows close to late-night kitchens."
       ],
       "data_sources": {
-        "restaurants": "google_places",
-        "events": "ticketmaster"
+        "restaurants": "ai",
+        "events": "ai"
       },
       "api_config": {
         "google_places": {
@@ -30,17 +30,17 @@
           "count": 20
         },
         "ai": {
-          "city": "San Francisco",
-          "restaurant_count": 20,
-          "event_count": 20
+          "city": "Niskayuna, NY",
+          "restaurant_count": 35,
+          "event_count": 30
         }
       },
       "live_search": {
         "mode": "local",
-        "radius_km": 5,
+        "radius_km": 40,
         "limit": 10
       },
-      "target_cuisines": ["Italian", "Sushi", "BBQ", "Vegan"],
+      "target_cuisines": ["Italian", "Sushi", "BBQ", "Vegan", "Mexican", "Thai", "Chinese", "Indian"],
       "target_categories": ["live music", "art", "family", "sports"],
       "base_url": "https://evcatalyst.github.io/happenstance"
     }
