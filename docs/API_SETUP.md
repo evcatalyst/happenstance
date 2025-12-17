@@ -8,6 +8,8 @@ The Happenstance app can fetch data from:
 - **Google Places API** for restaurants
 - **Ticketmaster API** for events
 - **Eventbrite API** for events (alternative)
+- **Grok API** for AI-powered search (alternative)
+- **OpenAI API** for AI-powered search (alternative)
 
 Without API keys, the system automatically falls back to demo/fixture data.
 
@@ -75,6 +77,22 @@ Edit `config/config_logic.json`:
 }
 ```
 
+### 4. Grok API (AI-Powered Search)
+
+**Get your API key:**
+1. Go to [x.ai API](https://x.ai/api)
+2. Sign up and get your API key
+
+**Note:** Requires implementing AI search functionality that calls Grok API directly.
+
+### 5. OpenAI API (AI-Powered Search)
+
+**Get your API key:**
+1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Sign up and create an API key
+
+**Note:** Requires implementing AI search functionality that calls OpenAI API directly.
+
 ## Local Development
 
 1. Copy `.env.example` to `.env`
@@ -83,6 +101,8 @@ Edit `config/config_logic.json`:
 GOOGLE_PLACES_API_KEY=your_google_api_key_here
 TICKETMASTER_API_KEY=your_ticketmaster_api_key_here
 EVENTBRITE_API_KEY=your_eventbrite_token_here
+GROK_API_KEY=your_grok_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 3. Run the aggregator:
@@ -100,6 +120,8 @@ To use real data in GitHub Pages deployments:
    - `GOOGLE_PLACES_API_KEY`
    - `TICKETMASTER_API_KEY`
    - `EVENTBRITE_API_KEY`
+   - `GROK_API_KEY` (for AI-powered search)
+   - `OPENAI_API_KEY` (for AI-powered search)
 
 The workflow (`.github/workflows/pages.yml`) is already configured to use these secrets.
 
