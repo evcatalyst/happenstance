@@ -47,9 +47,18 @@ python -m happenstance.cli aggregate
 
 ## GitHub Actions Setup
 
-### Required Secrets
+### Option 1: API Keys (Recommended)
 
 Add these repository secrets (Settings → Secrets → Actions):
+
+1. **GROK_API_KEY**: API key from https://x.ai/api
+2. **OPENAI_API_KEY**: API key from https://platform.openai.com/api-keys
+
+With API keys configured, the system will automatically fetch fresh data on each run.
+
+### Option 2: Pre-fetched Data
+
+Alternatively, add these repository secrets:
 
 1. **AI_RESTAURANTS_DATA**: JSON array of restaurants fetched via web_search
 2. **AI_EVENTS_DATA**: JSON array of events fetched via web_search
