@@ -1,30 +1,100 @@
 [
   {
-    "title": "Waterfront Jazz Night",
+    "title": "Family Tree",
     "category": "live music",
-    "date": "2025-12-17T12:00:00+00:00",
-    "location": "Sample City Waterfront Stage",
-    "url": "https://example.com/jazz-night"
+    "date": "2025-12-22T20:00:00-05:00",
+    "location": "Putnam Place, 63a Putnam St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Putnam+Place+Saratoga+Springs+NY"
   },
   {
-    "title": "Gallery Walk",
-    "category": "art",
-    "date": "2025-12-20T12:00:00+00:00",
-    "location": "Sample City Arts District",
-    "url": "https://example.com/gallery-walk"
-  },
-  {
-    "title": "Family Picnic at the Park",
+    "title": "Santa's Playland",
     "category": "family",
-    "date": "2025-12-22T12:00:00+00:00",
-    "location": "Sample City Central Park",
-    "url": "https://example.com/family-picnic"
+    "date": "2025-12-20T10:00:00-05:00",
+    "location": "Quick Response Restoration, 2077 Route 9, Round Lake, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Santa's+Playland+Round+Lake+NY"
+  },
+  {
+    "title": "Trans-Siberian Orchestra",
+    "category": "live music",
+    "date": "2025-12-17T19:00:00-05:00",
+    "location": "MVP Arena, 51 S Pearl St, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY"
+  },
+  {
+    "title": "Empire State Plaza Farmers Market",
+    "category": "family",
+    "date": "2025-12-18T10:00:00-05:00",
+    "location": "Empire State Plaza, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Empire+State+Plaza+Albany+NY"
+  },
+  {
+    "title": "CBS 6 Melodies of Christmas",
+    "category": "family",
+    "date": "2025-12-18T19:00:00-05:00",
+    "location": "Proctors Theatre, 432 State St, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Proctors+Theatre+Schenectady+NY"
+  },
+  {
+    "title": "Holiday Book Sale",
+    "category": "family",
+    "date": "2025-12-20T10:00:00-05:00",
+    "location": "Saratoga Springs Public Library, 49 Henry St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Springs+Public+Library+NY"
+  },
+  {
+    "title": "Trail of Lights",
+    "category": "family",
+    "date": "2025-12-19T12:00:00-05:00",
+    "location": "Artisanal Brew Works & Nature's Edge Bistro, 617 Maple Ave, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Artisanal+Brew+Works+Saratoga+Springs+NY"
+  },
+  {
+    "title": "Schenectady Light Show at Central Park",
+    "category": "family",
+    "date": "2025-12-21T17:00:00-05:00",
+    "location": "Central Park, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Central+Park+Schenectady+NY"
+  },
+  {
+    "title": "Saratoga Performing Arts Center Winter Concert Series",
+    "category": "live music",
+    "date": "2025-12-27T19:00:00-05:00",
+    "location": "Saratoga Performing Arts Center, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Performing+Arts+Center+NY"
+  },
+  {
+    "title": "Albany Firebirds Indoor Football",
+    "category": "sports",
+    "date": "2025-12-28T19:00:00-05:00",
+    "location": "MVP Arena, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY"
+  },
+  {
+    "title": "Winter Farmers Market",
+    "category": "family",
+    "date": "2025-12-21T09:00:00-05:00",
+    "location": "Honest Weight Food Co-op, 100 Watervliet Ave, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Honest+Weight+Food+Co-op+Albany+NY"
+  },
+  {
+    "title": "Holiday Show at Universal Preservation Hall",
+    "category": "live music",
+    "date": "2025-12-23T19:30:00-05:00",
+    "location": "Universal Preservation Hall, 25 Washington St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Universal+Preservation+Hall+Saratoga+Springs+NY"
+  },
+  {
+    "title": "Albany Institute of History & Art Holiday Exhibition",
+    "category": "art",
+    "date": "2025-12-16T12:00:00-05:00",
+    "location": "Albany Institute of History & Art, 125 Washington Ave, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Albany+Institute+of+History+Art+NY"
   },
   {
     "_meta": {
-      "items_hash": "c68ae0dda3142d3dc623627d9ecbcca4618a52dec752b1aee7ffe33df194f408",
-      "items_changed": false,
-      "item_count": 3
+      "items_hash": "063e13f4e887064020dbed858421792cd3b0ffbc6f21673ddd9b3845b0bae706",
+      "items_changed": true,
+      "item_count": 13
     }
   }
 ]
