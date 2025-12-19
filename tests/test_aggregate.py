@@ -1,9 +1,7 @@
 """Tests for aggregate module functions."""
 from unittest.mock import MagicMock, patch
 
-import pytest
-
-from happenstance.aggregate import _calculate_distance, _geocode_address
+from happenstance.aggregate import _build_pairings, _calculate_distance, _geocode_address
 
 
 class TestGeocodeAddress:
@@ -100,3 +98,87 @@ class TestCalculateDistance:
         # Should be less than 1 mile
         assert distance < 1.0
         assert distance > 0
+
+
+class TestBuildPairings:
+    """Tests for building event-restaurant pairings with distance calculation."""
+    
+    @patch('happenstance.aggregate._geocode_address')
+    @patch('happenstance.aggregate._fetch_nearby_restaurants')
+    def test_pairings_with_distances(self, mock_fetch_nearby, mock_geocode):
+        """Test that pairings include distance when geocoding succeeds."""
+        # Mock geocoding to return coordinates
+        def geocode_side_effect(address, region="San Francisco"):
+            if "Waterfront Stage" in address:
+                return (37.7749, -122.4194)  # Event location
+            elif "Waterfront" in address:
+                return (37.7760, -122.4200)  # Restaurant location (close by)
+            return None
+        
+        mock_geocode.side_effect = geocode_side_effect
+        mock_fetch_nearby.return_value = []  # No nearby restaurants
+        
+        events = [
+            {
+                "title": "Waterfront Jazz Night",
+                "category": "live music",
+                "location": "San Francisco Waterfront Stage",
+                "url": "https://example.com/jazz",
+            }
+        ]
+        
+        restaurants = [
+            {
+                "name": "Blue Harbor Grill",
+                "cuisine": "Seafood",
+                "address": "San Francisco Waterfront",
+                "url": "https://example.com/blue-harbor",
+                "match_reason": "Great before a waterfront concert",
+            }
+        ]
+        
+        cfg = {"region": "San Francisco"}
+        pairings = _build_pairings(events, restaurants, cfg)
+        
+        assert len(pairings) == 1
+        assert pairings[0]["event"] == "Waterfront Jazz Night"
+        assert pairings[0]["restaurant"] == "Blue Harbor Grill"
+        assert "distance_miles" in pairings[0]
+        # Distance should be small (less than 1 mile)
+        assert pairings[0]["distance_miles"] < 1.0
+    
+    @patch('happenstance.aggregate._geocode_address')
+    @patch('happenstance.aggregate._fetch_nearby_restaurants')
+    def test_pairings_without_distances_when_geocoding_fails(self, mock_fetch_nearby, mock_geocode):
+        """Test that pairings work without distance when geocoding fails."""
+        mock_geocode.return_value = None  # Geocoding fails
+        mock_fetch_nearby.return_value = []
+        
+        events = [
+            {
+                "title": "Waterfront Jazz Night",
+                "category": "live music",
+                "location": "Unknown Location",
+                "url": "https://example.com/jazz",
+            }
+        ]
+        
+        restaurants = [
+            {
+                "name": "Blue Harbor Grill",
+                "cuisine": "Seafood",
+                "address": "Unknown Address",
+                "url": "https://example.com/blue-harbor",
+                "match_reason": "Great before a waterfront concert",
+            }
+        ]
+        
+        cfg = {"region": "San Francisco"}
+        pairings = _build_pairings(events, restaurants, cfg)
+        
+        assert len(pairings) == 1
+        assert pairings[0]["event"] == "Waterfront Jazz Night"
+        assert pairings[0]["restaurant"] == "Blue Harbor Grill"
+        # Distance should not be present when geocoding fails
+        assert "distance_miles" not in pairings[0]
+
