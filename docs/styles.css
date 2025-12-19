@@ -2,7 +2,7 @@
   --hs-accent: #3b82f6;
   --hs-bg-primary: #1a202c;
   --hs-bg-secondary: #2d3748;
-  --hs-bg-card: #2d3748;
+  --hs-bg-card: var(--hs-bg-secondary);
   --hs-border: #4a5568;
   --hs-text-primary: #f7fafc;
   --hs-text-secondary: #cbd5e1;
