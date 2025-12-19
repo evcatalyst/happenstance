@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-19T19:34:20.298778+00:00",
+  "generated_at": "2025-12-19T19:42:58.186702+00:00",
   "profile": "default",
   "region": "Capital Region, NY",
   "branding": {
@@ -33,38 +33,38 @@
   "pairings": [
     {
       "event": "Festival of Trees",
-      "restaurant": "Innovo Kitchen",
+      "restaurant": "Osteria Danny",
       "match_reason": "Family-friendly pairing; Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Schenectady+County+Historical+Society+Schenectady+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Osteria+Danny+26+Henry+St+Saratoga+Springs+NY"
     },
     {
       "event": "Cursive Live in Concert",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Lark+Hall+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Young Culture - The First and Final Headline Tour",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Empire+Underground+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Trans-Siberian Orchestra - The Ghosts Of Christmas Eve",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Empire State Plaza Farmers Market",
-      "restaurant": "Innovo Kitchen",
+      "restaurant": "Osteria Danny",
       "match_reason": "Family-friendly pairing; Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Empire+State+Plaza+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Osteria+Danny+26+Henry+St+Saratoga+Springs+NY"
     },
     {
       "event": "The Nature of Nature: Biodiversity in the Hudson Valley",
@@ -82,10 +82,10 @@
     },
     {
       "event": "Peak Jazz Series: Jane Monheit Duo",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Caffe+Lena+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Spirits in the Trees",
@@ -103,45 +103,45 @@
     },
     {
       "event": "Jim Brickman: The Gift of Christmas",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Universal+Preservation+Hall+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "An Elemental Christmas: iTheatre Saratoga's 4th Annual Holiday Music Event",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Music+Hall+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Kung Fu and Night Zero",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Great dining for music events; Highly rated",
+      "restaurant": "Maya Thai Bistro",
+      "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Putnam+Place+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "Holiday Tea at Saratoga Arms Hotel",
-      "restaurant": "Innovo Kitchen",
+      "restaurant": "Osteria Danny",
       "match_reason": "Family-friendly pairing; Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Arms+Hotel+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Osteria+Danny+26+Henry+St+Saratoga+Springs+NY"
     },
     {
       "event": "New Year's Eve Comedy Show",
-      "restaurant": "Karavalli Regional Cuisine of India",
+      "restaurant": "Maya Thai Bistro",
       "match_reason": "Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=The+Egg+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Karavalli+Regional+Cuisine+India+47+Caroline+St+Saratoga+Springs+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY"
     },
     {
       "event": "First Night Saratoga",
-      "restaurant": "Innovo Kitchen",
+      "restaurant": "Osteria Danny",
       "match_reason": "Family-friendly pairing; Highly rated",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Downtown+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY"
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Osteria+Danny+26+Henry+St+Saratoga+Springs+NY"
     }
   ],
   "guidance": "Spread recommendations across the next 2 months when available."

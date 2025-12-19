@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import math
+import os
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Mapping
 
@@ -9,6 +12,8 @@ from .io import append_meta, docs_path, read_json, write_json
 from .prompting import build_gap_bullets, month_spread_guidance
 from .search import build_live_search_params
 from .sources import (
+    _infer_cuisine,
+    _make_request,
     fetch_ai_events,
     fetch_ai_restaurants,
     fetch_eventbrite_events,
@@ -16,6 +21,151 @@ from .sources import (
     fetch_ticketmaster_events,
 )
 from .validate import filter_events_by_window
+
+
+def _geocode_address(address: str) -> tuple[float, float] | None:
+    """
+    Geocode an address using Google Maps Geocoding API.
+    
+    Args:
+        address: Address string to geocode
+        
+    Returns:
+        Tuple of (latitude, longitude) or None if geocoding fails
+    """
+    api_key = os.getenv("GOOGLE_PLACES_API_KEY")
+    if not api_key:
+        return None
+    
+    try:
+        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={urllib.parse.quote(address)}&key={api_key}"
+        data = _make_request(url)
+        
+        if data.get("status") == "OK" and data.get("results"):
+            location = data["results"][0]["geometry"]["location"]
+            return (location["lat"], location["lng"])
+    except Exception:
+        pass
+    
+    return None
+
+
+def _calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """
+    Calculate distance between two coordinates using Haversine formula.
+    
+    Args:
+        lat1, lon1: First coordinate (latitude, longitude)
+        lat2, lon2: Second coordinate (latitude, longitude)
+        
+    Returns:
+        Distance in miles
+    """
+    # Radius of Earth in miles
+    R = 3959.0
+    
+    # Convert to radians
+    lat1_rad = math.radians(lat1)
+    lon1_rad = math.radians(lon1)
+    lat2_rad = math.radians(lat2)
+    lon2_rad = math.radians(lon2)
+    
+    # Haversine formula
+    dlat = lat2_rad - lat1_rad
+    dlon = lon2_rad - lon1_rad
+    a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
+    c = 2 * math.asin(math.sqrt(a))
+    
+    return R * c
+
+
+def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]:
+    """
+    Fetch restaurants near a specific event location.
+    
+    Args:
+        event_location: Event location string
+        count: Number of nearby restaurants to fetch
+        
+    Returns:
+        List of restaurant dictionaries
+    """
+    api_key = os.getenv("GOOGLE_PLACES_API_KEY")
+    if not api_key:
+        return []
+    
+    # First geocode the event location
+    coords = _geocode_address(event_location)
+    if not coords:
+        return []
+    
+    lat, lng = coords
+    
+    # Use Places API Nearby Search
+    url = "https://places.googleapis.com/v1/places:searchNearby"
+    
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": api_key,
+        "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.types,places.rating,places.priceLevel,places.id",
+    }
+    
+    body = {
+        "locationRestriction": {
+            "circle": {
+                "center": {
+                    "latitude": lat,
+                    "longitude": lng
+                },
+                "radius": 800.0  # 800 meters (~0.5 miles)
+            }
+        },
+        "includedTypes": ["restaurant"],
+        "maxResultCount": min(count, 20),
+    }
+    
+    try:
+        data = _make_request(url, headers=headers, method="POST", data=body)
+    except Exception:
+        return []
+    
+    restaurants = []
+    places = data.get("places", [])
+    
+    for place in places[:count]:
+        name = place.get("displayName", {}).get("text", "Unknown")
+        address = place.get("formattedAddress", event_location)
+        place_id = place.get("id", "")
+        
+        # Build Google Maps URL
+        url = f"https://www.google.com/maps/place/?q=place_id:{place_id}" if place_id else f"https://www.google.com/search?q={urllib.parse.quote(name)}+{urllib.parse.quote(event_location)}"
+        
+        restaurant = {
+            "name": name,
+            "cuisine": _infer_cuisine(place),
+            "address": address,
+            "url": url,
+            "match_reason": "Near event location",
+        }
+        
+        # Add rating if available
+        if "rating" in place:
+            restaurant["rating"] = place["rating"]
+        
+        # Add price level if available
+        if "priceLevel" in place:
+            price_map = {
+                "PRICE_LEVEL_FREE": 0,
+                "PRICE_LEVEL_INEXPENSIVE": 1,
+                "PRICE_LEVEL_MODERATE": 2,
+                "PRICE_LEVEL_EXPENSIVE": 3,
+                "PRICE_LEVEL_VERY_EXPENSIVE": 4,
+            }
+            restaurant["price_level"] = price_map.get(place["priceLevel"], 2)
+        
+        restaurants.append(restaurant)
+    
+    return restaurants
 
 
 def _fixture_restaurants(region: str) -> List[Dict]:
@@ -85,7 +235,7 @@ def _fixture_events(region: str) -> List[Dict]:
     ]
 
 
-def _compute_match_score(event: Dict, restaurant: Dict) -> tuple[int, str]:
+def _compute_match_score(event: Dict, restaurant: Dict, distance_miles: float | None = None) -> tuple[int, str]:
     score = 0
     reasons: List[str] = []
     category = event.get("category", "").lower()
@@ -94,6 +244,18 @@ def _compute_match_score(event: Dict, restaurant: Dict) -> tuple[int, str]:
     match_reason = restaurant.get("match_reason", "")
     location = event.get("location", "").lower()
     address = restaurant.get("address", "").lower()
+
+    # Distance-based scoring (if available)
+    if distance_miles is not None:
+        if distance_miles < 0.5:
+            score += 5
+            reasons.append("Very close to event")
+        elif distance_miles < 1.0:
+            score += 3
+            reasons.append("Walking distance")
+        elif distance_miles < 3.0:
+            score += 1
+            reasons.append("Short drive")
 
     # Match category with cuisine
     if category and cuisine:
@@ -155,25 +317,80 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
     if not restaurants:
         return []
     pairings: List[Dict] = []
+    
+    # Cache geocoded locations to avoid redundant API calls
+    location_cache: Dict[str, tuple[float, float] | None] = {}
+    
     for event in events:
+        event_location = event.get("location", "")
+        
+        # Get event coordinates
+        event_coords = None
+        if event_location and event_location not in location_cache:
+            location_cache[event_location] = _geocode_address(event_location)
+        event_coords = location_cache.get(event_location)
+        
+        # Fetch nearby restaurants for this event
+        nearby_restaurants = _fetch_nearby_restaurants(event_location, count=3)
+        
+        # Combine nearby restaurants with the main restaurant list
+        # Prefer nearby restaurants but allow fallback to main list
+        all_restaurants = nearby_restaurants + restaurants
+        
         best_score = float("-inf")
         best_restaurant: Dict | None = None
         best_reason = ""
-        for restaurant in restaurants:
-            score, reason = _compute_match_score(event, restaurant)
+        best_distance: float | None = None
+        
+        for restaurant in all_restaurants:
+            restaurant_address = restaurant.get("address", "")
+            
+            # Calculate distance if both coordinates are available
+            distance_miles = None
+            if event_coords and restaurant_address:
+                if restaurant_address not in location_cache:
+                    location_cache[restaurant_address] = _geocode_address(restaurant_address)
+                restaurant_coords = location_cache.get(restaurant_address)
+                
+                if restaurant_coords:
+                    distance_miles = _calculate_distance(
+                        event_coords[0], event_coords[1],
+                        restaurant_coords[0], restaurant_coords[1]
+                    )
+            
+            score, reason = _compute_match_score(event, restaurant, distance_miles)
             if score > best_score:
                 best_score = score
                 best_restaurant = restaurant
                 best_reason = reason
-        pairings.append(
-            {
-                "event": event["title"],
-                "restaurant": best_restaurant["name"] if best_restaurant else "",
-                "match_reason": best_reason,
-                "event_url": event.get("url"),
-                "restaurant_url": best_restaurant.get("url") if best_restaurant else None,
-            }
-        )
+                best_distance = distance_miles
+        
+        pairing = {
+            "event": event["title"],
+            "restaurant": best_restaurant["name"] if best_restaurant else "",
+            "match_reason": best_reason,
+            "event_url": event.get("url"),
+            "restaurant_url": best_restaurant.get("url") if best_restaurant else None,
+        }
+        
+        # Add distance if available
+        if best_distance is not None:
+            pairing["distance_miles"] = round(best_distance, 1)
+        
+        # Add nearby restaurant options
+        if nearby_restaurants:
+            pairing["nearby_restaurants"] = [
+                {
+                    "name": r["name"],
+                    "cuisine": r["cuisine"],
+                    "url": r["url"],
+                    "rating": r.get("rating"),
+                }
+                for r in nearby_restaurants[:3]  # Limit to top 3
+            ]
+        
+        pairings.append(pairing)
+    
     return pairings
 
 

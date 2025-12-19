@@ -318,6 +318,59 @@ footer {
   margin-top: 40px;
 }
 
+.distance-info {
+  color: var(--hs-text-secondary);
+  font-size: 13px;
+  padding: 6px 10px;
+  background: rgba(16, 185, 129, 0.08);
+  border-radius: 4px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.nearby-restaurants {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hs-border);
+}
+
+.nearby-restaurants strong {
+  display: block;
+  font-size: 12px;
+  color: var(--hs-text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nearby-restaurants ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nearby-restaurants li {
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--hs-text-secondary);
+}
+
+.nearby-restaurants li a {
+  color: #60a5fa;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  display: inline;
+  font-size: 13px;
+}
+
+.nearby-restaurants li a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+  background: none;
+}
+
 @media (max-width: 768px) {
   header {
     padding: 12px 16px;

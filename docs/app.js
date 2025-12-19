@@ -135,23 +135,47 @@ function renderPaired() {
   }
   const cards = filtered
     .map(
-      (p) => `<div class="card card-paired">
-        <div class="pairing-event">
-          <strong>🎉 Event</strong>
-          <h3>${escapeHTML(p.event)}</h3>
-        </div>
-        <div class="pairing-divider">+</div>
-        <div class="pairing-restaurant">
-          <strong>🍽️ Restaurant</strong>
-          <h3>${escapeHTML(p.restaurant)}</h3>
-        </div>
-        <p class="match-reason">💡 ${escapeHTML(p.match_reason || "Great together")}</p>
-        <div class="pairing-links">
-          <a href="${escapeHTML(p.event_url)}" target="_blank" rel="noopener">Event Details</a>
-          <span>•</span>
-          <a href="${escapeHTML(p.restaurant_url)}" target="_blank" rel="noopener">Restaurant Details</a>
-        </div>
-      </div>`
+      (p) => {
+        // Build distance display
+        const distanceHTML = p.distance_miles 
+          ? `<p class="distance-info">📍 ${p.distance_miles} miles apart</p>` 
+          : '';
+        
+        // Build nearby restaurants display
+        let nearbyHTML = '';
+        if (p.nearby_restaurants && p.nearby_restaurants.length > 0) {
+          const nearbyList = p.nearby_restaurants
+            .map(r => {
+              const ratingHTML = r.rating ? ` (⭐ ${r.rating})` : '';
+              return `<li><a href="${escapeHTML(r.url)}" target="_blank" rel="noopener">${escapeHTML(r.name)}</a> - ${escapeHTML(r.cuisine)}${ratingHTML}</li>`;
+            })
+            .join('');
+          nearbyHTML = `<div class="nearby-restaurants">
+            <strong>Other nearby options:</strong>
+            <ul>${nearbyList}</ul>
+          </div>`;
+        }
+        
+        return `<div class="card card-paired">
+          <div class="pairing-event">
+            <strong>🎉 Event</strong>
+            <h3>${escapeHTML(p.event)}</h3>
+          </div>
+          <div class="pairing-divider">+</div>
+          <div class="pairing-restaurant">
+            <strong>🍽️ Restaurant</strong>
+            <h3>${escapeHTML(p.restaurant)}</h3>
+          </div>
+          <p class="match-reason">💡 ${escapeHTML(p.match_reason || "Great together")}</p>
+          ${distanceHTML}
+          <div class="pairing-links">
+            <a href="${escapeHTML(p.event_url)}" target="_blank" rel="noopener">Event Details</a>
+            <span>•</span>
+            <a href="${escapeHTML(p.restaurant_url)}" target="_blank" rel="noopener">Restaurant Details</a>
+          </div>
+          ${nearbyHTML}
+        </div>`;
+      }
     )
     .join("");
   pairedContainer.innerHTML = `<div class="grid">${cards}</div>`;
