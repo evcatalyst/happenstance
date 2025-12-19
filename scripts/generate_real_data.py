@@ -8,7 +8,6 @@ based on real information from the area.
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 
 # Real restaurant data for Capital Region, NY
 RESTAURANTS_DATA = [
