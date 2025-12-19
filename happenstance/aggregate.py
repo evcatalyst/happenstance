@@ -22,6 +22,36 @@ from .sources import (
 )
 from .validate import filter_events_by_window
 
+# Constants for nearby restaurant search
+NEARBY_RESTAURANT_RADIUS_METERS = 800.0  # ~0.5 miles
+MAX_NEARBY_RESTAURANTS_PER_EVENT = 3
+
+# Google Places price level mapping
+PRICE_LEVEL_MAP = {
+    "PRICE_LEVEL_FREE": 0,
+    "PRICE_LEVEL_INEXPENSIVE": 1,
+    "PRICE_LEVEL_MODERATE": 2,
+    "PRICE_LEVEL_EXPENSIVE": 3,
+    "PRICE_LEVEL_VERY_EXPENSIVE": 4,
+}
+
+
+def _build_google_maps_url(place_id: str | None, name: str, location: str) -> str:
+    """
+    Build a Google Maps URL for a place.
+    
+    Args:
+        place_id: Google Places ID if available
+        name: Name of the place
+        location: Location/city string
+        
+    Returns:
+        Google Maps URL
+    """
+    if place_id:
+        return f"https://www.google.com/maps/place/?q=place_id:{place_id}"
+    return f"https://www.google.com/search?q={urllib.parse.quote(name)}+{urllib.parse.quote(location)}"
+
 
 def _geocode_address(address: str) -> tuple[float, float] | None:
     """
@@ -117,7 +147,7 @@ def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]
                     "latitude": lat,
                     "longitude": lng
                 },
-                "radius": 800.0  # 800 meters (~0.5 miles)
+                "radius": NEARBY_RESTAURANT_RADIUS_METERS
             }
         },
         "includedTypes": ["restaurant"],
@@ -138,7 +168,7 @@ def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]
         place_id = place.get("id", "")
         
         # Build Google Maps URL
-        url = f"https://www.google.com/maps/place/?q=place_id:{place_id}" if place_id else f"https://www.google.com/search?q={urllib.parse.quote(name)}+{urllib.parse.quote(event_location)}"
+        url = _build_google_maps_url(place_id, name, event_location)
         
         restaurant = {
             "name": name,
@@ -154,14 +184,7 @@ def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]
         
         # Add price level if available
         if "priceLevel" in place:
-            price_map = {
-                "PRICE_LEVEL_FREE": 0,
-                "PRICE_LEVEL_INEXPENSIVE": 1,
-                "PRICE_LEVEL_MODERATE": 2,
-                "PRICE_LEVEL_EXPENSIVE": 3,
-                "PRICE_LEVEL_VERY_EXPENSIVE": 4,
-            }
-            restaurant["price_level"] = price_map.get(place["priceLevel"], 2)
+            restaurant["price_level"] = PRICE_LEVEL_MAP.get(place["priceLevel"], 2)
         
         restaurants.append(restaurant)
     
@@ -331,7 +354,7 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
         event_coords = location_cache.get(event_location)
         
         # Fetch nearby restaurants for this event
-        nearby_restaurants = _fetch_nearby_restaurants(event_location, count=3)
+        nearby_restaurants = _fetch_nearby_restaurants(event_location, count=MAX_NEARBY_RESTAURANTS_PER_EVENT)
         
         # Combine nearby restaurants with the main restaurant list
         # Prefer nearby restaurants but allow fallback to main list
@@ -386,7 +409,7 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
                     "url": r["url"],
                     "rating": r.get("rating"),
                 }
-                for r in nearby_restaurants[:3]  # Limit to top 3
+                for r in nearby_restaurants[:MAX_NEARBY_RESTAURANTS_PER_EVENT]
             ]
         
         pairings.append(pairing)
