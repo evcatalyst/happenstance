@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import math
 import os
+import time
 import urllib.parse
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Mapping
+
+import requests
 
 from .config import load_config
 from .hash import compute_meta
@@ -53,29 +56,47 @@ def _build_google_maps_url(place_id: str | None, name: str, location: str) -> st
     return f"https://www.google.com/search?q={urllib.parse.quote(name)}+{urllib.parse.quote(location)}"
 
 
-def _geocode_address(address: str) -> tuple[float, float] | None:
+def _geocode_address(address: str, region: str = "San Francisco") -> tuple[float, float] | None:
     """
-    Geocode an address using Google Maps Geocoding API.
+    Geocode an address using OpenStreetMap Nominatim (free, no API key needed).
     
     Args:
-        address: Address string to geocode
+        address: Address or venue string (e.g., "Chase Center, San Francisco")
+        region: Fallback city/region from config
         
     Returns:
-        Tuple of (latitude, longitude) or None if geocoding fails
+        Tuple of (latitude, longitude) or None if fails
     """
-    api_key = os.getenv("GOOGLE_PLACES_API_KEY")
-    if not api_key:
+    if not address:
         return None
     
+    # Ensure city is included for better accuracy
+    full_query = f"{address}, {region}"
+    
+    url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": full_query,
+        "format": "json",
+        "limit": 1,
+        "addressdetails": 1,
+    }
+    headers = {
+        # Custom User-Agent is required by Nominatim policy
+        "User-Agent": "Happenstance/1.0 (github.com/evcatalyst/happenstance)"
+    }
+    
     try:
-        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={urllib.parse.quote(address)}&key={api_key}"
-        data = _make_request(url)
-        
-        if data.get("status") == "OK" and data.get("results"):
-            location = data["results"][0]["geometry"]["location"]
-            return (location["lat"], location["lng"])
-    except Exception:
-        pass
+        response = requests.get(url, params=params, headers=headers, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        if data:
+            lat = float(data[0]["lat"])
+            lon = float(data[0]["lon"])
+            # Be polite to the free service
+            time.sleep(1)
+            return lat, lon
+    except Exception as e:
+        print(f"Geocoding failed for '{full_query}': {e}")
     
     return None
 
@@ -109,12 +130,13 @@ def _calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> f
     return R * c
 
 
-def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]:
+def _fetch_nearby_restaurants(event_location: str, region: str = "San Francisco", count: int = 5) -> List[Dict]:
     """
     Fetch restaurants near a specific event location.
     
     Args:
         event_location: Event location string
+        region: City/region for geocoding context
         count: Number of nearby restaurants to fetch
         
     Returns:
@@ -125,7 +147,7 @@ def _fetch_nearby_restaurants(event_location: str, count: int = 5) -> List[Dict]
         return []
     
     # First geocode the event location
-    coords = _geocode_address(event_location)
+    coords = _geocode_address(event_location, region=region)
     if not coords:
         return []
     
@@ -336,10 +358,12 @@ def _compute_match_score(event: Dict, restaurant: Dict, distance_miles: float | 
     return score, "; ".join(reasons)
 
 
-def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
+def _build_pairings(events: List[Dict], restaurants: List[Dict], cfg: Mapping) -> List[Dict]:
     if not restaurants:
         return []
     pairings: List[Dict] = []
+    
+    region = cfg.get("region", "San Francisco")
     
     # Cache geocoded locations to avoid redundant API calls
     location_cache: Dict[str, tuple[float, float] | None] = {}
@@ -350,11 +374,11 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
         # Get event coordinates
         event_coords = None
         if event_location and event_location not in location_cache:
-            location_cache[event_location] = _geocode_address(event_location)
+            location_cache[event_location] = _geocode_address(event_location, region=region)
         event_coords = location_cache.get(event_location)
         
         # Fetch nearby restaurants for this event
-        nearby_restaurants = _fetch_nearby_restaurants(event_location, count=MAX_NEARBY_RESTAURANTS_PER_EVENT)
+        nearby_restaurants = _fetch_nearby_restaurants(event_location, region=region, count=MAX_NEARBY_RESTAURANTS_PER_EVENT)
         
         # Combine nearby restaurants with the main restaurant list
         # Prefer nearby restaurants but allow fallback to main list
@@ -372,7 +396,7 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict]) -> List[Dict]:
             distance_miles = None
             if event_coords and restaurant_address:
                 if restaurant_address not in location_cache:
-                    location_cache[restaurant_address] = _geocode_address(restaurant_address)
+                    location_cache[restaurant_address] = _geocode_address(restaurant_address, region=region)
                 restaurant_coords = location_cache.get(restaurant_address)
                 
                 if restaurant_coords:
@@ -548,7 +572,7 @@ def aggregate(profile: str | None = None) -> Dict[str, Mapping]:
         "gap_bullets": gap_bullets,
         "events": events_meta,
         "restaurants": restaurants_meta,
-        "pairings": _build_pairings(events, restaurants),
+        "pairings": _build_pairings(events, restaurants, cfg),
         "guidance": month_spread_guidance(),
     }
 
