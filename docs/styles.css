@@ -1,12 +1,12 @@
 :root {
   --hs-accent: #3b82f6;
-  --hs-bg-primary: #0b1224;
-  --hs-bg-secondary: #0f172a;
-  --hs-bg-card: #111827;
-  --hs-border: #1f2937;
-  --hs-text-primary: #e8edf7;
-  --hs-text-secondary: #94a3b8;
-  --hs-text-muted: #64748b;
+  --hs-bg-primary: #1a202c;
+  --hs-bg-secondary: #2d3748;
+  --hs-bg-card: #2d3748;
+  --hs-border: #4a5568;
+  --hs-text-primary: #f7fafc;
+  --hs-text-secondary: #cbd5e1;
+  --hs-text-muted: #94a3b8;
 }
 
 body {
