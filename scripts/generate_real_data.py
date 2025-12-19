@@ -550,12 +550,22 @@ EVENTS_DATA = [
 ]
 
 
+def get_restaurants_json() -> str:
+    """Get restaurants data as JSON string."""
+    return json.dumps(RESTAURANTS_DATA, indent=2)
+
+
+def get_events_json() -> str:
+    """Get events data as JSON string."""
+    return json.dumps(EVENTS_DATA, indent=2)
+
+
 def main():
     """Generate real data JSON strings for environment variables."""
     
-    # Convert to JSON strings
-    restaurants_json = json.dumps(RESTAURANTS_DATA, indent=2)
-    events_json = json.dumps(EVENTS_DATA, indent=2)
+    # Get JSON strings
+    restaurants_json = get_restaurants_json()
+    events_json = get_events_json()
     
     print("=" * 80)
     print("RESTAURANTS JSON DATA")
@@ -573,8 +583,8 @@ def main():
     print("TO USE THIS DATA:")
     print("=" * 80)
     print("Export the data as environment variables:")
-    print(f'export AI_RESTAURANTS_DATA=\'{restaurants_json}\'')
-    print(f'export AI_EVENTS_DATA=\'{events_json}\'')
+    print("export AI_RESTAURANTS_DATA='<restaurants_json>'")
+    print("export AI_EVENTS_DATA='<events_json>'")
     print()
     print("Then run: python -m happenstance.cli aggregate")
 

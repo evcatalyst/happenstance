@@ -436,16 +436,17 @@ def _parse_json_from_text(text: str) -> Any:
 def _load_real_data_from_script(data_type: str) -> List[Dict]:
     """Load real data from the generate_real_data.py script."""
     import importlib.util
-    import sys
     from pathlib import Path
     
     # Get the path to the script
     script_path = Path(__file__).parent.parent / "scripts" / "generate_real_data.py"
     
-    # Load the module
-    spec = importlib.util.spec_from_file_location("generate_real_data", script_path)
+    # Load the module dynamically without adding to sys.modules
+    spec = importlib.util.spec_from_file_location("_generate_real_data_temp", script_path)
+    if spec is None or spec.loader is None:
+        raise ValueError(f"Cannot load data script from {script_path}")
+    
     module = importlib.util.module_from_spec(spec)
-    sys.modules["generate_real_data"] = module
     spec.loader.exec_module(module)
     
     # Get the data
