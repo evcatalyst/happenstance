@@ -433,6 +433,30 @@ def _parse_json_from_text(text: str) -> Any:
     return None
 
 
+def _load_real_data_from_script(data_type: str) -> List[Dict]:
+    """Load real data from the generate_real_data.py script."""
+    import importlib.util
+    import sys
+    from pathlib import Path
+    
+    # Get the path to the script
+    script_path = Path(__file__).parent.parent / "scripts" / "generate_real_data.py"
+    
+    # Load the module
+    spec = importlib.util.spec_from_file_location("generate_real_data", script_path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules["generate_real_data"] = module
+    spec.loader.exec_module(module)
+    
+    # Get the data
+    if data_type == "restaurants":
+        return module.RESTAURANTS_DATA
+    elif data_type == "events":
+        return module.EVENTS_DATA
+    else:
+        raise ValueError(f"Unknown data type: {data_type}")
+
+
 def fetch_ai_restaurants(
     region: str,
     city: str | None = None,
@@ -460,10 +484,15 @@ def fetch_ai_restaurants(
         ai_response = os.getenv("AI_RESTAURANTS_DATA")
     
     if not ai_response:
-        raise ValueError(
-            "No AI response provided for restaurants. "
-            "Either pass ai_response parameter or set AI_RESTAURANTS_DATA environment variable."
-        )
+        # Try to load from the real data script
+        try:
+            data = _load_real_data_from_script("restaurants")
+            return data[:count]
+        except Exception as e:
+            raise ValueError(
+                f"No AI response provided for restaurants and failed to load real data: {e}. "
+                "Either pass ai_response parameter or set AI_RESTAURANTS_DATA environment variable."
+            ) from e
     
     try:
         # Try to parse JSON from response
@@ -527,10 +556,15 @@ def fetch_ai_events(
         ai_response = os.getenv("AI_EVENTS_DATA")
     
     if not ai_response:
-        raise ValueError(
-            "No AI response provided for events. "
-            "Either pass ai_response parameter or set AI_EVENTS_DATA environment variable."
-        )
+        # Try to load from the real data script
+        try:
+            data = _load_real_data_from_script("events")
+            return data[:count]
+        except Exception as e:
+            raise ValueError(
+                f"No AI response provided for events and failed to load real data: {e}. "
+                "Either pass ai_response parameter or set AI_EVENTS_DATA environment variable."
+            ) from e
     
     try:
         # Try to parse JSON from response
