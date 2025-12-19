@@ -1,30 +1,121 @@
 [
   {
-    "title": "Waterfront Jazz Night",
-    "category": "live music",
-    "date": "2025-12-19T12:00:00+00:00",
-    "location": "Capital Region, NY Waterfront Stage",
-    "url": "https://example.com/jazz-night"
-  },
-  {
-    "title": "Gallery Walk",
-    "category": "art",
-    "date": "2025-12-22T12:00:00+00:00",
-    "location": "Capital Region, NY Arts District",
-    "url": "https://example.com/gallery-walk"
-  },
-  {
-    "title": "Family Picnic at the Park",
+    "title": "Festival of Trees",
     "category": "family",
-    "date": "2025-12-24T12:00:00+00:00",
-    "location": "Capital Region, NY Central Park",
-    "url": "https://example.com/family-picnic"
+    "date": "2025-12-20T14:00:00+00:00",
+    "location": "Schenectady County Historical Society, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Schenectady+County+Historical+Society+Schenectady+NY"
+  },
+  {
+    "title": "Cursive Live in Concert",
+    "category": "live music",
+    "date": "2025-12-21T20:00:00+00:00",
+    "location": "Lark Hall, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lark+Hall+Albany+NY"
+  },
+  {
+    "title": "Young Culture - The First and Final Headline Tour",
+    "category": "live music",
+    "date": "2025-12-21T20:00:00+00:00",
+    "location": "Empire Underground, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Empire+Underground+Albany+NY"
+  },
+  {
+    "title": "Trans-Siberian Orchestra - The Ghosts Of Christmas Eve",
+    "category": "live music",
+    "date": "2025-12-22T19:00:00+00:00",
+    "location": "MVP Arena, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY"
+  },
+  {
+    "title": "Empire State Plaza Farmers Market",
+    "category": "family",
+    "date": "2025-12-22T10:00:00+00:00",
+    "location": "Empire State Plaza, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Empire+State+Plaza+Albany+NY"
+  },
+  {
+    "title": "The Nature of Nature: Biodiversity in the Hudson Valley",
+    "category": "art",
+    "date": "2025-12-23T19:00:00+00:00",
+    "location": "NY State Museum, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=NY+State+Museum+Albany+NY"
+  },
+  {
+    "title": "Albany/Troy Black Film Club Screening of Jingle Jangle",
+    "category": "art",
+    "date": "2025-12-24T19:00:00+00:00",
+    "location": "10 2nd St, Troy, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=10+2nd+St+Troy+NY"
+  },
+  {
+    "title": "Peak Jazz Series: Jane Monheit Duo",
+    "category": "live music",
+    "date": "2025-12-24T19:00:00+00:00",
+    "location": "Caffe Lena, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Caffe+Lena+Saratoga+Springs+NY"
+  },
+  {
+    "title": "Spirits in the Trees",
+    "category": "art",
+    "date": "2025-12-24T10:00:00+00:00",
+    "location": "Crandall Park, Glens Falls, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Crandall+Park+Glens+Falls+NY"
+  },
+  {
+    "title": "Holiday Book Sale",
+    "category": "art",
+    "date": "2025-12-25T09:00:00+00:00",
+    "location": "Saratoga Springs Public Library, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Springs+Public+Library+NY"
+  },
+  {
+    "title": "Jim Brickman: The Gift of Christmas",
+    "category": "live music",
+    "date": "2025-12-23T19:30:00+00:00",
+    "location": "Universal Preservation Hall, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Universal+Preservation+Hall+Saratoga+Springs+NY"
+  },
+  {
+    "title": "An Elemental Christmas: iTheatre Saratoga's 4th Annual Holiday Music Event",
+    "category": "live music",
+    "date": "2025-12-25T19:00:00+00:00",
+    "location": "Saratoga Music Hall, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Music+Hall+Saratoga+Springs+NY"
+  },
+  {
+    "title": "Kung Fu and Night Zero",
+    "category": "live music",
+    "date": "2025-12-24T20:00:00+00:00",
+    "location": "Putnam Place, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Putnam+Place+Saratoga+Springs+NY"
+  },
+  {
+    "title": "Holiday Tea at Saratoga Arms Hotel",
+    "category": "family",
+    "date": "2025-12-25T15:00:00+00:00",
+    "location": "Saratoga Arms Hotel, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Arms+Hotel+Saratoga+Springs+NY"
+  },
+  {
+    "title": "New Year's Eve Comedy Show",
+    "category": "entertainment",
+    "date": "2025-12-31T20:00:00+00:00",
+    "location": "The Egg, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Egg+Albany+NY"
+  },
+  {
+    "title": "First Night Saratoga",
+    "category": "family",
+    "date": "2025-12-31T18:00:00+00:00",
+    "location": "Downtown Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Downtown+Saratoga+Springs+NY"
   },
   {
     "_meta": {
-      "items_hash": "aeac8c44e9ba070254b242334f4e03535bdc5c5482c50e091717e81d23f6914d",
-      "items_changed": true,
-      "item_count": 3
+      "items_hash": "82f17c4d0fb306c5094396ca320ac368c6bb9bfc711d420d8b76248b513008c1",
+      "items_changed": false,
+      "item_count": 16
     }
   }
 ]

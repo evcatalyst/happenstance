@@ -1,37 +1,324 @@
 [
   {
-    "name": "Blue Harbor Grill",
-    "cuisine": "Seafood",
-    "address": "Capital Region, NY Waterfront",
-    "url": "https://example.com/blue-harbor",
-    "match_reason": "Great before a waterfront concert"
-  },
-  {
-    "name": "Sunset Pasta",
+    "name": "Mario's Restaurant & Pizzeria",
     "cuisine": "Italian",
-    "address": "Capital Region, NY Arts District",
-    "url": "https://example.com/sunset-pasta",
-    "match_reason": "Close to the gallery walk"
+    "address": "2850 River Rd, Niskayuna, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mario's+Restaurant+Pizzeria+2850+River+Rd+Niskayuna+NY",
+    "match_reason": "Classic Italian and pizza, neighborhood favorite",
+    "rating": 4.5,
+    "price_level": 2
   },
   {
-    "name": "Midnight Sushi",
-    "cuisine": "Sushi",
-    "address": "Capital Region, NY Downtown",
-    "url": "https://example.com/midnight-sushi",
-    "match_reason": "Open late after live music"
-  },
-  {
-    "name": "Firepit BBQ",
+    "name": "Meat & Company",
     "cuisine": "BBQ",
-    "address": "Capital Region, NY Market",
-    "url": "https://example.com/firepit-bbq",
-    "match_reason": "Perfect for families near the park"
+    "address": "2321 Nott St E, Niskayuna, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Meat+Company+2321+Nott+St+E+Niskayuna+NY",
+    "match_reason": "Excellent brisket, ribs, wings, and sides",
+    "rating": 4.8,
+    "price_level": 2
+  },
+  {
+    "name": "Tequila's Mexican Bar & Grill",
+    "cuisine": "Mexican",
+    "address": "2305 Nott St, Niskayuna, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tequila's+Mexican+Bar+Grill+2305+Nott+St+Niskayuna+NY",
+    "match_reason": "Authentic flavors and friendly service",
+    "rating": 4.1,
+    "price_level": 2
+  },
+  {
+    "name": "Maya Thai Bistro",
+    "cuisine": "Thai",
+    "address": "2015 Rosa Rd, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Maya+Thai+Bistro+2015+Rosa+Rd+Schenectady+NY",
+    "match_reason": "Crafted Thai cuisine, crab rangoons recommended",
+    "rating": 4.8,
+    "price_level": 2
+  },
+  {
+    "name": "VOLCANO Asian BBQ & Hot Pot",
+    "cuisine": "Asian",
+    "address": "2309 Nott St E, Niskayuna, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=VOLCANO+Asian+BBQ+Hot+Pot+2309+Nott+St+E+Niskayuna+NY",
+    "match_reason": "Hot pot and Asian BBQ for group dining",
+    "rating": 4.9,
+    "price_level": 2
+  },
+  {
+    "name": "New China Restaurant",
+    "cuisine": "Chinese",
+    "address": "1334 Gerling St, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=New+China+Restaurant+1334+Gerling+St+Schenectady+NY",
+    "match_reason": "Consistent quality and friendly service",
+    "rating": 4.3,
+    "price_level": 1
+  },
+  {
+    "name": "Karma Bistro",
+    "cuisine": "Vegan",
+    "address": "2321 Nott St E, Niskayuna, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Karma+Bistro+2321+Nott+St+E+Niskayuna+NY",
+    "match_reason": "Poke bowls and noodle dishes, vegan options available",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Blue Ribbon Restaurant & Bakery",
+    "cuisine": "American",
+    "address": "1801 State St, Schenectady, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Blue+Ribbon+Restaurant+Bakery+Schenectady+NY",
+    "match_reason": "Popular breakfast and American classics",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Innovo Kitchen",
+    "cuisine": "American",
+    "address": "28 Clifton Country Rd, Clifton Park, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY",
+    "match_reason": "Modern American with creative local menu",
+    "rating": 4.7,
+    "price_level": 3
+  },
+  {
+    "name": "Delmonico's Italian Steakhouse",
+    "cuisine": "Italian",
+    "address": "1553 Central Ave, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Delmonico's+Italian+Steakhouse+1553+Central+Ave+Albany+NY",
+    "match_reason": "Classic Italian-American fare and steaks",
+    "rating": 4.5,
+    "price_level": 3
+  },
+  {
+    "name": "Hiro's Japanese Restaurant",
+    "cuisine": "Sushi",
+    "address": "193 Lark St, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hiro's+Japanese+Restaurant+193+Lark+St+Albany+NY",
+    "match_reason": "Renowned for fresh sushi and rolls",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Dinosaur Bar-B-Que",
+    "cuisine": "BBQ",
+    "address": "377 River St, Troy, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dinosaur+Bar-B-Que+377+River+St+Troy+NY",
+    "match_reason": "Famous chain with Southern BBQ classics",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Toro Cantina",
+    "cuisine": "Mexican",
+    "address": "111 Washington Ave Ext, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Toro+Cantina+111+Washington+Ave+Ext+Albany+NY",
+    "match_reason": "Modern, lively Mexican eatery with cocktails",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Thai Thai Bistro",
+    "cuisine": "Thai",
+    "address": "254 Lark St, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Thai+Thai+Bistro+254+Lark+St+Albany+NY",
+    "match_reason": "Authentic Thai menu items",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Hong Kong Bakery & Bistro",
+    "cuisine": "Chinese",
+    "address": "8 Wolf Rd, Colonie, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hong+Kong+Bakery+Bistro+8+Wolf+Rd+Colonie+NY",
+    "match_reason": "Handmade dim sum and bakery items",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "LaZeez Restaurant",
+    "cuisine": "Indian",
+    "address": "212 Central Ave, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=LaZeez+Restaurant+212+Central+Ave+Albany+NY",
+    "match_reason": "Indian and Pakistani classics, vegan-friendly",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Lark Street Collective Kitchen",
+    "cuisine": "Vegan",
+    "address": "258 Lark St, Albany, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lark+Street+Collective+Kitchen+258+Lark+St+Albany+NY",
+    "match_reason": "Vegan and vegetarian options in a hip setting",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Osteria Danny",
+    "cuisine": "Italian",
+    "address": "26 Henry St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Osteria+Danny+26+Henry+St+Saratoga+Springs+NY",
+    "match_reason": "Intimate, rustic and inventive Italian fare",
+    "rating": 4.8,
+    "price_level": 3
+  },
+  {
+    "name": "Sushi Thai Garden",
+    "cuisine": "Sushi",
+    "address": "1808 US-9, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sushi+Thai+Garden+1808+US-9+Saratoga+Springs+NY",
+    "match_reason": "Sushi and Thai combo, consistently popular",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "PJ's BAR-B-QSA",
+    "cuisine": "BBQ",
+    "address": "1 Kaydeross Ave W, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=PJ's+BAR-B-QSA+1+Kaydeross+Ave+W+Saratoga+Springs+NY",
+    "match_reason": "Famous for regional BBQ styles",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Cantina",
+    "cuisine": "Mexican",
+    "address": "408 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cantina+408+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Trendy spot, extensive margaritas and tacos",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Thai Basil",
+    "cuisine": "Thai",
+    "address": "368 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Thai+Basil+368+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Authentic Thai dishes, curries and noodles",
+    "rating": 4.6,
+    "price_level": 2
+  },
+  {
+    "name": "Great Tang Chinese Restaurant",
+    "cuisine": "Chinese",
+    "address": "60 West Ave, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Great+Tang+Chinese+Restaurant+60+West+Ave+Saratoga+Springs+NY",
+    "match_reason": "Fresh, flavorful Chinese cuisine",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Karavalli Regional Cuisine of India",
+    "cuisine": "Indian",
+    "address": "47 Caroline St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Karavalli+Regional+Cuisine+India+47+Caroline+St+Saratoga+Springs+NY",
+    "match_reason": "Well-reviewed for its diverse Indian menu",
+    "rating": 4.7,
+    "price_level": 2
+  },
+  {
+    "name": "Four Seasons Natural Foods",
+    "cuisine": "Vegan",
+    "address": "33 Phila St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Natural+Foods+33+Phila+St+Saratoga+Springs+NY",
+    "match_reason": "Vegan deli, casual eatery, and grocery",
+    "rating": 4.5,
+    "price_level": 1
+  },
+  {
+    "name": "The Copper Crow",
+    "cuisine": "American",
+    "address": "2 Division St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Copper+Crow+2+Division+St+Saratoga+Springs+NY",
+    "match_reason": "Upscale American with craft cocktails",
+    "rating": 4.6,
+    "price_level": 3
+  },
+  {
+    "name": "Max London's Restaurant + Bar",
+    "cuisine": "American",
+    "address": "466 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Max+London's+Restaurant+Bar+466+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Farm-to-table American cuisine",
+    "rating": 4.5,
+    "price_level": 3
+  },
+  {
+    "name": "15 Church Restaurant",
+    "cuisine": "American",
+    "address": "15 Church St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=15+Church+Restaurant+Saratoga+Springs+NY",
+    "match_reason": "Fine dining with seasonal menu",
+    "rating": 4.7,
+    "price_level": 4
+  },
+  {
+    "name": "Sake Cafe",
+    "cuisine": "Sushi",
+    "address": "415 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sake+Cafe+415+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Popular sushi spot with creative rolls",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Villa Valenti",
+    "cuisine": "Italian",
+    "address": "153 S Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Villa+Valenti+153+S+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Family-style Italian in historic building",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "The Wine Bar & Bistro",
+    "cuisine": "American",
+    "address": "417 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=The+Wine+Bar+Bistro+417+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Cozy bistro with extensive wine list",
+    "rating": 4.6,
+    "price_level": 3
+  },
+  {
+    "name": "Hattie's Chicken Shack",
+    "cuisine": "American",
+    "address": "45 Phila St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hattie's+Chicken+Shack+45+Phila+St+Saratoga+Springs+NY",
+    "match_reason": "Famous for fried chicken and Southern comfort food",
+    "rating": 4.5,
+    "price_level": 2
+  },
+  {
+    "name": "Druthers Brewing Company",
+    "cuisine": "American",
+    "address": "381 Broadway, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Druthers+Brewing+Company+381+Broadway+Saratoga+Springs+NY",
+    "match_reason": "Craft brewery with pub fare",
+    "rating": 4.4,
+    "price_level": 2
+  },
+  {
+    "name": "Mouzon House",
+    "cuisine": "American",
+    "address": "1 York St, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mouzon+House+1+York+St+Saratoga+Springs+NY",
+    "match_reason": "Creole and Southern-inspired fine dining",
+    "rating": 4.7,
+    "price_level": 3
+  },
+  {
+    "name": "Jacob & Anthony's American Grille",
+    "cuisine": "American",
+    "address": "38 High Rock Ave, Saratoga Springs, NY",
+    "url": "https://www.google.com/maps/search/?api=1&query=Jacob+Anthony's+American+Grille+38+High+Rock+Ave+Saratoga+Springs+NY",
+    "match_reason": "Upscale American steakhouse",
+    "rating": 4.6,
+    "price_level": 3
   },
   {
     "_meta": {
-      "items_hash": "aac264ece95f1284d28241d48e9b3cc9830232a92cf94ea7c4528578cf80290c",
-      "items_changed": true,
-      "item_count": 4
+      "items_hash": "e1ed0eb3c16c9706e9f032c43a6913d3454bfedbdf1b3dcf38e9ede362b4abb2",
+      "items_changed": false,
+      "item_count": 35
     }
   }
 ]
