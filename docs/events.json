@@ -1,12 +1,5 @@
 [
   {
-    "title": "Festival of Trees",
-    "category": "family",
-    "date": "2025-12-20T14:00:00+00:00",
-    "location": "Schenectady County Historical Society, Schenectady, NY",
-    "url": "https://www.google.com/maps/search/?api=1&query=Schenectady+County+Historical+Society+Schenectady+NY"
-  },
-  {
     "title": "Cursive Live in Concert",
     "category": "live music",
     "date": "2025-12-21T20:00:00+00:00",
@@ -113,9 +106,9 @@
   },
   {
     "_meta": {
-      "items_hash": "82f17c4d0fb306c5094396ca320ac368c6bb9bfc711d420d8b76248b513008c1",
+      "items_hash": "ffbd7dfcd27c07e21aed3e0b9b121af89305300fb1b2e1ce7b5e2182dc475efa",
       "items_changed": false,
-      "item_count": 16
+      "item_count": 15
     }
   }
 ]
