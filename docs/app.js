@@ -136,9 +136,19 @@ function renderPaired() {
   const cards = filtered
     .map(
       (p) => {
+        // Format event date/time
+        const eventDateHTML = p.event_date 
+          ? `<p class="meta">📅 ${escapeHTML(formatEventDate(p.event_date))}</p>` 
+          : '';
+        
+        // Format event location
+        const eventLocationHTML = p.event_location 
+          ? `<p class="meta">📍 ${escapeHTML(p.event_location)}</p>` 
+          : '';
+        
         // Build distance display
         const distanceHTML = p.distance_miles 
-          ? `<p class="distance-info">📍 ${p.distance_miles} miles apart</p>` 
+          ? `<p class="distance-info">🚶 ${p.distance_miles} miles apart</p>` 
           : '';
         
         // Build nearby restaurants display
@@ -160,6 +170,8 @@ function renderPaired() {
           <div class="pairing-event">
             <strong>🎉 Event</strong>
             <h3>${escapeHTML(p.event)}</h3>
+            ${eventDateHTML}
+            ${eventLocationHTML}
           </div>
           <div class="pairing-divider">+</div>
           <div class="pairing-restaurant">

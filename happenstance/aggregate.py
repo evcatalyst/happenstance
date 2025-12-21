@@ -280,7 +280,30 @@ def _fixture_events(region: str) -> List[Dict]:
     ]
 
 
-def _compute_match_score(event: Dict, restaurant: Dict, distance_miles: float | None = None) -> tuple[int, str]:
+def _extract_city(location_str: str) -> str:
+    """Extract city name from a location string."""
+    if not location_str:
+        return ""
+    
+    # Common city patterns: "venue, City, STATE" or "address, City, STATE"
+    parts = [p.strip() for p in location_str.split(",")]
+    
+    # If we have at least 2 parts, the second-to-last is usually the city
+    if len(parts) >= 2:
+        city = parts[-2].strip()
+        # Remove common words that aren't cities
+        city = city.replace(" NY", "").replace(" State", "").strip()
+        return city.lower()
+    
+    return location_str.lower()
+
+
+def _compute_match_score(
+    event: Dict, 
+    restaurant: Dict, 
+    distance_miles: float | None = None,
+    restaurant_use_count: int = 0
+) -> tuple[int, str]:
     score = 0
     reasons: List[str] = []
     category = event.get("category", "").lower()
@@ -290,70 +313,80 @@ def _compute_match_score(event: Dict, restaurant: Dict, distance_miles: float | 
     location = event.get("location", "").lower()
     address = restaurant.get("address", "").lower()
 
+    # Extract cities for matching
+    event_city = _extract_city(location)
+    restaurant_city = _extract_city(address)
+
+    # City/location matching (highest priority when distance unavailable)
+    if event_city and restaurant_city:
+        if event_city == restaurant_city:
+            score += 10
+            reasons.append(f"Located in {event_city.title()}")
+        elif event_city in restaurant_city or restaurant_city in event_city:
+            score += 5
+            reasons.append(f"Nearby in {event_city.title()} area")
+
     # Distance-based scoring (if available)
     if distance_miles is not None:
         if distance_miles < 0.5:
+            score += 8
+            reasons.append(f"{distance_miles:.1f} mi - walking distance")
+        elif distance_miles < 1.5:
             score += 5
-            reasons.append("Very close to event")
-        elif distance_miles < 1.0:
-            score += 3
-            reasons.append("Walking distance")
+            reasons.append(f"{distance_miles:.1f} mi - very close")
         elif distance_miles < 3.0:
-            score += 1
-            reasons.append("Short drive")
+            score += 2
+            reasons.append(f"{distance_miles:.1f} mi away")
 
+    # Penalize restaurants that have been used multiple times (encourage variety)
+    if restaurant_use_count > 0:
+        score -= restaurant_use_count * 3
+        
     # Match category with cuisine
     if category and cuisine:
-        if category in cuisine or cuisine in category:
-            score += 3
-            reasons.append("Cuisine matches event type")
         # Special category matches
-        if "music" in category and any(k in cuisine for k in ["jazz", "american", "mediterranean"]):
-            score += 2
-            reasons.append("Great dining for music events")
-        if "art" in category and any(k in cuisine for k in ["italian", "french", "contemporary"]):
-            score += 2
-            reasons.append("Sophisticated dining for art events")
-        if "sports" in category and any(k in cuisine for k in ["american", "bbq", "pizza", "mexican"]):
-            score += 2
-            reasons.append("Casual dining for sports events")
+        if "music" in category or "concert" in title or "orchestra" in title:
+            if any(k in cuisine for k in ["american", "italian", "mediterranean", "sushi"]):
+                score += 2
+                reasons.append(f"{cuisine.title()} pairs well with live music")
+        if "art" in category or "gallery" in title or "museum" in title:
+            if any(k in cuisine for k in ["italian", "french", "contemporary", "american"]):
+                score += 2
+                reasons.append(f"Upscale {cuisine} for art events")
+        if "sports" in category:
+            if any(k in cuisine for k in ["american", "bbq", "pizza", "mexican"]):
+                score += 2
+                reasons.append(f"{cuisine.title()} is great sports event food")
 
     # Family-friendly matching
     if "family" in title or "kids" in title or "family" in category:
-        if "family" in match_reason.lower() or any(k in cuisine for k in ["pizza", "american", "italian"]):
+        if any(k in cuisine for k in ["pizza", "american", "italian", "mexican"]):
             score += 2
-            reasons.append("Family-friendly pairing")
+            reasons.append(f"Family-friendly {cuisine}")
 
     # Late night events
-    if "night" in title or "late" in title or "evening" in title:
-        if "late" in match_reason.lower() or "sushi" in cuisine or "contemporary" in cuisine:
-            score += 1
-            reasons.append("Good for evening events")
-
-    # Location proximity (simple string matching)
-    if location and address:
-        # Extract neighborhood/district names
-        for neighborhood in ["downtown", "waterfront", "financial", "mission", "castro", "fillmore", "pacific"]:
-            if neighborhood in location and neighborhood in address:
-                score += 3
-                reasons.append("Same neighborhood")
-                break
+    event_date = event.get("date", "")
+    if event_date:
+        try:
+            from datetime import datetime
+            dt = datetime.fromisoformat(event_date.replace('Z', '+00:00'))
+            if dt.hour >= 19:  # 7 PM or later
+                if "sushi" in cuisine or "asian" in cuisine:
+                    score += 1
+                    reasons.append(f"{cuisine.title()} open for evening dining")
+        except Exception:
+            pass
 
     # High-quality restaurants get a bonus
     rating = restaurant.get("rating", 0)
     if rating >= 4.7:
-        score += 2
-        reasons.append("Highly rated")
-    elif rating >= 4.5:
         score += 1
-        reasons.append("Well rated")
-
-    # Add variety - use a hash of cuisine to spread choices
-    cuisine_variety_score = hash(cuisine) % 3
-    score += cuisine_variety_score
+        reasons.append(f"⭐ {rating} rating")
+    elif rating >= 4.5:
+        score += 0.5
 
     if not reasons:
-        reasons.append(match_reason or "Nearby and reliable")
+        reasons.append(match_reason or "Quality dining option")
 
     return score, "; ".join(reasons)
 
@@ -368,16 +401,19 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict], cfg: Mapping) -
     # Cache geocoded locations to avoid redundant API calls
     location_cache: Dict[str, tuple[float, float] | None] = {}
     
+    # Track restaurant usage to encourage variety
+    restaurant_use_count: Dict[str, int] = {}
+    
     for event in events:
         event_location = event.get("location", "")
         
-        # Get event coordinates
+        # Get event coordinates (try geocoding but continue without if it fails)
         event_coords = None
         if event_location and event_location not in location_cache:
             location_cache[event_location] = _geocode_address(event_location, region=region)
         event_coords = location_cache.get(event_location)
         
-        # Fetch nearby restaurants for this event
+        # Fetch nearby restaurants for this event (only if API key available)
         nearby_restaurants = _fetch_nearby_restaurants(event_location, region=region, count=MAX_NEARBY_RESTAURANTS_PER_EVENT)
         
         # Combine nearby restaurants with the main restaurant list
@@ -390,6 +426,7 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict], cfg: Mapping) -
         best_distance: float | None = None
         
         for restaurant in all_restaurants:
+            restaurant_name = restaurant.get("name", "")
             restaurant_address = restaurant.get("address", "")
             
             # Calculate distance if both coordinates are available
@@ -405,12 +442,20 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict], cfg: Mapping) -
                         restaurant_coords[0], restaurant_coords[1]
                     )
             
-            score, reason = _compute_match_score(event, restaurant, distance_miles)
+            # Get current use count for this restaurant
+            use_count = restaurant_use_count.get(restaurant_name, 0)
+            
+            score, reason = _compute_match_score(event, restaurant, distance_miles, use_count)
             if score > best_score:
                 best_score = score
                 best_restaurant = restaurant
                 best_reason = reason
                 best_distance = distance_miles
+        
+        # Track that we've used this restaurant
+        if best_restaurant:
+            restaurant_name = best_restaurant.get("name", "")
+            restaurant_use_count[restaurant_name] = restaurant_use_count.get(restaurant_name, 0) + 1
         
         pairing = {
             "event": event["title"],
@@ -418,6 +463,8 @@ def _build_pairings(events: List[Dict], restaurants: List[Dict], cfg: Mapping) -
             "match_reason": best_reason,
             "event_url": event.get("url"),
             "restaurant_url": best_restaurant.get("url") if best_restaurant else None,
+            "event_date": event.get("date"),  # Add event date to pairing
+            "event_location": event_location,  # Add event location to pairing
         }
         
         # Add distance if available
