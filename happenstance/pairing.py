@@ -120,11 +120,25 @@ class PairingConfig:
     meal_duration_casual: int = 90
     meal_duration_nice: int = 105
     
+    # Default event duration when not specified (minutes)
+    default_event_duration_minutes: int = 120
+    
     # Scoring weights (should sum to 1.0 or 100%)
     weight_service_style: float = 0.35
     weight_travel_time: float = 0.25
     weight_cuisine_diet: float = 0.20
     weight_availability: float = 0.20
+    
+    # Service style scoring bonuses
+    bonus_large_tables: float = 5.0
+    bonus_kids_menu: float = 5.0
+    bonus_noise_tolerant: float = 3.0
+    bonus_private_room: float = 7.0
+    private_room_party_size_threshold: int = 8
+    
+    # Travel time scoring
+    travel_time_penalty_per_minute: float = 3.0  # For times > 25 min
+    travel_time_penalty_threshold: int = 25  # minutes
     
     # Family-style handling
     require_family_style_for_family_events: bool = True
@@ -138,9 +152,9 @@ def _ceil_to_5_minutes(dt: datetime) -> datetime:
     minutes = dt.minute
     remainder = minutes % 5
     if remainder == 0:
-        return dt
+        return dt.replace(second=0, microsecond=0)
     delta = 5 - remainder
-    return dt + timedelta(minutes=delta)
+    return (dt + timedelta(minutes=delta)).replace(second=0, microsecond=0)
 
 
 def _format_time(dt: datetime) -> str:
@@ -246,8 +260,8 @@ def compute_dining_windows(
         elif "durationMinutes" in event and event["durationMinutes"]:
             end_at = start_at + timedelta(minutes=event["durationMinutes"])
         else:
-            # Default: assume 2-hour event
-            end_at = start_at + timedelta(hours=2)
+            # Default: use configured default event duration
+            end_at = start_at + timedelta(minutes=config.default_event_duration_minutes)
         
         # Earliest seat = event end + exit buffer + travel time + pre-buffer
         earliest_seat = end_at + timedelta(
@@ -408,15 +422,15 @@ def score_restaurant_fit(
         group_signals = restaurant.get("groupSignals", [])
         bonus = 0.0
         if "large_tables" in group_signals:
-            bonus += 5.0
+            bonus += config.bonus_large_tables
             reasons.append("Large tables available")
         if "kids_menu" in group_signals and event.get("hasKids", False):
-            bonus += 5.0
+            bonus += config.bonus_kids_menu
             reasons.append("Kids menu available")
         if "noise_tolerant" in group_signals:
-            bonus += 3.0
-        if "private_room" in group_signals and event.get("partySize", 1) >= 8:
-            bonus += 7.0
+            bonus += config.bonus_noise_tolerant
+        if "private_room" in group_signals and event.get("partySize", 1) >= config.private_room_party_size_threshold:
+            bonus += config.bonus_private_room
             reasons.append("Private room available")
         
         breakdown["serviceStyle"] = min(100.0, breakdown["serviceStyle"] + bonus)
@@ -435,7 +449,10 @@ def score_restaurant_fit(
         breakdown["travelTime"] = 50.0
         reasons.append(f"{travel_time_minutes} min away")
     else:
-        breakdown["travelTime"] = max(0.0, 100.0 - (travel_time_minutes - 25) * 3)
+        # Use configurable penalty for long travel times
+        penalty_per_min = config.travel_time_penalty_per_minute
+        threshold = config.travel_time_penalty_threshold
+        breakdown["travelTime"] = max(0.0, 100.0 - (travel_time_minutes - threshold) * penalty_per_min)
         if breakdown["travelTime"] > 0:
             reasons.append(f"{travel_time_minutes} min drive - far")
     

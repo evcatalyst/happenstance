@@ -8,6 +8,7 @@ This demonstrates:
 """
 
 from datetime import datetime, timedelta, timezone
+from typing import List
 
 from happenstance.pairing import (
     AvailabilityPayload,
@@ -35,7 +36,7 @@ def demo_family_gathering():
     }
     
     # Restaurants (mix of family-style and non-family-style)
-    restaurants: list[Restaurant] = [
+    restaurants: List[Restaurant] = [
         {
             "id": "italian-family-rest",
             "name": "Bella Famiglia",
@@ -89,7 +90,7 @@ def demo_family_gathering():
     print("\n--- PHASE B: With Availability Data ---")
     
     # Simulate availability data (e.g., from OpenTable)
-    availability_data: list[AvailabilityPayload] = [
+    availability_data: List[AvailabilityPayload] = [
         {
             "restaurantId": "italian-family-rest",
             "date": event["startAt"][:10],
@@ -137,7 +138,7 @@ def demo_pre_show_dinner():
         "location": {"lat": 37.7749, "lng": -122.4194},
     }
     
-    restaurants: list[Restaurant] = [
+    restaurants: List[Restaurant] = [
         {
             "id": "italian-near",
             "name": "Teatro Italiano",
@@ -178,7 +179,7 @@ def demo_pre_show_dinner():
         print(f"   Target seat time: {rec['targetTime']}")
     
     # Add availability
-    availability_data: list[AvailabilityPayload] = [
+    availability_data: List[AvailabilityPayload] = [
         {
             "restaurantId": "italian-near",
             "date": event["startAt"][:10],
