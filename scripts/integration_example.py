@@ -12,7 +12,7 @@ The new pairing system is designed to be used separately, particularly for:
 """
 
 from datetime import datetime, timezone
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from happenstance.pairing import (
     AvailabilityPayload,
@@ -127,8 +127,8 @@ def convert_legacy_restaurant_to_pairing_restaurant(legacy_rest: Dict) -> Restau
 def enhanced_pairing_with_availability(
     events: List[Dict],
     restaurants: List[Dict],
-    availability_data: List[AvailabilityPayload] | None = None,
-    config: PairingConfig | None = None,
+    availability_data: Optional[List[AvailabilityPayload]] = None,
+    config: Optional[PairingConfig] = None,
 ) -> List[Dict]:
     """
     Enhanced pairing that uses the new two-phase system.

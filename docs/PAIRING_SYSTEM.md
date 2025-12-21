@@ -26,6 +26,7 @@ Re-ranks restaurants when availability data arrives from the client:
 ## Quick Start
 
 ```python
+from typing import List, Optional
 from happenstance.pairing import (
     Event,
     Restaurant,
@@ -45,7 +46,7 @@ event: Event = {
 }
 
 # Define restaurants
-restaurants: list[Restaurant] = [
+restaurants: List[Restaurant] = [
     {
         "id": "rest1",
         "name": "Italian Place",
@@ -90,12 +91,12 @@ Event = {
     "type": str,  # FAMILY_STYLE_GATHERING, SHOW, MEETING, DRINKS, etc.
     "location": {"lat": float, "lng": float},
     "startAt": str,  # ISO datetime
-    "endAt": str | None,  # ISO datetime
-    "durationMinutes": int | None,
+    "endAt": Optional[str],  # ISO datetime
+    "durationMinutes": Optional[int],
     "mealIntent": "BEFORE_EVENT" | "AFTER_EVENT" | "MEAL_IS_EVENT",
     "partySize": int,
     "hasKids": bool,
-    "travelMode": str | None,  # default "DRIVE"
+    "travelMode": Optional[str],  # default "DRIVE"
 }
 ```
 
@@ -105,11 +106,11 @@ Restaurant = {
     "id": str,
     "name": str,
     "location": {"lat": float, "lng": float},
-    "cuisineTags": list[str],
-    "serviceStyleTags": list[str],  # "family_style", "share_plates", etc.
-    "groupSignals": list[str],  # "large_tables", "kids_menu", "private_room"
-    "priceTier": int | None,
-    "hours": dict | None,
+    "cuisineTags": List[str],
+    "serviceStyleTags": List[str],  # "family_style", "share_plates", etc.
+    "groupSignals": List[str],  # "large_tables", "kids_menu", "private_room"
+    "priceTier": Optional[int],
+    "hours": Optional[Dict],
 }
 ```
 
@@ -119,7 +120,7 @@ AvailabilityPayload = {
     "restaurantId": str,
     "date": str,  # YYYY-MM-DD
     "partySize": int,
-    "availableTimes": list[str],  # ["17:15", "17:45", "18:30"]
+    "availableTimes": List[str],  # ["17:15", "17:45", "18:30"]
 }
 ```
 
@@ -142,8 +143,8 @@ PairingRecommendation = {
     },
     "targetTime": str,  # HH:MM ideal seat time
     "availabilityPending": bool,
-    "recommendedAvailableTimes": list[str] | None,
-    "whyMatched": list[str],  # UI-friendly reasons
+    "recommendedAvailableTimes": Optional[List[str]],
+    "whyMatched": List[str],  # UI-friendly reasons
 }
 ```
 
