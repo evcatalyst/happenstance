@@ -12,7 +12,6 @@ from datetime import datetime, timedelta, timezone
 from happenstance.pairing import (
     AvailabilityPayload,
     Event,
-    PairingConfig,
     Restaurant,
     rank_restaurants_for_event,
 )
@@ -207,7 +206,7 @@ def demo_pre_show_dinner():
         print(f"\n{i}. {rest_name}")
         print(f"   Final Score: {rec['score']:.1f}")
         print(f"   Best Times: {rec['recommendedAvailableTimes']}")
-        print(f"   Why: Close to venue, good timing for show")
+        print("   Why: Close to venue, good timing for show")
 
 
 def main():
