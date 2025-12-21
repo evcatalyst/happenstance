@@ -29,6 +29,10 @@ from .validate import filter_events_by_window
 NEARBY_RESTAURANT_RADIUS_METERS = 800.0  # ~0.5 miles
 MAX_NEARBY_RESTAURANTS_PER_EVENT = 3
 
+# Pairing algorithm constants
+EVENING_HOUR_THRESHOLD = 19  # 7 PM in 24-hour format
+VARIETY_PENALTY_MULTIPLIER = 3  # Penalty per previous use of a restaurant
+
 # Google Places price level mapping
 PRICE_LEVEL_MAP = {
     "PRICE_LEVEL_FREE": 0,
@@ -281,7 +285,12 @@ def _fixture_events(region: str) -> List[Dict]:
 
 
 def _extract_city(location_str: str) -> str:
-    """Extract city name from a location string."""
+    """
+    Extract city name from a location string.
+    
+    Handles common patterns like "venue, City, STATE" or "address, City, STATE".
+    Note: Currently optimized for US addresses with state abbreviations.
+    """
     if not location_str:
         return ""
     
@@ -291,9 +300,11 @@ def _extract_city(location_str: str) -> str:
     # If we have at least 2 parts, the second-to-last is usually the city
     if len(parts) >= 2:
         city = parts[-2].strip()
-        # Remove common words that aren't cities
-        city = city.replace(" NY", "").replace(" State", "").strip()
-        return city.lower()
+        # Remove common state abbreviations and words that aren't part of city names
+        # This is US-specific; could be made configurable for other regions
+        for pattern in [" NY", " CA", " TX", " State"]:
+            city = city.replace(pattern, "")
+        return city.strip().lower()
     
     return location_str.lower()
 
@@ -304,6 +315,16 @@ def _compute_match_score(
     distance_miles: float | None = None,
     restaurant_use_count: int = 0
 ) -> tuple[int, str]:
+    """
+    Compute a match score between an event and restaurant.
+    
+    Scoring priorities:
+    1. Same city/location (10 points)
+    2. Close distance if available (2-8 points)
+    3. Cuisine-category match (2 points)
+    4. High rating (1 point)
+    5. Variety penalty (-3 per previous use)
+    """
     score = 0
     reasons: List[str] = []
     category = event.get("category", "").lower()
@@ -340,7 +361,7 @@ def _compute_match_score(
 
     # Penalize restaurants that have been used multiple times (encourage variety)
     if restaurant_use_count > 0:
-        score -= restaurant_use_count * 3
+        score -= restaurant_use_count * VARIETY_PENALTY_MULTIPLIER
         
     # Match category with cuisine
     if category and cuisine:
@@ -370,20 +391,20 @@ def _compute_match_score(
         try:
             from datetime import datetime
             dt = datetime.fromisoformat(event_date.replace('Z', '+00:00'))
-            if dt.hour >= 19:  # 7 PM or later
+            if dt.hour >= EVENING_HOUR_THRESHOLD:
                 if "sushi" in cuisine or "asian" in cuisine:
                     score += 1
                     reasons.append(f"{cuisine.title()} open for evening dining")
         except Exception:
             pass
 
-    # High-quality restaurants get a bonus
+    # High-quality restaurants get a bonus (keep as integers)
     rating = restaurant.get("rating", 0)
     if rating >= 4.7:
         score += 1
         reasons.append(f"⭐ {rating} rating")
     elif rating >= 4.5:
-        score += 0.5
+        score += 1  # Changed from 0.5 to 1 to keep score as integer
 
     if not reasons:
         reasons.append(match_reason or "Quality dining option")
