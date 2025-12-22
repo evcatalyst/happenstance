@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-21T13:51:36.556914+00:00",
+  "generated_at": "2025-12-21T18:19:51.679801+00:00",
   "profile": "default",
   "region": "Capital Region, NY",
   "branding": {
@@ -51,10 +51,10 @@
     },
     {
       "event": "Trans-Siberian Orchestra - The Ghosts Of Christmas Eve",
-      "restaurant": "Thai Thai Bistro",
-      "match_reason": "Located in Albany; \u2b50 4.7 rating",
+      "restaurant": "Hiro's Japanese Restaurant",
+      "match_reason": "Located in Albany; Sushi pairs well with live music; Sushi open for evening dining",
       "event_url": "https://www.google.com/maps/search/?api=1&query=MVP+Arena+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Thai+Thai+Bistro+254+Lark+St+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Hiro's+Japanese+Restaurant+193+Lark+St+Albany+NY",
       "event_date": "2025-12-22T19:00:00+00:00",
       "event_location": "MVP Arena, Albany, NY"
     },
@@ -69,10 +69,10 @@
     },
     {
       "event": "The Nature of Nature: Biodiversity in the Hudson Valley",
-      "restaurant": "Lark Street Collective Kitchen",
-      "match_reason": "Located in Albany",
+      "restaurant": "Thai Thai Bistro",
+      "match_reason": "Located in Albany; \u2b50 4.7 rating",
       "event_url": "https://www.google.com/maps/search/?api=1&query=NY+State+Museum+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Lark+Street+Collective+Kitchen+258+Lark+St+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Thai+Thai+Bistro+254+Lark+St+Albany+NY",
       "event_date": "2025-12-23T19:00:00+00:00",
       "event_location": "NY State Museum, Albany, NY"
     },
@@ -96,10 +96,10 @@
     },
     {
       "event": "Spirits in the Trees",
-      "restaurant": "Innovo Kitchen",
-      "match_reason": "Upscale american for art events; \u2b50 4.7 rating",
+      "restaurant": "Mario's Restaurant & Pizzeria",
+      "match_reason": "Upscale italian for art events",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Crandall+Park+Glens+Falls+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Innovo+Kitchen+Clifton+Park+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Mario's+Restaurant+Pizzeria+2850+River+Rd+Niskayuna+NY",
       "event_date": "2025-12-24T10:00:00+00:00",
       "event_location": "Crandall Park, Glens Falls, NY"
     },
@@ -123,46 +123,46 @@
     },
     {
       "event": "An Elemental Christmas: iTheatre Saratoga's 4th Annual Holiday Music Event",
-      "restaurant": "15 Church Restaurant",
-      "match_reason": "Located in Saratoga Springs; American pairs well with live music; \u2b50 4.7 rating",
+      "restaurant": "The Copper Crow",
+      "match_reason": "Located in Saratoga Springs; American pairs well with live music",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Music+Hall+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=15+Church+Restaurant+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=The+Copper+Crow+2+Division+St+Saratoga+Springs+NY",
       "event_date": "2025-12-25T19:00:00+00:00",
       "event_location": "Saratoga Music Hall, Saratoga Springs, NY"
     },
     {
       "event": "Kung Fu and Night Zero",
-      "restaurant": "Mouzon House",
-      "match_reason": "Located in Saratoga Springs; American pairs well with live music; \u2b50 4.7 rating",
+      "restaurant": "Max London's Restaurant + Bar",
+      "match_reason": "Located in Saratoga Springs; American pairs well with live music",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Putnam+Place+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Mouzon+House+1+York+St+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Max+London's+Restaurant+Bar+466+Broadway+Saratoga+Springs+NY",
       "event_date": "2025-12-24T20:00:00+00:00",
       "event_location": "Putnam Place, Saratoga Springs, NY"
     },
     {
       "event": "Holiday Tea at Saratoga Arms Hotel",
-      "restaurant": "The Copper Crow",
-      "match_reason": "Located in Saratoga Springs; Family-friendly american",
+      "restaurant": "15 Church Restaurant",
+      "match_reason": "Located in Saratoga Springs; Family-friendly american; \u2b50 4.7 rating",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Saratoga+Arms+Hotel+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=The+Copper+Crow+2+Division+St+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=15+Church+Restaurant+Saratoga+Springs+NY",
       "event_date": "2025-12-25T15:00:00+00:00",
       "event_location": "Saratoga Arms Hotel, Saratoga Springs, NY"
     },
     {
       "event": "New Year's Eve Comedy Show",
-      "restaurant": "LaZeez Restaurant",
+      "restaurant": "Lark Street Collective Kitchen",
       "match_reason": "Located in Albany",
       "event_url": "https://www.google.com/maps/search/?api=1&query=The+Egg+Albany+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=LaZeez+Restaurant+212+Central+Ave+Albany+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Lark+Street+Collective+Kitchen+258+Lark+St+Albany+NY",
       "event_date": "2025-12-31T20:00:00+00:00",
       "event_location": "The Egg, Albany, NY"
     },
     {
       "event": "First Night Saratoga",
-      "restaurant": "Max London's Restaurant + Bar",
+      "restaurant": "The Wine Bar & Bistro",
       "match_reason": "Nearby in Downtown Saratoga Springs area; Family-friendly american",
       "event_url": "https://www.google.com/maps/search/?api=1&query=Downtown+Saratoga+Springs+NY",
-      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=Max+London's+Restaurant+Bar+466+Broadway+Saratoga+Springs+NY",
+      "restaurant_url": "https://www.google.com/maps/search/?api=1&query=The+Wine+Bar+Bistro+417+Broadway+Saratoga+Springs+NY",
       "event_date": "2025-12-31T18:00:00+00:00",
       "event_location": "Downtown Saratoga Springs, NY"
     }

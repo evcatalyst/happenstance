@@ -2,6 +2,12 @@
 
 Static weekend planner for restaurants and events. Data lives in `docs/*.json` and a lightweight UI renders it for GitHub Pages.
 
+📚 **Documentation:**
+- [Architecture](docs/ARCHITECTURE.md) - Technical architecture and data flow
+- [Roadmap](docs/ROADMAP.md) - Feature roadmap and future plans
+- [Bug Fixes](docs/BUGS.md) - Known issues and bug tracking
+- [UI Improvements](docs/UI_IMPROVEMENTS.md) - UX enhancement backlog
+
 ### 🌐 Live Demo
 
 **[View the live app →](https://evcatalyst.github.io/happenstance/)**
